@@ -1,4 +1,4 @@
-const productServices = require('../model/productServices');
+const productServices = require('../model/productsServices');
 
 exports.index = (req, res, next)=>{
       console.log('Index API');

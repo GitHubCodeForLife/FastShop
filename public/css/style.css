@@ -3956,7 +3956,51 @@ hr + .footer-social-list {
 	margin-right: auto;
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
-
+.product-cart {
+	position: relative;
+	text-align: left;
+	display: flex;
+	max-width: 500px;
+}
+.product-figure-cart{
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+.product-detail-cart{
+	display: flex;
+	margin-left: 13px;
+	margin-right: 2px;
+}
+.product-name-cart {
+	text-transform: inherit;
+	line-height: 1;
+	letter-spacing: .01em;
+	color: #000000;
+	font-size: 30px;
+	font-weight: 750;
+}
+.product-price-cart {
+	margin-top: 7px;
+	margin-bottom: auto;
+	line-height: 1;
+	letter-spacing: .01em;
+	color:rgb(96, 70, 182);
+	font-size: 20px;
+	font-weight: 800;
+}
+.total-price-cart {
+	margin-bottom: auto;
+	line-height: 1;
+	letter-spacing: .02em;
+	color: #ffd445;
+	font-size: 30px;
+	font-weight: 800;
+}
+.product-quantity-cart {
+	display: flex;
+	flex-direction: row-reverse;
+	align-items: center;
+	color: #000000;
+}
 .product-figure{
 
 	margin-left: auto;
@@ -8570,7 +8614,7 @@ html.rd-navbar-fixed-linked .page {
 
 @media (min-width: 1200px) {
 	.rd-navbar-modern.rd-navbar-static .rd-navbar-main {
-		padding-right: 110px;
+		padding-right: 15px;
 	}
 }
 
@@ -15296,14 +15340,18 @@ disabled look for disabled choices in the results dropdown
 	border-radius:15px;
 	padding: 30px 60px;
 }
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+.rd-nav-link-cart {
+	padding : 15px 0px !important;
 }
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
+.number-spinner-cart{
+	max-width: 150px;
+}
+.delete-item-cart{
+	min-width: 80px;
+	height: auto;
+	margin-left:auto;
+}
+.button-wrap-cart{
+	color:white;
+	background-color: #6046b6;
 }

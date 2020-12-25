@@ -4,7 +4,8 @@ const saltRounds = 10;
 
 exports.index = (req, res, next)=>{
   console.log('User: ', req.user);
-    res.render('index', { title: 'FastShop' , user: req.user});
+  let isHome = true;
+    res.render('index', { title: 'FastShop' , user: req.user, isHome: isHome});
 }
 
 exports.signup =(req, res, next)=> {
@@ -13,6 +14,11 @@ exports.signup =(req, res, next)=> {
 
 exports.login =(req, res, next)=> {
     res.render('user/login',{title: 'Login Page', message: req.message});
+}
+
+exports.cart =(req, res, next)=> {
+  let isCart = true;
+  res.render('cart',{title: 'Cart', isCart:isCart});
 }
 
 exports.postSignup = async(req, res, next)=>{
