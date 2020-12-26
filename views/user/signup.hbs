@@ -1,63 +1,110 @@
-<!-- Signup -->
-
-<section class="section section-xxl bg-default text-md-center py-0">
-  <div class="box-transform-wrap context-dark ">
-    <div class="container container-signup wow fadeInLeft" data-wow-delay=".15s">
-      <h3 class="text-spacing-25 text-transform-none">SIGNUP</h3>
-      {{#if errors}}
-      {{#each errors}}
-      <div class="alert alert-dismissible alert-danger">
-        <p>{{this}}</p>
-      </div>
-      {{/each}}
-      {{/if}}
-      <form class="rd-form" method="post">
-        <div class="row row-20 gutters-20">
-          <div class="col-md-6">
-            <div class="form-wrap">
-              <input class="form-input" id="email" type="email" name="email" required>
-              <label class="form-label" for="email">Email</label>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-wrap">
-              <input class="form-input" id="name" type="text" name="name" data-constraints="@Required">
-              <label class="form-label" for="name">Name</label>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-wrap">
-              <input class="form-input" id="password" type="password" name="password" data-constraints="@Required"
-                required>
-              <label class="form-label" for="password">Password</label>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-wrap">
-              <input class="form-input" id="retype_password" type="password" name="retype_password"
-                data-constraints="@Required" required>
-              <label class="form-label" for="retype_password">Retype Password</label>
-            </div>
-          </div>
 
 
-          <div class="col-md-6">
-            <div class="form-wrap">
-              <input class="form-input" id="phone" type="number" name="phone">
-              <label class="form-label" for="phone">Phone number</label>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-wrap">
-              <input class="form-input" id="address" type="text" name="address">
-              <label class="form-label" for="address">Address</label>
-            </div>
-          </div>
+  <div class="page">
+  
 
-        </div>
-        <div class="d-flex justify-content-center mt-5">
-          <button class="button button-secondary button-winona" type="submit">Signup</button>
-        </div>
+    <!-- Signup -->
+
+    <section class="section section-xxl bg-default text-md-center py-0">
+      <div class="box-transform-wrap context-dark ">
+          <div class="container container-signup wow fadeInLeft" data-wow-delay=".15s">
+                <h3 class="text-spacing-25 text-transform-none">SIGNUP</h3>
+                {{#if errors}}
+                  {{#each errors}}
+                  <div class="alert alert-dismissible alert-danger animate__animated animate__shakeY">
+                    <p>{{this}}</p>
+                  </div>
+                  {{/each}}
+                  {{/if}}
+                <form class="rd-form"  method="post">
+                  <div class="row row-20 gutters-20">
+                    {{#if infor}}
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="email" type="email" name="email" value="{{infor.email}}" required>
+                        <label class="form-label" for="email">Email</label>
+                      </div>
+                    </div>
+                     <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="name" type="text" name="name" data-constraints="@Required" value="{{infor.name}}">
+                        <label class="form-label" for="name">Name</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="password" type="password" name="password" data-constraints="@Required" required value="{{infor.password}}">
+                        <label class="form-label" for="password">Password</label> 
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="retype_password" type="password" name="retype_password" data-constraints="@Required" required value="{{infor.retype_password}}">
+                        <label class="form-label" for="retype_password">Retype Password</label>
+                      </div>
+                    </div>
+                    
+                   
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="phone" type="number" name="phone" value="{{infor.phone}}">
+                        <label class="form-label" for="phone">Phone number</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="address" type="text" name="address" value="{{infor.address}}" >
+                        <label class="form-label" for="address">Address</label>
+                      </div>
+                    </div>
+                    
+                    {{/if}}
+                    {{#unless infor}}
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="email" type="email" name="email" required>
+                        <label class="form-label" for="email">Email</label>
+                      </div>
+                    </div>
+                     <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="name" type="text" name="name" data-constraints="@Required">
+                        <label class="form-label" for="name">Name</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="password" type="password" name="password" data-constraints="@Required" required>
+                        <label class="form-label" for="password">Password</label> 
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="retype_password" type="password" name="retype_password" data-constraints="@Required" required>
+                        <label class="form-label" for="retype_password">Retype Password</label>
+                      </div>
+                    </div>
+                    
+                   
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="phone" type="number" name="phone" >
+                        <label class="form-label" for="phone">Phone number</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-wrap">
+                        <input class="form-input" id="address" type="text" name="address" >
+                        <label class="form-label" for="address">Address</label>
+                      </div>
+                    </div>
+                    
+                    {{/unless}}
+                    
+                  </div>
+                  <div class="d-flex justify-content-center mt-5">
+                    <button class="button button-secondary button-winona" type="submit">Signup</button>
+                  </div>
 
       </form>
     </div>

@@ -18,11 +18,11 @@
     </section>
     <!-- Our Shop-->
 
-    <section class="section section-lg bg-default">
+    <section class="section section-lg bg-default" id='category'>
       <div class="container">
         <div class="tabs-custom row row-50 justify-content-center flex-lg-row-reverse text-center text-md-left">
           <div class="col-lg-4 col-xl-3">
-            <h5 class="text-spacing-200 text-capitalize">CATEGORY</h5>
+            <h5 class="text-spacing-200 text-capitalize" >CATEGORY</h5>
             <ul class="nav list-category list-category-down-md-inline-block">
               <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay="0s"><a class="active"
                   href="#tabs-4-1" data-toggle="tab">All products</a></li>
@@ -130,7 +130,7 @@
               </div>`);
               }
               
-              window.scrollTo(0,0);
+              document.location.href='#category';
               nextPage = page + 1;
               prePage = page -1;
               if(prePage==0){

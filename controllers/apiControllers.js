@@ -1,11 +1,8 @@
-<<<<<<< Updated upstream
-const productServices = require('../model/productsServices');
-=======
+
 const productServices = require('../model/productServices');
 const userServices = require('../model/userServices');
 const { ObjectId} = require('mongodb');
 
->>>>>>> Stashed changes
 
 exports.index = (req, res, next)=>{
       console.log('Index API');

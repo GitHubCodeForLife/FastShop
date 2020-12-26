@@ -1,40 +1,41 @@
-<!-- Login -->
 
-<section class="section section-xxl bg-default text-md-center py-0">
-  <div class="box-transform-wrap context-dark ">
-    <div class="container container-login wow fadeInLeft" data-wow-delay=".15s">
-      <h3 class="text-spacing-25 text-transform-none">LOGIN</h3>
-      {{#if message}}
-      <div class="alert alert-dismissible alert-danger">
-        <p>{{message}}</p>
+
+    <!-- Login -->
+
+    <section class="section section-xxl bg-default text-md-center py-0">
+      <div class="box-transform-wrap context-dark ">
+          <div class="container container-login wow fadeInLeft" data-wow-delay=".15s">
+                <h3 class="text-spacing-25 text-transform-none">LOGIN</h3>
+                {{#if message}}
+                  <div class="alert alert-dismissible alert-danger animate__animated animate__shakeY">
+                    <p>{{message}}</p>
+                  </div>
+                  {{/if}}
+                <form class="rd-form"  method="post">
+                  <div class="row row-20 gutters-20">
+                    <div class="col-md-12">
+                      <div class="form-wrap">
+                        <input class="form-input" id="email" type="text" name="email" data-constraints="@Required" required>
+                        <label class="form-label" for="email">Email</label>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="form-wrap">
+                        <input class="form-input" id="password" type="password" name="password" data-constraints="@Required" required>
+                        <label class="form-label" for="password">Password</label>
+                      </div>
+                    </div>
+                  </div>
+                  <p>Don't have an account? <a href="./signup">Sign up.</a></p>
+                  <div class="d-flex justify-content-center mt-5">
+                    <button class="button button-secondary button-winona" type="submit">Login</button>
+                  </div>
+
+                </form>
+          </div>
+        <div class="box-transform" style="background-image: url(images/bg-login.jpg);"></div>
       </div>
-      {{/if}}
-      <form class="rd-form" method="post">
-        <div class="row row-20 gutters-20">
-          <div class="col-md-12">
-            <div class="form-wrap">
-              <input class="form-input" id="email" type="text" name="email" data-constraints="@Required" required>
-              <label class="form-label" for="email">Email</label>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-wrap">
-              <input class="form-input" id="password" type="password" name="password" data-constraints="@Required"
-                required>
-              <label class="form-label" for="password">Password</label>
-            </div>
-          </div>
-        </div>
-        <p>Don't have an account? <a href="./signup">Sign up.</a></p>
-        <div class="d-flex justify-content-center mt-5">
-          <button class="button button-secondary button-winona" type="submit">Login</button>
-        </div>
-
-      </form>
-    </div>
-    <div class="box-transform" style="background-image: url(images/bg-login.jpg);"></div>
-  </div>
-</section>
+    </section>
 <!-- Javascript-->
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>

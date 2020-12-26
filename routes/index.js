@@ -27,11 +27,5 @@ router.get('/logout', (req, res) => {
   req.flash('success_msg', 'You are logged out');
   res.redirect('/login');
 });
-<<<<<<< Updated upstream
 router.get('/cart', homeController.cart);
-=======
-
-router.get('/cart', homeController.cart);
-
->>>>>>> Stashed changes
 module.exports = router;

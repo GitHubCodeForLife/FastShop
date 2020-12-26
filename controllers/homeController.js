@@ -24,7 +24,7 @@ exports.login =(req, res, next)=> {
 
 exports.cart =(req, res, next)=> {
   let isCart = true;
-  res.render('cart',{title: 'Cart', isCart:isCart});
+  res.render('cart',{title: 'Cart',user: req.user, isCart:isCart});
 }
 
 exports.postSignup = async(req, res, next)=>{
@@ -35,15 +35,15 @@ exports.postSignup = async(req, res, next)=>{
   //console.log(infor.email);
   // Check valid Infor 
   if(password==''){
-      errors.push('Mật khẩu đã nhập không hợp lệ');
+      errors.push('Password is invalid');
       console.log('Password is invalid');
   }
   if(password!=retype_password){
-        errors.push('Vui lòng nhập lại đúng mật khẩu');
+        errors.push('Password is not correct');
         console.log('Password is not correct');
   }
   if(password.length < 6){
-      errors.push('Mật khẩu phải ít nhất 6 ký tự.');
+      errors.push('Password is at least 6 characters');
       console.log('Password is at least 6 characters');
   }
   if(errors.length>0){
@@ -55,7 +55,7 @@ exports.postSignup = async(req, res, next)=>{
   let user = await userServices.findOne({email: email});
   if(user!=null){
     if(user.isVerified==true){
-      errors.push('Email đã được đăng ký. Vui lòng đăng ký bằng email khác.')
+      errors.push('Email has registered. Please use another email.')
       res.render('user/signup',{title: 'signup Page', errors, infor: infor});
     }else{
         //update user
@@ -74,7 +74,7 @@ exports.postSignup = async(req, res, next)=>{
             from: process.env.EMAIL_USER,
             to: email,
             subject: 'Verifi Email',
-            text: `http://127.0.0.1:5000/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}`
+            text: `${process.env.URL_WEB}/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}`
           };
           await userServices.updateOne({_id: user._id},{ $set: tempUser });
           //Send email
@@ -126,7 +126,3 @@ exports.postSignup = async(req, res, next)=>{
   
 }
 
-
-exports.cart =(req, res)=>{
-  res.render('cart',{title: 'Cart Page'});
-}
