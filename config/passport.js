@@ -12,8 +12,12 @@ module.exports = (passport)=>{
             //Find user
             const user = await User.findOne({email: email});
             if(!user){
-                console.log('That email is not registered.');
-                return done(null, false, {message: 'That email is not registered.'});   
+                console.log('Email chưa được đăng ký vui lòng đăng ký trước khi đăng nhập.');
+                return done(null, false, {message: 'Email chưa được đăng ký vui lòng đăng ký trước khi đăng nhập'});   
+            }
+            if(user.isVerified==false){
+                console.log('Vui lòng xác thực email trước khi đăng nhập.');
+                return done(null, false, {message: 'Vui lòng xác thực email trước khi đăng nhập.'});   
             }
             //Macth password
             bcrypt.compare(password, user.password,(err, result)=>{
@@ -22,7 +26,7 @@ module.exports = (passport)=>{
                     return done(null, user);
                 }else{
                     console.log('Password is incorrect.');
-                    return done(null, false, {message: 'Password incorrect.'});
+                    return done(null, false, {message: 'Mật khẩu đã nhập không chính xác.'});
                 }
             });
         })

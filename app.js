@@ -4,13 +4,15 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+//Nodemailer
+require('./config/nodemailer');
 //passport, flash, session
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 require('./config/passport')(passport);
 
+//Router 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api');

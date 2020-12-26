@@ -11,3 +11,8 @@ exports.insertOne = async(user)=>{
     console.log('Insert One');
     await db().collection('users').insertOne(user);
 }
+
+exports.updateOne = async(user, newValue)=>{
+    console.log('Update user');
+    await db().collection('users').updateOne(user, newValue);
+}

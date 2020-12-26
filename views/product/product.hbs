@@ -207,11 +207,11 @@
     </section>
     <!-- Our Shop-->
 
-    <section class="section section-lg bg-default">
+    <section class="section section-lg bg-default" id="category">
       <div class="container">
         <div class="tabs-custom row row-50 justify-content-center flex-lg-row-reverse text-center text-md-left">
           <div class="col-lg-4 col-xl-3">
-            <h5 class="text-spacing-200 text-capitalize">CATEGORY</h5>
+            <h5 class="text-spacing-200 text-capitalize" >CATEGORY</h5>
             <ul class="nav list-category list-category-down-md-inline-block">
               <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay="0s"><a class="active"
                   href="#tabs-4-1" data-toggle="tab">All products</a></li>
@@ -378,7 +378,7 @@
                   $('#list-products').append(` <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
                 <!-- Product-->
                 <article class="product wow fadeInLeft" data-wow-delay=".15s">
-                  <div class="product-figure "><img src="images/product-1-161x162.png" alt="" width="161" height="162" />
+                  <div class="product-figure "><img src="https://source.unsplash.com/random/200x200" alt="" width="161" height="162" />
                   </div>
                   <h6 class="product-title">${products[i].title}</h6>
                   <div class="product-price-wrap">
@@ -387,7 +387,7 @@
                   <div class="product-button">
                     <div class="button-wrap"><a class="button button-xs button-primary button-winona" href="#">Add to
                         cart</a></div>
-                    <div class="button-wrap"><a class="button button-xs button-secondary button-winona" href="../products?id=${products[i]._id}">View
+                    <div class="button-wrap"><a class="button button-xs button-secondary button-winona" href='?id=${products[i]._id}'>View
                         Product</a></div>
                   </div>
                 </article>
@@ -413,7 +413,7 @@
                   $('#list-products').append(` <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
                 <!-- Product-->
                 <article class="product wow fadeInLeft" data-wow-delay=".15s">
-                  <div class="product-figure "><img src="images/product-1-161x162.png" alt="" width="161" height="162" />
+                  <div class="product-figure "><img src="https://picsum.photos/seed/picsum/200/300" alt="" width="161" height="162" />
                   </div>
                   <h6 class="product-title">${products[i].title}</h6>
                   <div class="product-price-wrap">
@@ -422,14 +422,13 @@
                   <div class="product-button">
                     <div class="button-wrap"><a class="button button-xs button-primary button-winona" href="#">Add to
                         cart</a></div>
-                    <div class="button-wrap"><a class="button button-xs button-secondary button-winona" href="../products?id=${products[i]._id}">View
+                    <div class="button-wrap"><a class="button button-xs button-secondary button-winona" href='?id=${products[i]._id}'>View
                         Product</a></div>
                   </div>
                 </article>
               </div>`);
               }
-              
-              window.scrollTo(0,0);
+              document.location.href = '#category';
               nextPage = page + 1;
               prePage = page -1;
               if(prePage==0){

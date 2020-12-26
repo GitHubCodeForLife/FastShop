@@ -1,6 +1,12 @@
 const userServices = require('../model/userServices');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const { ObjectID } = require('mongodb');
+//Nodemailer
+let nodemailer = require('nodemailer');
+let {createTransport} = require('../config/nodemailer');
+let smptTransport = createTransport(nodemailer);
+
 
 exports.index = (req, res, next)=>{
   console.log('User: ', req.user);
@@ -23,38 +29,104 @@ exports.cart =(req, res, next)=> {
 
 exports.postSignup = async(req, res, next)=>{
   console.log(req.body);
-  //Check errors valid
   let errors = [];
   let {email, password, retype_password, name, phone, address}=req.body;
+  let  infor = req.body;
+  //console.log(infor.email);
+  // Check valid Infor 
   if(password==''){
-      errors.push('Password is invalid');
+      errors.push('Mật khẩu đã nhập không hợp lệ');
       console.log('Password is invalid');
   }
   if(password!=retype_password){
-        errors.push('Password is not correct');
+        errors.push('Vui lòng nhập lại đúng mật khẩu');
         console.log('Password is not correct');
   }
   if(password.length < 6){
-      errors.push('Password is at least 6 characters.');
+      errors.push('Mật khẩu phải ít nhất 6 ký tự.');
       console.log('Password is at least 6 characters');
   }
   if(errors.length>0){
-    res.render('user/signup',{title: 'Signup Page', errors});
-  }else{
-      //check email exist
-      let user = await userServices.findOne({email: email});
-      if(user!=null){
-        errors.push('Email has signuped. Please use another email.')
-        res.render('user/signup',{title: 'signup Page', errors});
-      }else{
-        // save into database
-        //hash password
-         bcrypt.hash(password,saltRounds,async (err, hash)=>{
-           if(err) throw err;
-           await userServices.insertOne({email: email, password: hash, name: name, phone: phone, address: address});
-          console.log('Inserted One user into database');
-        });
-        res.redirect('/login');
-      }
+    res.render('user/signup',{title: 'Signup Page', errors, infor: infor});
+    return ;
   }
+
+  //check email exist & verified
+  let user = await userServices.findOne({email: email});
+  if(user!=null){
+    if(user.isVerified==true){
+      errors.push('Email đã được đăng ký. Vui lòng đăng ký bằng email khác.')
+      res.render('user/signup',{title: 'signup Page', errors, infor: infor});
+    }else{
+        //update user
+        bcrypt.hash(password,saltRounds,async (err, hash)=>{
+          if(err) throw err;
+          let tempUser = {
+            email: email,
+            password: hash, 
+            name: name, 
+            phone: phone, 
+            address: address, 
+            isVerified: false, 
+            passwordResetExpires: Date.now()
+          };
+          let mailOptions = {
+            from: process.env.EMAIL_USER,
+            to: email,
+            subject: 'Verifi Email',
+            text: `http://127.0.0.1:5000/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}`
+          };
+          await userServices.updateOne({_id: user._id},{ $set: tempUser });
+          //Send email
+          smptTransport.sendMail(mailOptions, function(error, info){
+              if (error) {
+                console.log(error);
+              } else {
+                console.log('Email sent: ' + info.response);
+                res.send('Please check mail to verifi');
+              }
+          });
+       });
+  
+    }
+  }else{
+    // save into database
+    //hash password
+     bcrypt.hash(password,saltRounds,async (err, hash)=>{
+       if(err) throw err;
+       let tempUser = {
+        email: email,
+        password: hash, 
+        name: name, 
+        phone: phone, 
+        address: address, 
+        isVerified: false, 
+        passwordResetExpires: Date.now()
+      };
+       await userServices.insertOne(tempUser);
+       user = await userServices.findOne(tempUser);
+       let mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Sending Email using Node.js',
+        text: `http://127.0.0.1:5000/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}`
+      };
+      //Send email
+       smptTransport.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                  res.send('Please check mail to verifi');
+                }
+            });
+    });
+    
+  }    
+  
+}
+
+
+exports.cart =(req, res)=>{
+  res.render('cart',{title: 'Cart Page'});
 }
