@@ -109,7 +109,7 @@ exports.postSignup = async(req, res, next)=>{
         from: process.env.EMAIL_USER,
         to: email,
         subject: 'Sending Email using Node.js',
-        text: `http://127.0.0.1:5000/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}`
+        text: `${process.env.URL_WEB}/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}`
       };
       //Send email
        smptTransport.sendMail(mailOptions, function(error, info){
