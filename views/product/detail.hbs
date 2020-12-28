@@ -1,132 +1,162 @@
+<!-- Breadcrumbs -->
+<section class="bg-gray-7">
+  <div class="container">
+    <ul class="breadcrumbs-custom-path">
+      <li><a href="index.html">Home</a></li>
+      <li class="active">Menu</li>
+    </ul>
+  </div>
+</section>
+<!-- Our Shop-->
 
-    <!-- Breadcrumbs -->
-    <section class="bg-gray-7">
-      <div class="container">
-        <ul class="breadcrumbs-custom-path">
-          <li><a href="index.html">Home</a></li>
-          <li class="active">Menu</li>
-        </ul>
-      </div>
-    </section>
-    <!-- Our Shop-->
-
-    <section class="section section-lg bg-default text-md-left">
-      <div class="container wow fadeInLeft" data-wow-delay=".15s">
-        <div class="row row-60 justify-content-center flex-lg-row">
-          <!-- <div class="col-lg-6 col-xl-5"><img src="images/product1-669x669.png" alt="" width="669" height="669"/>
+<section class="section section-lg bg-default text-md-left">
+  <div class="container wow fadeInLeft" data-wow-delay=".15s">
+    <div class="row row-60 justify-content-center flex-lg-row">
+      <!-- <div class="col-lg-6 col-xl-5"><img src="images/product1-669x669.png" alt="" width="669" height="669"/>
           </div> -->
-          <div class="col-sm-6 col-lg-4 col-xl-4">
-            <!-- Product-->
-            <article class="product-detail ">
-              <div class="product-figure "><img src="images/product-1-161x162.png" alt="" width="350" height="350" />
-              </div>
-              <div class="product-price-wrap">
-                <div class="product-price-detail">{{product.basePrice}}$</div>
-              </div>
-            </article>
+      <div class="col-sm-6 col-lg-4 col-xl-4">
+        <!-- Product-->
+        <article class="product-detail ">
+          <div class="product-figure "><img src="images/product-1-161x162.png" id="item-img" alt="" width="350"
+              height="350" />
           </div>
-          <div class="col-md-8 col-lg-6 col-xl-7 d-flex flex-column justify-content-between">
-            <!-- <div class=""> -->
-              <article class="quote-modern">
-                <h3 class="heading-3">{{product.title}}</h3>
-                <hr></hr>
-                <h5 class="quote-modern-text my-3"><span class="q">{{product.description}}</span></h5>
-                <hr></hr>
-              </article>
-              
-              <div class="row align-items-center justify-content-between my-0" >
-                <div class="col-md-12 col-lg-4 col-xl-3 my-2">
-                  <div class="input-group number-spinner">
-                    <span class="input-group-btn">
-                      <button class="btn btn-stepper " data-dir="dwn"><span class="fa fa-minus"></span></button>
-                    </span>
-                    <input type="text" class="form-control text-center" value="1">
-                    <span class="input-group-btn">
-                      <button class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></button>
-                    </span>
-                  </div>
-                </div>
-                <div class="col-md-12 col-lg-4 col-xl-4">
-                  <div class="button-wrap"><a class="button button-xs button-primary button-winona" href="#">Add to
-                    cart</a></div>
-                </div>
-              </div>
-            <!-- </div> -->
-              <!-- Quote Modern-->
-            
-            
+          <div class="product-price-wrap">
+            <div class="product-price-detail">{{product.basePrice}}$</div>
           </div>
+        </article>
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-7 d-flex flex-column justify-content-between">
+        <!-- <div class=""> -->
+        <article class="quote-modern">
+          <h3 class="heading-3">{{product.title}}</h3>
+          <hr>
+          </hr>
+          <h5 class="quote-modern-text my-3"><span class="q">{{product.description}}</span></h5>
+          <hr>
+          </hr>
+        </article>
 
-        </div>
-      </div>
-    </section>
-    <!--Comments-->
-    <section class="section section-lg bg-gray-100 text-md-left">
-      <div class="container px-5 wow fadeInLeft" data-wow-delay=".15s" id="list-comment">
-        <h4 class="text-spacing-25 text-transform-none">What people think</h4>
-      </div>
-      <button class="btn btn-primary mb-5" onclick="loadMoreComment()" id="more-btn">More <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-      <div class="container wow fadeInLeft" data-wow-delay=".15s">
-        <div class="row row-60 justify-content-center">
-          <div class="col-lg-8">
-            <h4 class="text-spacing-25 text-transform-none">Give a comment</h4>
-            <div class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="comment" method="post" >
-              <div class="row row-20 gutters-20">
-                {{#unless user}}
-                <div class="col-md-6">
-                  <div class="form-wrap">
-                    <input class="form-input" id="comment-your-name-5" type="text" name="name" data-constraints="@Required">
-                    <label class="form-label" for="comment-your-name-5">Your Name*</label>
-                  </div>
-                </div>
-                {{/unless}}
-                 {{#if user}}
-                <div class="col-md-6" style="display: none;">
-                  <div class="form-wrap">
-                    <input class="form-input" id="comment-your-name-5" type="text" name="name" value="{{user.name}}" data-constraints="@Required">
-                    <label class="form-label" for="comment-your-name-5">Your Name*</label>
-                  </div>
-                </div>
-                {{/if}}
-                <div class="col-12">
-                  <div class="form-wrap">
-                    <label class="form-label" for="comment-message-5">Message</label>
-                    <textarea class="form-input textarea-lg" id="comment-message-5" name="message" data-constraints="@Required"></textarea>
-                  </div>
-                </div>
-              </div>
-              <button class="button button-secondary button-winona" type="submit" onclick="postComment()">Submit</button>
+        <div class="row align-items-center justify-content-between my-0">
+          <div class="col-md-12 col-lg-4 col-xl-3 my-2">
+            <div class="input-group number-spinner">
+              <span class="input-group-btn">
+                <button class="btn btn-stepper " data-dir="dwn"><span class="fa fa-minus"></span></button>
+              </span>
+              <input type="number" class="form-control text-center" value="1" id="qty">
+              <span class="input-group-btn">
+                <button class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></button>
+              </span>
             </div>
           </div>
+          <div class="col-md-12 col-lg-4 col-xl-4">
+            <div class="button-wrap" onclick="addMultipleToCart('{{product._id}}')"><span
+                class="button button-xs button-primary button-winona">Add to
+                cart</span></div>
+          </div>
         </div>
       </div>
-    </section>
-   
 
-  <!-- Global Mailform Output-->
-  <div class="snackbars" id="form-output-global"></div>
-  <!-- Javascript-->
-  <script src="js/core.min.js"></script>
-  <script src="js/script.js"></script>
-  <script>
-    const url_string = window.location.href; //window.location.href
-    const url = new URL(url_string);
-    const id = url.searchParams.get("id");
-    console.log(id);
-    let page = 1;
+    </div>
+  </div>
+</section>
 
-    //Load comment user AJA
-     $.get(`../../api/products/comments/${id}`,      
-          {
-            page: page
-          },
-         function(data, status){
-           if(data[0]==undefined){
-              $('#more-btn').addClass('disabled');
-             $('#list-comment').append(`<div id="no-comment">This product do not have any comments</div>`);
-           }
-             for(i in data){
-                        $('#list-comment').append(` <div class="row">
+<!--Comments-->
+<section class="section section-lg bg-gray-100 text-md-left">
+  <div class="container px-5 wow fadeInLeft" data-wow-delay=".15s" id="list-comment">
+    <h4 class="text-spacing-25 text-transform-none">What people think</h4>
+  </div>
+  <button class="btn btn-primary mb-5" onclick="loadMoreComment()" id="more-btn">More <i class="fa fa-arrow-right"
+      aria-hidden="true"></i></button>
+  <div class="container wow fadeInLeft" data-wow-delay=".15s">
+    <div class="row row-60 justify-content-center">
+      <div class="col-lg-8">
+        <h4 class="text-spacing-25 text-transform-none">Give a comment</h4>
+        <div class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="comment" method="post">
+          <div class="row row-20 gutters-20">
+            {{#unless user}}
+            <div class="col-md-6">
+              <div class="form-wrap">
+                <input class="form-input" id="comment-your-name-5" type="text" name="name" data-constraints="@Required">
+                <label class="form-label" for="comment-your-name-5">Your Name*</label>
+              </div>
+            </div>
+            {{/unless}}
+            {{#if user}}
+            <div class="col-md-6" style="display: none;">
+              <div class="form-wrap">
+                <input class="form-input" id="comment-your-name-5" type="text" name="name" value="{{user.name}}"
+                  data-constraints="@Required">
+                <label class="form-label" for="comment-your-name-5">Your Name*</label>
+              </div>
+            </div>
+            {{/if}}
+            <div class="col-12">
+              <div class="form-wrap">
+                <label class="form-label" for="comment-message-5">Message</label>
+                <textarea class="form-input textarea-lg" id="comment-message-5" name="message"
+                  data-constraints="@Required"></textarea>
+              </div>
+            </div>
+          </div>
+          <button class="button button-secondary button-winona" type="submit" onclick="postComment()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Global Mailform Output-->
+<div class="snackbars" id="form-output-global"></div>
+<!-- Javascript-->
+<script src="js/core.min.js"></script>
+<script src="js/script.js"></script>
+<script>
+
+  function addMultipleToCart(id) {
+    var qty = $('#qty').val();
+    console.log(qty);
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) { }
+    };
+    xhttp.open("GET", `../products/add-to-cart?id=${id}&qty=${qty}`, true);
+    xhttp.send();
+  }
+  $(document).on('click', '.number-spinner button', function () {
+    var a = $(this),
+      oldValue = a.closest('.number-spinner').find('input').val().trim(),
+      newVal = 0;
+    if (a.attr('data-dir') == 'up') {
+      newVal = parseInt(oldValue) + 1;
+    } else {
+      if (oldValue > 1) {
+        newVal = parseInt(oldValue) - 1;
+      } else {
+        newVal = 1;
+      }
+    }
+    a.closest('.number-spinner').find('input').val(newVal);
+  });
+
+  const url_string = window.location.href; //window.location.href
+  const url = new URL(url_string);
+  const id = url.searchParams.get("id");
+  console.log(id);
+  let page = 1;
+
+  //Load comment user AJA
+  $.get(`../../api/products/comments/${id}`,
+    {
+      page: page
+    },
+    function (data, status) {
+      if (data[0] == undefined) {
+        $('#more-btn').addClass('disabled');
+        $('#list-comment').append(`<div id="no-comment">This product do not have any comments</div>`);
+      }
+      for (i in data) {
+        $('#list-comment').append(` <div class="row">
                           <div class="col-2">
                             <article class="comment-profile">
                               <div class="comment-picture">
@@ -143,29 +173,28 @@
                             </div>
                           </div>
                         </div> `)
-            }
-      });
-    //Post comment on API
-    function postComment(){
-        const name = $('#comment-your-name-5').val();
-        const message = $('#comment-message-5').val();
-        console.log(name,  message);
-        if(name==''||message=='')
-          {
-            alert('Please fill all information of form');
-            return ;
-          }
-        //Push comment on database
-        $.post(`/api/products/comments/${id}`,      
-                {
-                   name: name, 
-                   message: message
-                },
-                function(data, status){
-                  console.log(data);
-                 $('#no-comment').remove(); 
-                //View 
-                $('#list-comment').append(` <div class="row">
+      }
+    });
+  //Post comment on API
+  function postComment() {
+    const name = $('#comment-your-name-5').val();
+    const message = $('#comment-message-5').val();
+    console.log(name, message);
+    if (name == '' || message == '') {
+      alert('Please fill all information of form');
+      return;
+    }
+    //Push comment on database
+    $.post(`/api/products/comments/${id}`,
+      {
+        name: name,
+        message: message
+      },
+      function (data, status) {
+        console.log(data);
+        $('#no-comment').remove();
+        //View 
+        $('#list-comment').append(` <div class="row">
                   <div class="col-2">
                     <article class="comment-profile">
                       <div class="comment-picture">
@@ -182,22 +211,22 @@
                     </div>
                   </div>
                 </div> `)
-              });
-       
-    }
-    //Load more comment
-    function loadMoreComment(){
-     $.get(`../../api/products/comments/${id}`,      
-          {
-            page: ++page
-          },
-         function(data, status){
-            if(data[0]==undefined){
-              $('#more-btn').addClass('disabled');
-              
-            }
-             for(i in data){
-                 $('#list-comment').append(` <div class="row">
+      });
+
+  }
+  //Load more comment
+  function loadMoreComment() {
+    $.get(`../../api/products/comments/${id}`,
+      {
+        page: ++page
+      },
+      function (data, status) {
+        if (data[0] == undefined) {
+          $('#more-btn').addClass('disabled');
+
+        }
+        for (i in data) {
+          $('#list-comment').append(` <div class="row">
           <div class="col-2">
             <article class="comment-profile">
               <div class="comment-picture">
@@ -214,7 +243,7 @@
             </div>
           </div>
         </div> `)
-             }
+        }
       });
-    }
-  </script>
+  }
+</script>

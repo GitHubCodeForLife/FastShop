@@ -2,6 +2,7 @@ const userServices = require('../model/userServices');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const { ObjectID } = require('mongodb');
+const Cart = require('../model/cart');
 //Nodemailer
 let nodemailer = require('nodemailer');
 let {createTransport} = require('../config/nodemailer');
@@ -24,9 +25,35 @@ exports.login =(req, res, next)=> {
 
 exports.cart =(req, res, next)=> {
   let isCart = true;
-  res.render('cart',{title: 'Cart',user: req.user, isCart:isCart});
+  if (!req.session.cart) {
+    return res.render('cart',{title: 'Cart',user: req.user, isCart:isCart, products:null});
+  }
+  var cart = new Cart(req.session.cart);
+  res.render('cart',{title: 'Cart',user: req.user, isCart:isCart, products: cart.generateArray(), sum: cart.totalPrice});
 }
-
+exports.increaseByOne =(req, res, next)=> {
+  var productId = req.query.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  cart.increaseByOne(productId);
+  req.session.cart=cart;
+  res.json(cart);
+}
+exports.decreaseByOne =(req, res, next)=> {
+  var productId = req.query.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  cart.decreaseByOne(productId);
+  req.session.cart=cart;
+  res.json(cart);
+}
+exports.removeItem =(req, res, next)=> {
+  
+  var productId = req.query.id;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  cart.removeItem(productId);
+  console.log("IMMM HERE");
+  req.session.cart=cart;
+  res.json(cart);
+}
 exports.postSignup = async(req, res, next)=>{
   console.log(req.body);
   let errors = [];

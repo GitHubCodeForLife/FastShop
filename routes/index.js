@@ -28,4 +28,7 @@ router.get('/logout', (req, res) => {
   res.redirect('/login');
 });
 router.get('/cart', homeController.cart);
+router.get('/increase-by-one', homeController.increaseByOne);
+router.get('/decrease-by-one', homeController.decreaseByOne);
+router.get('/remove-item', homeController.removeItem);
 module.exports = router;

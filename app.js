@@ -11,7 +11,8 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 require('./config/passport')(passport);
-
+//
+var MongoStore = require('connect-mongo')(session);
 //Router 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -19,14 +20,19 @@ const apiRouter = require('./routes/api');
 const productRouter = require('./routes/products');
 const app = express();
 //require mongodb
-require('./database/db');
+const mongo = require('./database/db');
 
 // Express session
 app.use(
   session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({
+      client: mongo.client,
+      dbName: 'test'
+    }),
+    cookie: { maxAge: 180 * 60 * 1000 }
   })
 );
 // Passport middleware
@@ -37,10 +43,14 @@ app.use(passport.session());
 app.use(flash());
 
 // Global variables
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
+
+  res.locals.login = req.isAuthenticated();
+  res.locals.session = req.session;
+
   next();
 });
 
@@ -61,12 +71,12 @@ app.use('/products', productRouter);
 
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
