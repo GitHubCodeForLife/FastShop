@@ -1,66 +1,67 @@
 <!--Cart-->
 <section class="section section-lg bg-default text-md-left">
     <div class="container wow fadeInLeft" data-wow-delay=".15s">
-        <!-- <hr class="my-3 mx-5"> -->
-        <div class="row p-3 mx-5 my-0 justify-content-between">
-            <article class="product-cart ">
-                <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
-                        height="150" />
-                </div>
-                <div class="product-detail-cart flex-column">
-                    <h5 class="product-name-cart">Margherita Pizza</h5>
-                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">24.00</span></h6>
-                    <p style="font-size: 18px">Số lượng:</p>
-                    <div class="input-group number-spinner number-spinner-cart">
-                        <span class="input-group-btn">
-                            <button class="btn btn-stepper " data-dir="dwn"><span class="fa fa-minus"></span></button>
-                        </span>
-                        <input type="text" class="form-control text-center" value="1">
-                        <span class="input-group-btn">
-                            <button class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></button>
-                        </span>
+        <div id="cart">
+            {{# each products}}
+            <div class="row p-3 mx-5 my-0 justify-content-between">
+                <article class="product-cart ">
+                    <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
+                            height="150" />
                     </div>
-                </div>
-            </article>
-            <div class="d-flex flex-column" style="width: auto;">
-                <button class="btn btn-danger delete-item-cart"><span class="fa fa-close"
-                        aria-hidden="true"></span></button>
-                <h6 class="product-price-cart mt-auto mb-0" style="text-align: right;">Thành tiền: $<span
-                        class="total-price">24.00</span></h6>
-            </div>
-        </div>
-        <hr class="my-3 mx-5">
-        <div class="row p-3 mx-5 my-0 justify-content-between">
-            <article class="product-cart ">
-                <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
-                        height="150" />
-                </div>
-                <div class="product-detail-cart flex-column ">
-                    <h5 class="product-name-cart">Margherita Pizza</h5>
-                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">24.00</span></h6>
-                    <p style="font-size: 18px">Số lượng:</p>
-                    <div class="input-group number-spinner number-spinner-cart">
-                        <span class="input-group-btn">
-                            <button class="btn btn-stepper " data-dir="dwn"><span class="fa fa-minus"></span></button>
-                        </span>
-                        <input type="text" class="form-control text-center" value="1">
-                        <span class="input-group-btn">
-                            <button class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></button>
-                        </span>
+                    <div class="product-detail-cart flex-column">
+                        <h5 class="product-name-cart">{{this.item.title}}</h5>
+                        <h6 class="product-price-cart">Đơn giá: $<span class="base-price">{{this.item.basePrice}}</span>
+                        </h6>
+                        <p style="font-size: 18px">Số lượng:</p>
+                        <div class="input-group number-spinner number-spinner-cart">
+                            <span class="input-group-btn" onclick="decreaseByOne('{{this.item._id}}','{{this.qty}}')">
+                                <div class="btn btn-stepper " data-dir="dwn"><span class="fa fa-minus"></span></div>
+                            </span>
+                            <input type="text" class="form-control text-center" value="{{this.qty}}">
+                            <span class="input-group-btn" onclick="increaseByOne('{{this.item._id}}')">
+                                <div class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></div>
+                            </span>
+                        </div>
                     </div>
+                </article>
+
+                <div class="d-flex flex-column" style="width: auto;">
+                    <button class="btn btn-danger delete-item-cart" data-toggle="modal"
+                        data-target="#removeModal_{{this.item._id}}"><span class="fa fa-close"
+                            aria-hidden="true"></span></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="removeModal_{{this.item._id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Remove item</h5>
+                                    <button type="button" class="btn-danger" data-dismiss="modal" aria-label="Close">
+                                        <span class="fa fa-close" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Do you really want to remove this item?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="removeItem('{{this.item._id}}')" data-dismiss="modal">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="product-price-cart mt-auto mb-0" style="text-align: right;">Thành tiền: $<span
+                            class="total-price">{{this.price}}</span></h6>
                 </div>
-            </article>
-            <div class="d-flex flex-column" style="width: auto;">
-                <button class="btn btn-danger delete-item-cart"><span class="fa fa-close"
-                        aria-hidden="true"></span></button>
-                <h6 class="product-price-cart mt-auto mb-0" style="text-align: right;">Thành tiền: $<span
-                        class="total-price">24.00</span></h6>
             </div>
+            <hr class="my-3 mx-5">
+            {{/each}}
         </div>
-        <hr class="my-3 mx-5">
-        <div class="row-reverse mx-5" style="text-align: right;">
+
+        <div class="row-reverse mx-5" style="text-align: right;" id="sum">
             <h5 class="total-price-cart">Tổng tiền:</h5>
-            <h5 class="total-price-cart">$<span class="sum">0</span></h5>
+            <h5 class="total-price-cart">$<span class="sum">{{sum}}</span></h5>
         </div>
         <div class="row justify-content-between mx-5" style="text-align: center;">
             <div class="button-wrap p-0 w-auto"><a class="button button-md button-primary button-winona"
@@ -75,26 +76,215 @@
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>
 <!-- coded by Himic-->
-<script>
 
-      function updatePrices() {
-      let basePrices = $('.product-price-cart span.base-price');
-      let totalPrices = $('.product-price-cart span.total-price');
-      let sum = $('.total-price-cart span.sum');
-      let quantity = $('input.form-control');
-      let length = basePrices.length;
-      let tempSum = 0;
-      for (let i = 0; i < length; i++) {
-        let temp = parseInt(basePrices[i].innerHTML) * parseInt(quantity[i].value);
-        //console.log(temp);
-        tempSum += temp;
-        totalPrices[i].innerHTML = temp;
-      }
-      sum[0].innerHTML = tempSum;
-      return this;
+<script>
+    function decreaseByOne(id, qty) {
+        if (qty <= 1) {
+            $(`#removeModal_${id}`).modal();
+            return;
+        }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                cart = JSON.parse(this.responseText);
+                document.getElementById("cart").innerHTML = "";
+                for (const i in cart.items) {
+                    document.getElementById("cart").innerHTML +=
+                        `<div class="row p-3 mx-5 my-0 justify-content-between">
+                         <article class="product-cart ">
+                          <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
+                             height="150" />
+                        </div>
+                    <div class="product-detail-cart flex-column">
+                    <h5 class="product-name-cart">${cart.items[i].item.title}</h5>
+                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">${cart.items[i].item.basePrice}</span>
+                    </h6>
+                    <p style="font-size: 18px">Số lượng:</p>
+                    <div class="input-group number-spinner number-spinner-cart">
+                        <span class="input-group-btn" onclick="decreaseByOne('${cart.items[i].item._id}','${cart.items[i].qty}')">
+                            <div class="btn btn-stepper " data-dir="dwn"><span class="fa fa-minus"></span></div>
+                        </span>
+                        <input type="text" class="form-control text-center" value="${cart.items[i].qty}">
+                        <span class="input-group-btn" onclick="increaseByOne('${cart.items[i].item._id}')">
+                            <div class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></div>
+                        </span>
+                    </div>
+                    </div>
+                    </article>
+                    <div class="d-flex flex-column" style="width: auto;">
+                    <button class="btn btn-danger delete-item-cart" data-toggle="modal"
+                        data-target="#removeModal_${cart.items[i].item._id}"><span class="fa fa-close" aria-hidden="true"></span></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="removeModal_${cart.items[i].item._id}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Remove item</h5>
+                                    <button type="button" class="btn-danger" data-dismiss="modal" aria-label="Close">
+                                        <span class="fa fa-close" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Do you really want to remove this item?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-primary" onclick="removeItem('${cart.items[i].item._id}')" data-dismiss="modal">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="product-price-cart mt-auto mb-0" style="text-align: right;">Thành tiền: $<span
+                        class="total-price">${cart.items[i].price}</span></h6>
+                    </div>
+                    </div>
+                    <hr class="my-3 mx-5">`
+                }
+                document.getElementById("sum").innerHTML =
+                    `<h5 class="total-price-cart">Tổng tiền:</h5>
+                    <h5 class="total-price-cart">$<span class="sum">${cart.totalPrice}</span></h5>`;
+
+            }
+        };
+        xhttp.open("GET", `/decrease-by-one?id=${id}`, true);
+        xhttp.send();
     }
-  $(document).ready(()=>{
-    updatePrices();
-    $(document).on('click', '.number-spinner button',updatePrices);
-  });
+    function increaseByOne(id) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                cart = JSON.parse(this.responseText);
+                document.getElementById("cart").innerHTML = "";
+                for (const i in cart.items) {
+                    document.getElementById("cart").innerHTML +=
+                        `<div class="row p-3 mx-5 my-0 justify-content-between">
+                         <article class="product-cart ">
+                          <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
+                             height="150" />
+                        </div>
+                    <div class="product-detail-cart flex-column">
+                    <h5 class="product-name-cart">${cart.items[i].item.title}</h5>
+                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">${cart.items[i].item.basePrice}</span>
+                    </h6>
+                    <p style="font-size: 18px">Số lượng:</p>
+                    <div class="input-group number-spinner number-spinner-cart">
+                        <span class="input-group-btn" onclick="decreaseByOne('${cart.items[i].item._id}','${cart.items[i].qty}')">
+                            <div class="btn btn-stepper " data-dir="dwn"><span class="fa fa-minus"></span></div>
+                        </span>
+                        <input type="text" class="form-control text-center" value="${cart.items[i].qty}">
+                        <span class="input-group-btn" onclick="increaseByOne('${cart.items[i].item._id}')">
+                            <div class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></div>
+                        </span>
+                    </div>
+                    </div>
+                    </article>
+                    <div class="d-flex flex-column" style="width: auto;">
+                    <button class="btn btn-danger delete-item-cart" data-toggle="modal"
+                        data-target="#removeModal_${cart.items[i].item._id}"><span class="fa fa-close" aria-hidden="true"></span></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="removeModal_${cart.items[i].item._id}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Remove item</h5>
+                                    <button type="button" class="btn-danger" data-dismiss="modal" aria-label="Close">
+                                        <span class="fa fa-close" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Do you really want to remove this item?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-primary" onclick="removeItem('${cart.items[i].item._id}')" data-dismiss="modal">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="product-price-cart mt-auto mb-0" style="text-align: right;">Thành tiền: $<span
+                        class="total-price">${cart.items[i].price}</span></h6>
+                    </div>
+                    </div>
+                    <hr class="my-3 mx-5">`
+                }
+                document.getElementById("sum").innerHTML =
+                    `<h5 class="total-price-cart">Tổng tiền:</h5>
+                    <h5 class="total-price-cart">$<span class="sum">${cart.totalPrice}</span></h5>`;
+
+            }
+        };
+        xhttp.open("GET", `/increase-by-one?id=${id}`, true);
+        xhttp.send();
+    }
+    function removeItem(id) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                cart = JSON.parse(this.responseText);
+                document.getElementById("cart").innerHTML = "";
+                for (const i in cart.items) {
+                    document.getElementById("cart").innerHTML +=
+                        `<div class="row p-3 mx-5 my-0 justify-content-between">
+                         <article class="product-cart ">
+                          <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
+                             height="150" />
+                        </div>
+                    <div class="product-detail-cart flex-column">
+                    <h5 class="product-name-cart">${cart.items[i].item.title}</h5>
+                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">${cart.items[i].item.basePrice}</span>
+                    </h6>
+                    <p style="font-size: 18px">Số lượng:</p>
+                    <div class="input-group number-spinner number-spinner-cart">
+                        <span class="input-group-btn" onclick="decreaseByOne('${cart.items[i].item._id}','${cart.items[i].qty}')">
+                            <div class="btn btn-stepper " data-dir="dwn"><span class="fa fa-minus"></span></div>
+                        </span>
+                        <input type="text" class="form-control text-center" value="${cart.items[i].qty}">
+                        <span class="input-group-btn" onclick="increaseByOne('${cart.items[i].item._id}')">
+                            <div class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></div>
+                        </span>
+                    </div>
+                    </div>
+                    </article>
+                    <div class="d-flex flex-column" style="width: auto;">
+                    <button class="btn btn-danger delete-item-cart" data-toggle="modal"
+                        data-target="#removeModal_${cart.items[i].item._id}"><span class="fa fa-close" aria-hidden="true"></span></button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="removeModal_${cart.items[i].item._id}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Remove item</h5>
+                                    <button type="button" class="btn-danger" data-dismiss="modal" aria-label="Close">
+                                        <span class="fa fa-close" aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Do you really want to remove this item?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-primary" onclick="removeItem('${cart.items[i].item._id}')" data-dismiss="modal">Yes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6 class="product-price-cart mt-auto mb-0" style="text-align: right;">Thành tiền: $<span
+                        class="total-price">${cart.items[i].price}</span></h6>
+                    </div>
+                    </div>
+                    <hr class="my-3 mx-5">`
+                }
+                document.getElementById("sum").innerHTML =
+                    `<h5 class="total-price-cart">Tổng tiền:</h5>
+                    <h5 class="total-price-cart">$<span class="sum">${cart.totalPrice}</span></h5>`;
+
+            }
+        };
+        xhttp.open("GET", `/remove-item?id=${id}`, true);
+        xhttp.send();
+
+    }
 </script>
