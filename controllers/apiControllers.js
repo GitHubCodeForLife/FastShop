@@ -65,5 +65,8 @@ exports.getComment = async(req, res, next)=>{
 exports.postComment = async(req, res, next)=>{
     const {product_id}= req.params;
     console.log(product_id);
-    res.send('Comment');
+    const {name, message} = req.body;
+    console.log(name, message);
+    await commentServices.insert({name: name, message: message, product_id: product_id});
+    res.json(['a','b']);
 }

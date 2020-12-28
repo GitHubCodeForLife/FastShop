@@ -70,7 +70,7 @@
         <div class="row row-60 justify-content-center">
           <div class="col-lg-8">
             <h4 class="text-spacing-25 text-transform-none">Give a comment</h4>
-            <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="comment" method="post" >
+            <div class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="comment" method="post" >
               <div class="row row-20 gutters-20">
                 {{#unless user}}
                 <div class="col-md-6">
@@ -96,7 +96,7 @@
                 </div>
               </div>
               <button class="button button-secondary button-winona" type="submit" onclick="postComment()">Submit</button>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -115,7 +115,6 @@
     console.log(id);
     let page = 1;
 
-
     //Load comment user AJA
      $.get(`../../api/products/comments/${id}`,      
           {
@@ -124,7 +123,7 @@
          function(data, status){
            if(data[0]==undefined){
               $('#more-btn').addClass('disabled');
-             $('#list-comment').append(`<div>This product do not have any comments</div>`);
+             $('#list-comment').append(`<div id="no-comment">This product do not have any comments</div>`);
            }
              for(i in data){
                         $('#list-comment').append(` <div class="row">
@@ -146,31 +145,45 @@
                         </div> `)
             }
       });
-    //P comment on Youtube
+    //Post comment on API
     function postComment(){
-        const email = $('#comment-your-name-5').val();
+        const name = $('#comment-your-name-5').val();
         const message = $('#comment-message-5').val();
-        console.log(email,  message);
+        console.log(name,  message);
+        if(name==''||message=='')
+          {
+            alert('Please fill all information of form');
+            return ;
+          }
         //Push comment on database
-        //View 
-        $('#list-comment').append(` <div class="row">
-          <div class="col-2">
-            <article class="comment-profile">
-              <div class="comment-picture">
-                <img src="images/comment-100x100.png" alt="" width="80" height="80" />
-              </div>
-              <div class="comment-name">
-                <p>${email}</p>
-              </div>
-            </article>
-          </div>
-          <div class="col-10">
-            <div class="speech-bubble">
-              ${message}
-            </div>
-          </div>
-        </div> `)
-
+        $.post(`/api/products/comments/${id}`,      
+                {
+                   name: name, 
+                   message: message
+                },
+                function(data, status){
+                  console.log(data);
+                 $('#no-comment').remove(); 
+                //View 
+                $('#list-comment').append(` <div class="row">
+                  <div class="col-2">
+                    <article class="comment-profile">
+                      <div class="comment-picture">
+                        <img src="images/comment-100x100.png" alt="" width="80" height="80" />
+                      </div>
+                      <div class="comment-name">
+                        <p>${name}</p>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-10">
+                    <div class="speech-bubble">
+                      ${message}
+                    </div>
+                  </div>
+                </div> `)
+              });
+       
     }
     //Load more comment
     function loadMoreComment(){
