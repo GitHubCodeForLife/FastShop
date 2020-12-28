@@ -13,3 +13,6 @@ exports.findOne = async(product)=>{
     return ans;
 }
 
+exports.searchProducts = async(query)=>{
+    return await db().collection('products').find(query).toArray();
+}
