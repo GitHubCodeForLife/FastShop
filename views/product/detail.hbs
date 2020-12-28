@@ -59,64 +59,37 @@
     </div>
   </div>
 </section>
+
 <!--Comments-->
 <section class="section section-lg bg-gray-100 text-md-left">
-  <div class="container px-5 wow fadeInLeft" data-wow-delay=".15s">
+  <div class="container px-5 wow fadeInLeft" data-wow-delay=".15s" id="list-comment">
     <h4 class="text-spacing-25 text-transform-none">What people think</h4>
-    <!-- Each comment-->
-    <div class="row">
-      <div class="col-2">
-        <article class="comment-profile">
-          <div class="comment-picture">
-            <img src="images/comment-100x100.png" alt="" width="80" height="80" />
-          </div>
-          <div class="comment-name">
-            <p>Huy Tung</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-10">
-        <div class="speech-bubble">
-          Torus accelerares, tanquam ferox cacula. Fluctuss
-          experimentum in burdigala! Ubi est peritus classis? Peregrinatione superbe ducunt ad magnum
-        </div>
-      </div>
-    </div>
-    <!-- Each comment end-->
-    <!-- Each comment-->
-    <div class="row">
-      <div class="col-2">
-        <article class="comment-profile">
-          <div class="comment-picture">
-            <img src="images/comment-100x100.png" alt="" width="80" height="80" />
-          </div>
-          <div class="comment-name">
-            <p>Huy Tung</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-10">
-        <div class="speech-bubble">
-          Torus accelerares, tanquam ferox cacula. Fluctuss
-          experimentum in burdigala! Ubi est peritus classis? Peregrinatione superbe ducunt ad magnum
-        </div>
-      </div>
-    </div>
-    <!-- Each comment end-->
   </div>
+  <button class="btn btn-primary mb-5" onclick="loadMoreComment()" id="more-btn">More <i class="fa fa-arrow-right"
+      aria-hidden="true"></i></button>
   <div class="container wow fadeInLeft" data-wow-delay=".15s">
     <div class="row row-60 justify-content-center">
       <div class="col-lg-8">
         <h4 class="text-spacing-25 text-transform-none">Give a comment</h4>
-        <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="comment" method="post"
-          action="bat/rd-mailform.php">
+        <div class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="comment" method="post">
           <div class="row row-20 gutters-20">
+            {{#unless user}}
             <div class="col-md-6">
               <div class="form-wrap">
                 <input class="form-input" id="comment-your-name-5" type="text" name="name" data-constraints="@Required">
                 <label class="form-label" for="comment-your-name-5">Your Name*</label>
               </div>
             </div>
+            {{/unless}}
+            {{#if user}}
+            <div class="col-md-6" style="display: none;">
+              <div class="form-wrap">
+                <input class="form-input" id="comment-your-name-5" type="text" name="name" value="{{user.name}}"
+                  data-constraints="@Required">
+                <label class="form-label" for="comment-your-name-5">Your Name*</label>
+              </div>
+            </div>
+            {{/if}}
             <div class="col-12">
               <div class="form-wrap">
                 <label class="form-label" for="comment-message-5">Message</label>
@@ -125,20 +98,19 @@
               </div>
             </div>
           </div>
-          <button class="button button-secondary button-winona" type="submit">Submit</button>
-        </form>
+          <button class="button button-secondary button-winona" type="submit" onclick="postComment()">Submit</button>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- Global Mailform Output-->
 <div class="snackbars" id="form-output-global"></div>
 <!-- Javascript-->
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<!-- coded by Himic-->
 <script>
 
   function addMultipleToCart(id) {
@@ -151,7 +123,6 @@
     xhttp.open("GET", `../products/add-to-cart?id=${id}&qty=${qty}`, true);
     xhttp.send();
   }
-
   $(document).on('click', '.number-spinner button', function () {
     var a = $(this),
       oldValue = a.closest('.number-spinner').find('input').val().trim(),
@@ -168,5 +139,111 @@
     a.closest('.number-spinner').find('input').val(newVal);
   });
 
+  const url_string = window.location.href; //window.location.href
+  const url = new URL(url_string);
+  const id = url.searchParams.get("id");
+  console.log(id);
+  let page = 1;
 
+  //Load comment user AJA
+  $.get(`../../api/products/comments/${id}`,
+    {
+      page: page
+    },
+    function (data, status) {
+      if (data[0] == undefined) {
+        $('#more-btn').addClass('disabled');
+        $('#list-comment').append(`<div id="no-comment">This product do not have any comments</div>`);
+      }
+      for (i in data) {
+        $('#list-comment').append(` <div class="row">
+                          <div class="col-2">
+                            <article class="comment-profile">
+                              <div class="comment-picture">
+                                <img src="images/comment-100x100.png" alt="" width="80" height="80" />
+                              </div>
+                              <div class="comment-name">
+                                <p>${data[i].name}</p>
+                              </div>
+                            </article>
+                          </div>
+                          <div class="col-10">
+                            <div class="speech-bubble">
+                              ${data[i].message}
+                            </div>
+                          </div>
+                        </div> `)
+      }
+    });
+  //Post comment on API
+  function postComment() {
+    const name = $('#comment-your-name-5').val();
+    const message = $('#comment-message-5').val();
+    console.log(name, message);
+    if (name == '' || message == '') {
+      alert('Please fill all information of form');
+      return;
+    }
+    //Push comment on database
+    $.post(`/api/products/comments/${id}`,
+      {
+        name: name,
+        message: message
+      },
+      function (data, status) {
+        console.log(data);
+        $('#no-comment').remove();
+        //View 
+        $('#list-comment').append(` <div class="row">
+                  <div class="col-2">
+                    <article class="comment-profile">
+                      <div class="comment-picture">
+                        <img src="images/comment-100x100.png" alt="" width="80" height="80" />
+                      </div>
+                      <div class="comment-name">
+                        <p>${name}</p>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="col-10">
+                    <div class="speech-bubble">
+                      ${message}
+                    </div>
+                  </div>
+                </div> `)
+      });
+
+  }
+  //Load more comment
+  function loadMoreComment() {
+    $.get(`../../api/products/comments/${id}`,
+      {
+        page: ++page
+      },
+      function (data, status) {
+        if (data[0] == undefined) {
+          $('#more-btn').addClass('disabled');
+
+        }
+        for (i in data) {
+          $('#list-comment').append(` <div class="row">
+          <div class="col-2">
+            <article class="comment-profile">
+              <div class="comment-picture">
+                <img src="images/comment-100x100.png" alt="" width="80" height="80" />
+              </div>
+              <div class="comment-name">
+                <p>${data[i].name}</p>
+              </div>
+            </article>
+          </div>
+          <div class="col-10">
+            <div class="speech-bubble">
+              ${data[i].message}
+            </div>
+          </div>
+        </div> `)
+        }
+      });
+  }
 </script>

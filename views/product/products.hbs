@@ -50,6 +50,62 @@
         </ul>
 
       </div>
+</section>
+
+
+
+
+<!-- Our Shop-->
+
+<section class="section section-lg bg-default" id='category'>
+  <div class="container">
+    <div class="tabs-custom row row-50 justify-content-center flex-lg-row-reverse text-center text-md-left">
+      <div class="col-lg-4 col-xl-3">
+        <h5 class="text-spacing-200 text-capitalize">CATEGORY</h5>
+        <ul class="nav list-category list-category-down-md-inline-block">
+          <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay="0s"><a class="active"
+              href="#tabs-4-1" data-toggle="tab">All products</a></li>
+          <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay=".1s"><a href="#tabs-4-2"
+              data-toggle="tab">Combos</a></li>
+          <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay=".2s"><a href="#tabs-4-3"
+              data-toggle="tab">Pizzas</a></li>
+          <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay=".3s"><a href="#tabs-4-4"
+              data-toggle="tab">Burgers</a></li>
+          <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay=".4s"><a href="#tabs-4-5"
+              data-toggle="tab">Spaghetti</a></li>
+          <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay=".5s"><a href="#tabs-4-6"
+              data-toggle="tab">Drinks</a></li>
+          <li class="list-category-item wow fadeInRight" role="presentation" data-wow-delay=".6s"><a href="#tabs-4-7"
+              data-toggle="tab">Desserts</a></li>
+      </div>
+      <div class="col-lg-8 col-xl-9">
+        <form style="background-color: cyan;" class="position-relative" id="form-search">
+          <div class="input-group">
+            <input type="text" class="form-control" onfocus="funcSearch(this)" oninput="funcSearch(this)"
+              placeholder="Search ...">
+            <div class="input-group-append">
+              <button type="submit" class="btn-primary btn"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+          <div class="input-group mb-3 position-absolute" style="background-color: #e5f5f9; z-index: 1000">
+            <ul id="search">
+
+            </ul>
+
+          </div>
+        </form>
+        <div class="row" id="list-products">
+
+        </div>
+        <ul class="pagination justify-content-center" id="paging">
+          <li class="page-item disabled"><button class="page-link" id="prePage">Previous</button></li>
+          <li class="page-item active"><button class="page-link " id="pre-Page">1</button></li>
+          <li class="page-item"><button class="page-link" id="page">2</button></li>
+          <li class="page-item"><button class="page-link" id='next-Page'>3</button></li>
+          <li class="page-item"><button class="page-link" id="nextPage">Next</button></li>
+        </ul>
+
+      </div>
 
     </div>
   </div>
@@ -59,6 +115,8 @@
 <!-- Javascript-->
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <!-- coded by Himic-->
 <script>
   function addToCart(id) {
@@ -69,7 +127,6 @@
     xhttp.open("GET", `../products/add-to-cart?id=${id}`, true);
     xhttp.send();
   }
-
   $(document).ready(() => {
     console.log("ready!");
     let page = 1;
@@ -171,9 +228,29 @@
               }
 
             });
-
         });
     })
 
+  });
+  function funcSearch(s) {
+    $('#search').show();
+    $.get("../api/products/search",
+      {
+        q: s.value
+      },
+      function (products, status) {
+        $('#search').html('');
+        for (product in products) {
+          //  console.log(products[product]);
+          $('#search').append(`<li> <a href="../products?id=${products[product]._id}" class="ms-3">${products[product].title}</a></li>`);
+        }
+      }
+    );
+  }
+  $('body').click(function (event) {
+    if (event.target != $('#form-search')) {
+      $('#search').html('');
+    }
+    //if(!$())
   });
 </script>

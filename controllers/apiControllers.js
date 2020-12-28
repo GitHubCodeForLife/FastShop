@@ -1,6 +1,7 @@
 
-const productServices = require('../model/productsServices');
+const productsServices = require('../model/productsServices');
 const userServices = require('../model/userServices');
+const commentServices = require('../model/commentServices');
 const { ObjectId} = require('mongodb');
 
 
@@ -15,7 +16,7 @@ exports.products = async (req, res, next)=>{
         page = 1;
     }
     let perPage = 9;
-    let products = await productServices.products(page,perPage);
+    let products = await productsServices.products(page,perPage);
     res.json(products);
 
 }
@@ -43,4 +44,29 @@ exports.verifyEmail = async(req, res, next)=>{
    await userServices.updateOne({_id: new ObjectId(userId)},{$set:{isVerified: true}})
 
     res.send('Verify Success');
+}
+
+exports.searchProducts = async(req, res, next)=>{
+   const {q}= req.query;
+   //console.log(q);
+
+    let products = await productsServices.searchProducts({ $text: { $search: q } });
+    console.log(products);
+    res.json(products);
+}
+
+exports.getComment = async(req, res, next)=>{
+    const {product_id}= req.params;
+    const {page} = req.query;
+    console.log(product_id);
+    const comments = await commentServices.find({product_id: product_id},page, 2);
+    res.json(comments);
+}
+exports.postComment = async(req, res, next)=>{
+    const {product_id}= req.params;
+    console.log(product_id);
+    const {name, message} = req.body;
+    console.log(name, message);
+    await commentServices.insert({name: name, message: message, product_id: product_id});
+    res.json(['a','b']);
 }

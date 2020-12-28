@@ -99,13 +99,13 @@
                     <li>
                       {{#if user}}
                       <div class="unit unit-spacing-xs">
-                        <div class="unit-body"><a class="address" href="/logout">Logout</a></div>
+                        <div class="unit-body"><a class="address" href="/logout">Log out</a></div>
                       </div>
                       {{/if}}
                       {{#unless user}}
                       <div class="unit unit-spacing-xs">
-                        <div class="unit-body"><a class="address" href="/login">Đăng nhập</a></div>
-                        <div class="unit-body"><a class="address" href="/signup">Đăng ký</a></div>
+                        <div class="unit-body"><a class="address" href="/login">Log in</a></div>
+                        <div class="unit-body"><a class="address" href="/signup">Sign up</a></div>
                       </div>
                       {{/unless}}
 
@@ -118,7 +118,7 @@
                     <li class="rd-nav-item {{#if isHome}}active{{/if}}"><a class="rd-nav-link" href="../">Home</a>
                     </li>
                     <li class="rd-nav-item {{#if isProducts}}active{{/if}}"><a class="rd-nav-link"
-                        href="./products">Menu</a>
+                        href="/products">Menu</a>
                     </li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="about-us.html">About us</a>
                     </li>

@@ -12,3 +12,7 @@ exports.findOne = async(product)=>{
     const ans = await db().collection('products').findOne(product);
     return ans;
 }
+
+exports.searchProducts = async(query)=>{
+    return await db().collection('products').find(query).toArray();
+}
