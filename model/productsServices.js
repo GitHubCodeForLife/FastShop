@@ -12,4 +12,3 @@ exports.findOne = async(product)=>{
     const ans = await db().collection('products').findOne(product);
     return ans;
 }
-

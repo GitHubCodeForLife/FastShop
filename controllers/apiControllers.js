@@ -1,5 +1,5 @@
 
-const productServices = require('../model/productServices');
+const productServices = require('../model/productsServices');
 const userServices = require('../model/userServices');
 const { ObjectId} = require('mongodb');
 

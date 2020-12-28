@@ -26,3 +26,4 @@ connectDb();
 const db = () => database;
 
 module.exports.db = db;
+module.exports.client = client;
