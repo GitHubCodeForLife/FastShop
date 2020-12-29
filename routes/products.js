@@ -5,4 +5,5 @@ router.use(express.static('public'));
 /* GET users listing. */
 router.get('/',productsController.index);
 router.get('/add-to-cart',productsController.addToCart);
+router.get('/search', productsController.search);
 module.exports = router;

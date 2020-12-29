@@ -152,7 +152,7 @@
     },
     function (data, status) {
       if (data[0] == undefined) {
-        $('#more-btn').addClass('disabled');
+        $('#more-btn').hide();
         $('#list-comment').append(`<div id="no-comment">This product do not have any comments</div>`);
       }
       for (i in data) {
@@ -222,7 +222,7 @@
       },
       function (data, status) {
         if (data[0] == undefined) {
-          $('#more-btn').addClass('disabled');
+          $('#more-btn').hide();
 
         }
         for (i in data) {
