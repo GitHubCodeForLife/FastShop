@@ -17,8 +17,7 @@
       <div class="col-sm-6 col-lg-4 col-xl-4">
         <!-- Product-->
         <article class="product-detail ">
-          <div class="product-figure "><img src="images/product-1-161x162.png" id="item-img" alt="" width="350"
-              height="350" />
+          <div class="product-figure item"><img src="images/product-1-161x162.png" alt="" width="350" height="350" />
           </div>
           <div class="product-price-wrap">
             <div class="product-price-detail">{{product.basePrice}}$</div>
@@ -49,7 +48,7 @@
             </div>
           </div>
           <div class="col-md-12 col-lg-4 col-xl-4">
-            <div class="button-wrap" onclick="addMultipleToCart('{{product._id}}')"><span
+            <div class="button-wrap" id="add-to-cart" product-id="{{product._id}}"><span
                 class="button button-xs button-primary button-winona">Add to
                 cart</span></div>
           </div>
@@ -109,20 +108,65 @@
 <!-- Global Mailform Output-->
 <div class="snackbars" id="form-output-global"></div>
 <!-- Javascript-->
+
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script>
+  $.noConflict();
+  jQuery(document).ready(function ($) {
+    // Code that uses jQuery's $ can follow here.
+    productId = $('#add-to-cart').attr("product-id");
+    $('#add-to-cart').on('click', function () {
+      var qty = $('#qty').val();
+      console.log(qty);
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var cart = $('.shopping-cart');
+          var imgtodrag = $('.item').find("img").eq(0);
+          console.log(imgtodrag);
+          if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+              .offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+              })
+              .css({
+                'opacity': '0.8',
+                'position': 'absolute',
+                'height': '150px',
+                'width': '150px',
+                'z-index': '100'
+              })
+              .appendTo($('body'))
+              .animate({
+                'top': cart.offset().top + 10,
+                'left': cart.offset().left + 10,
+                'width': 75,
+                'height': 75
+              }, 1000, 'easeInOutExpo');
+
+
+            imgclone.animate({
+              'width': 0,
+              'height': 0
+            }, function () {
+              $(this).detach()
+            });
+          }
+        }
+      };
+      xhttp.open("GET", `../products/add-to-cart?id=${productId}&qty=${qty}`, true);
+      xhttp.send();
+    });
+  });
+// Code that uses other library's $ can follow here.
+</script>
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>
 <script>
 
-  function addMultipleToCart(id) {
-    var qty = $('#qty').val();
-    console.log(qty);
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) { }
-    };
-    xhttp.open("GET", `../products/add-to-cart?id=${id}&qty=${qty}`, true);
-    xhttp.send();
-  }
+
   $(document).on('click', '.number-spinner button', function () {
     var a = $(this),
       oldValue = a.closest('.number-spinner').find('input').val().trim(),
@@ -152,7 +196,7 @@
     },
     function (data, status) {
       if (data[0] == undefined) {
-        $('#more-btn').hide();
+        $('#more-btn').addClass('disabled');
         $('#list-comment').append(`<div id="no-comment">This product do not have any comments</div>`);
       }
       for (i in data) {
@@ -222,7 +266,7 @@
       },
       function (data, status) {
         if (data[0] == undefined) {
-          $('#more-btn').hide();
+          $('#more-btn').addClass('disabled');
 
         }
         for (i in data) {

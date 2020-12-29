@@ -61,16 +61,15 @@
           <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
             <!-- Product-->
             <article class="product wow fadeInLeft" data-wow-delay=".15s">
-              <div class="product-figure "><img src="{{this.cover}}" alt="" width="161" height="162" />
+              <div class="product-figure item"><img src="{{this.cover}}" alt="" width="161" height="162" />
               </div>
               <h6 class="product-title">{{this.title}}</h6>
               <div class="product-price-wrap">
                 <div class="product-price">{{this.basePrice}}</div>
               </div>
               <div class="product-button">
-                <div class="button-wrap"><span class="button button-xs button-primary button-winona"
-                    onclick="addToCart('{{this._id}}')">Add to
-                    cart</span></div>
+                <div class="button-wrap add-to-cart" product-id={{this._id}}><span
+                    class="button button-xs button-primary button-winona">Add to cart</span></div>
                 <div class="button-wrap"><a class="button button-xs button-secondary button-winona"
                     href="../products?id={{this._id}}">View
                     Product</a></div>
@@ -98,20 +97,11 @@
 <!-- Javascript-->
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<!-- coded by Himic-->
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <script>
-  function addToCart(id) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) { }
-    };
-    xhttp.open("GET", `../products/add-to-cart?id=${id}`, true);
-    xhttp.send();
-  }
-
-  $(document).ready(() => {
+  $.noConflict();
+  jQuery(document).ready(function ($) {
     console.log("ready!");
     let page = 1;
     let nextPage, prePage;
@@ -135,14 +125,14 @@
             $('#list-products').append(` <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
                 <!-- Product-->
                 <article class="product wow fadeInLeft" data-wow-delay=".15s">
-                  <div class="product-figure "><img src="${products[i].cover}" alt="" width="161" height="162" />
+                  <div class="product-figure item"><img src="images/product-1-161x162.png" alt="" width="161" height="162" />
                   </div>
                   <h6 class="product-title">${products[i].title}</h6>
                   <div class="product-price-wrap">
                     <div class="product-price">$${products[i].basePrice}</div>
                   </div>
                   <div class="product-button">
-                    <div class="button-wrap"><span class="button button-xs button-primary button-winona" onclick="addToCart('${products[i]._id}')">Add to
+                    <div class="button-wrap add-to-cart" product-id="${products[i]._id}"><span class="button button-xs button-primary button-winona">Add to
                         cart</span></div>
                     <div class="button-wrap"><a class="button button-xs button-secondary button-winona" href="../products?id=${products[i]._id}">View
                         Product</a></div>
@@ -185,9 +175,50 @@
               }
             });
         });
-    })
-  });
+    });
+    ///Add to cart
+    $('.add-to-cart').on('click', function () {
+      productId = $(this).attr("product-id");
+      imgtodrag = $(this).closest('.product').find('.item').find("img").eq(0);
+      console.log('img', imgtodrag);
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var cart = $('.shopping-cart');
+          if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+              .offset({
+                top: imgtodrag.offset().top,
+                left: imgtodrag.offset().left
+              })
+              .css({
+                'opacity': '0.8',
+                'position': 'absolute',
+                'height': '150px',
+                'width': '150px',
+                'z-index': '100'
+              })
+              .appendTo($('body'))
+              .animate({
+                'top': cart.offset().top + 10,
+                'left': cart.offset().left + 10,
+                'width': 75,
+                'height': 75
+              }, 1000, 'easeInOutExpo');
 
+            imgclone.animate({
+              'width': 0,
+              'height': 0
+            }, function () {
+              $(this).detach()
+            });
+          }
+        }
+      };
+      xhttp.open("GET", `../products/add-to-cart?id=${productId}`, true);
+      xhttp.send();
+    });
+  });
   function funcSearch(s) {
     $('#search').show();
     $.get("../api/products/search",
