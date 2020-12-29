@@ -28,7 +28,7 @@ exports.addToCart = async (req, res, next) => {
      }
      req.session.cart = cart;
      console.log(req.session.cart);
-     res.redirect('./');
+     res.send();
 }
 
 exports.search = async (req, res, next) => {
