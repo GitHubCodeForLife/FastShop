@@ -11,4 +11,7 @@ router.get('/auth/verification/verify-account/:userId/:secretCode', apiControlle
 router.get('/products/search', apiController.searchProducts);
 router.get('/products/comments/:product_id', apiController.getComment);
 router.post('/products/comments/:product_id', apiController.postComment);
+
+
+router.get('/users/findOne', apiController.findUser);
 module.exports = router;

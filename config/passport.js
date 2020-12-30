@@ -10,7 +10,7 @@ module.exports = (passport)=>{
     passport.use(
         new LocalStrategy({usernameField: 'email'},async (email, password, done)=>{
             //Find user
-            const user = await User.findOne({email: email});
+            const user = await User.findOne({CUS_EMAIL: email});
             if(!user){
                 console.log('Email chưa được đăng ký vui lòng đăng ký trước khi đăng nhập.');
                 return done(null, false, {message: 'Email has not been registered'});   
@@ -20,7 +20,7 @@ module.exports = (passport)=>{
                 return done(null, false, {message: 'Email is not virified'});   
             }
             //Macth password
-            bcrypt.compare(password, user.password,(err, result)=>{
+            bcrypt.compare(password, user.PASSWORD,(err, result)=>{
                 if(err) throw err;
                 if(result){
                     return done(null, user);

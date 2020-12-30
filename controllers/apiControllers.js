@@ -16,10 +16,12 @@ exports.products = async (req, res, next) => {
         page = 1;
     }
     let perPage = 9;
-    let products = await productsServices.products(page, perPage);
+    const products = await productsServices.products(page, perPage);
+    console.log(products);
     res.json(products);
 
 }
+
 exports.verifyEmail = async (req, res, next) => {
     const { userId, secretCode } = req.params;
     console.log(req.params);
@@ -37,18 +39,18 @@ exports.verifyEmail = async (req, res, next) => {
         res.send('Verify failed, because do not find out user'); return;
     }
     //Check verify   
-    if (user.isVerified) {
+    if (user.IS_VERIFIED) {
         res.send('Verify failed, because User has verified.'); return;
     }
     //update User
-    await userServices.updateOne({ _id: new ObjectId(userId) }, { $set: { isVerified: true } })
+    await userServices.updateOne({ _id: new ObjectId(userId) }, { $set: { IS_VERIFIED: true } })
 
     res.send('Verify Success');
 }
 
 exports.searchProducts = async (req, res, next) => {
     const { q, page } = req.query;
-    //console.log(q);
+    console.log(q);
     console.log(page);
     let products = await productsServices.searchProducts({ $text: { $search: q } }, page || 1);
     console.log(products);
@@ -59,14 +61,20 @@ exports.getComment = async (req, res, next) => {
     const { product_id } = req.params;
     const { page } = req.query;
     console.log(product_id);
-    const comments = await commentServices.find({ product_id: product_id }, page, 2);
+    const comments = await commentServices.find({ DISH_ID: product_id }, page, 2);  
     res.json(comments);
 }
+
 exports.postComment = async (req, res, next) => {
     const { product_id } = req.params;
     console.log(product_id);
     const { name, message } = req.body;
     console.log(name, message);
-    await commentServices.insert({ name: name, message: message, product_id: product_id });
+    await commentServices.insert({ REVIEWER: name, CONTENT: message, DISH_ID: product_id });
     res.json(['a', 'b']);
+}
+
+exports.findUser = async(req, res, next)=>{
+    const {email}= req.query.email;
+    return await userServices.findOne({email: email});
 }

@@ -61,11 +61,11 @@
           <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
             <!-- Product-->
             <article class="product wow fadeInLeft" data-wow-delay=".15s">
-              <div class="product-figure item"><img src="{{this.cover}}" alt="" width="161" height="162" />
+              <div class="product-figure item"><img src="{{this.IMG}}" alt="" width="161" height="162" />
               </div>
-              <h6 class="product-title">{{this.title}}</h6>
+              <h6 class="product-title">{{this.DISH_NAME}}</h6>
               <div class="product-price-wrap">
-                <div class="product-price">{{this.basePrice}}</div>
+                <div class="product-price">{{this.PRICE}}</div>
               </div>
               <div class="product-button">
                 <div class="button-wrap add-to-cart" product-id={{this._id}}><span
@@ -125,11 +125,11 @@
             $('#list-products').append(` <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
                 <!-- Product-->
                 <article class="product wow fadeInLeft" data-wow-delay=".15s">
-                  <div class="product-figure item"><img src="images/product-1-161x162.png" alt="" width="161" height="162" />
+                  <div class="product-figure item"><img src="${products[i].IMG}" alt="" width="161" height="162" />
                   </div>
-                  <h6 class="product-title">${products[i].title}</h6>
+                  <h6 class="product-title">${products[i].DISH_NAME}</h6>
                   <div class="product-price-wrap">
-                    <div class="product-price">$${products[i].basePrice}</div>
+                    <div class="product-price">$${products[i].PRICE}</div>
                   </div>
                   <div class="product-button">
                     <div class="button-wrap add-to-cart" product-id="${products[i]._id}"><span class="button button-xs button-primary button-winona">Add to
@@ -229,7 +229,7 @@
         $('#search').html('');
         for (product in products) {
           //  console.log(products[product]);
-          $('#search').append(`<li> <a href="../products?id=${products[product]._id}" class="ms-3">${products[product].title}</a></li>`);
+          $('#search').append(`<li> <a href="../products?id=${products[product]._id}" class="ms-3">${products[product].DISH_NAME}</a></li>`);
         }
       }
     );

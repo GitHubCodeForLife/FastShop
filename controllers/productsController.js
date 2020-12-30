@@ -12,6 +12,7 @@ exports.index = async (req, res, next) => {
           res.render('./product/products', { title: 'Product Page', user: req.user, isProducts: isProducts, products: products });
      } else {
           let product = await productsServices.findOne({ _id: new ObjectId(req.query.id) });
+          console.log(product);
           res.render('./product/detail', { title: `${product.title} Detail Page`, user: req.user, product: product, isProducts: isProducts });
      }
 }

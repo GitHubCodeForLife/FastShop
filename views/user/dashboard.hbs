@@ -1,14 +1,68 @@
-<div class="jumbotron">
-  <h1 class="display-3">Hello {{name}}</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-  <hr class="my-4">
-  <p>{{user.email}}</p>
-  <p>{{user.password}}</p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="../logout" role="button">Log Out</a>
-  </p>
-</div>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-md-4 themed-grid-col"><img src="https://picsum.photos/200" class="img-thumbnail" alt=""></div>
+        <div class="col-md-8 themed-grid-col text-left jumbotron">
+            <div class="pb-3">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your information</span>
+                    <span class="badge bg-secondary rounded-pill"><i class="fa fa-info-circle" style="font-style: normal;" aria-hidden="true"></i></span>
+                </h4>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <h6 class="my-0">Email</h6>
+                        <span>{{user.CUS_EMAIL}}</span>
+                        <strong><i class="fa fa-envelope-o" style="font-style: normal;" aria-hidden="true"></i></strong>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Name </h6>
+                            <small class="text-muted">{{user.CUS_NAME}}</small>
+                        </div>
+                        <span class="text-muted"><i class="fa fa-user-secret"  style="font-style: normal;" aria-hidden="true"></i></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Phone Number</h6>
+                            <small class="text-muted">{{user.CUS_PHONE}}</small>
+                        </div>
+                        <span class="text-muted"><i class="fa fa-volume-control-phone" style="font-style: normal;" aria-hidden="true"></i></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
+                            <h6 class="my-0">Address</h6>
+                            <small class="text-muted">{{user.CUS_ADDRESS}}</small>
+                        </div>
+                        <span class="text-muted"><i class="fa fa-location-arrow" style="font-style: normal;" aria-hidden="true"></i></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between bg-light">
+                        <div class="text-success">
+                            <h6 class="my-0">Password</h6>
+                            <small>******</small>
+                        </div>
+                        <span class="text-success">
+                            <a href="/users/changePassword">
+                                <button class="btn btn-warning btn-sm">Change <i class="fa fa-angle-right"
+                                        style="font-style: normal;" aria-hidden="true"></i> </button>
+                            </a>
+                        </span>
+                    </li>
 
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-3 themed-grid-col"></div>
+                <div class="col-md-6">
+                    <a href="/users//editProfile">
+                       <button class="btn btn-primary">Edit information</button>
+                    </a>
+                </div>
+                <div class="col-md-3 themed-grid-col"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <!-- Javascript-->
 <script src="js/core.min.js"></script>

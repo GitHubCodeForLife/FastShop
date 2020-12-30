@@ -4,6 +4,7 @@ const homeController = require('../controllers/homeController');
 const { checkNotAuthenticated} = require('../config/auth');
 const passport = require('passport');
 /* GET home page. */
+router.use(express.static('public'));
 router.get('/',homeController.index);
 router.get('/login',checkNotAuthenticated, homeController.login);
 router.get('/signup',checkNotAuthenticated, homeController.signup);
@@ -17,7 +18,7 @@ router.post('/login',checkNotAuthenticated,function(req, res, next) {
      }
     req.logIn(user, function(err) {
       if (err) { return next(err); }
-      return res.redirect('/users/dashboard?name=' + user.name);
+      return res.redirect('/users/dashboard');
     });
   })(req, res, next);
 });
@@ -31,4 +32,8 @@ router.get('/cart', homeController.cart);
 router.get('/increase-by-one', homeController.increaseByOne);
 router.get('/decrease-by-one', homeController.decreaseByOne);
 router.get('/remove-item', homeController.removeItem);
+router.get('/forgetPassword',checkNotAuthenticated,homeController.getForgetPassword);
+router.post('/forgetPassword',checkNotAuthenticated,homeController.postForgetPassword);
+router.get('/password_reset/:total', checkNotAuthenticated, homeController.resetPassword);
+router.post('/password_reset/:total', checkNotAuthenticated, homeController.postResetPassword);
 module.exports = router;

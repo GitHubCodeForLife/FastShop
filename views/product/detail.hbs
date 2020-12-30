@@ -17,20 +17,20 @@
       <div class="col-sm-6 col-lg-4 col-xl-4">
         <!-- Product-->
         <article class="product-detail ">
-          <div class="product-figure item"><img src="images/product-1-161x162.png" alt="" width="350" height="350" />
+        <div class="product-figure item"><img src="{{product.IMG}}" alt="" width="350" height="350" />
           </div>
           <div class="product-price-wrap">
-            <div class="product-price-detail">{{product.basePrice}}$</div>
+            <div class="product-price-detail">{{product.PRICE}}$</div>
           </div>
         </article>
       </div>
       <div class="col-md-8 col-lg-6 col-xl-7 d-flex flex-column justify-content-between">
         <!-- <div class=""> -->
         <article class="quote-modern">
-          <h3 class="heading-3">{{product.title}}</h3>
+          <h3 class="heading-3">{{product.DISH_NAME}}</h3>
           <hr>
           </hr>
-          <h5 class="quote-modern-text my-3"><span class="q">{{product.description}}</span></h5>
+          <h5 class="quote-modern-text my-3"><span class="q">{{product.DESCRIPTION}}</span></h5>
           <hr>
           </hr>
         </article>
@@ -196,7 +196,7 @@
     },
     function (data, status) {
       if (data[0] == undefined) {
-        $('#more-btn').addClass('disabled');
+        $('#more-btn').remove();
         $('#list-comment').append(`<div id="no-comment">This product do not have any comments</div>`);
       }
       for (i in data) {
@@ -266,7 +266,7 @@
       },
       function (data, status) {
         if (data[0] == undefined) {
-          $('#more-btn').addClass('disabled');
+          $('#more-btn').remove();
 
         }
         for (i in data) {

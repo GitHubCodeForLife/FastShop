@@ -30,7 +30,7 @@ app.use(
     saveUninitialized: true,
     store: new MongoStore({
       client: mongo.client,
-      dbName: 'test'
+      dbName: 'Shopping_cart'
     }),
     cookie: { maxAge: 180 * 60 * 1000 }
   })
