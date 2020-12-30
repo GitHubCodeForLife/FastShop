@@ -32,12 +32,9 @@ router.get('/cart', homeController.cart);
 router.get('/increase-by-one', homeController.increaseByOne);
 router.get('/decrease-by-one', homeController.decreaseByOne);
 router.get('/remove-item', homeController.removeItem);
-<<<<<<< Updated upstream
 router.get('/forgetPassword',checkNotAuthenticated,homeController.getForgetPassword);
 router.post('/forgetPassword',checkNotAuthenticated,homeController.postForgetPassword);
 router.get('/password_reset/:total', checkNotAuthenticated, homeController.resetPassword);
 router.post('/password_reset/:total', checkNotAuthenticated, homeController.postResetPassword);
-=======
 router.get('/check-out', homeController.checkout);
->>>>>>> Stashed changes
 module.exports = router;
