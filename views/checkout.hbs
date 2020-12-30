@@ -1,0 +1,152 @@
+<section class="section section-lg bg-default text-md-left pb-4">
+    <div class="container wow fadeInLeft" data-wow-delay=".15s">
+        <div id="cart">
+            {{# each products}}
+            <div class="row p-3 mx-5 my-0 justify-content-between">
+                <article class="product-cart ">
+                    <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="100"
+                            height="100" />
+                    </div>
+                    <div class="product-detail-cart flex-column">
+                        <h5 class="product-name-cart" style="font-size: 24px">{{this.item.title}}</h5>
+                        <h6 class="product-price-cart" style="font-size: 16px">Đơn giá: $<span
+                                class="base-price">{{this.item.basePrice}}</span>
+                        </h6>
+                        <p class="mt-0" style="font-size: 14px">Số lượng: {{this.qty}}</p>
+                    </div>
+                </article>
+
+                <div class="d-flex flex-column" style="width: auto;">
+
+                    <h6 class="product-price-cart mt-auto mb-0" style="text-align: right;">Thành tiền: $<span
+                            class="total-price">{{this.price}}</span></h6>
+                </div>
+            </div>
+            <hr class="my-1 mx-5">
+            {{/each}}
+        </div>
+        <div class="row-reverse mx-5" style="text-align: right;" id="sum">
+            <h5 class="total-price-cart">Tổng tiền:</h5>
+            <h5 class="total-price-cart">$<span class="sum">{{sum}}</span></h5>
+        </div>
+    </div>
+</section>
+<section class="section section-lg bg-dark text-md-left pt-4">
+    <div class="container wow fadeInLeft" data-wow-delay=".15s">
+        <div class="row row-60 justify-content-center">
+            <div class="col-lg-8">
+                <h4 id="alert" class="text-spacing-25 text-transform-none text-light mb-3">Delivery information</h4>
+
+                <ul class="alert alert-danger p-0 border-0">
+                    <li class="alert-1"></li>
+                    <li class="alert-2"></li>
+                    <li class="alert-3"></li>
+                </ul>
+
+                <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="comment"
+                    method="post">
+                    <div class="row row-20 gutters-20">
+                        <div class="col-md-12">
+                            <p class="text-light">Receiver's Name*</p>
+                            <div class="form-wrap mt-0">
+                                <input class="form-input" id="delivery-name" type="text" name="name"
+                                    data-constraints="@Required" value={{name}}>
+                                <label class="form-label" for="delivery-name"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="text-light">Phone Number*</p>
+                            <div class="form-wrap mt-0">
+                                <input class="form-input" id="delivery-phone" type="text" name="name"
+                                    data-constraints="@Required" onkeypress="return isNumberKey(event)">
+                                <label class="form-label" for="delivery-phone"></label>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="text-light">Address*</p>
+                            <div class="form-wrap mt-0">
+                                <input class="form-input" id="delivery-address" type="text" name="name"
+                                    data-constraints="@Required">
+                                <label class="form-label" for="delivery-address"></label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 timepicker">
+                            <p class="text-light">Prefered delivery time*</p>
+                            <input id="timepicker" width="200" onkeypress="return isNumberKey(event)" readonly />
+                        </div>
+
+
+                        <div class="col-12">
+                            <div class="form-wrap">
+                                <label class="form-label" for="delivery-note">Note (Optional)</label>
+                                <textarea class="form-input textarea-lg" id="delivery-note" name="message"
+                                    data-constraints=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button button-secondary button-winona" type="submit">Confirm</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Javascript-->
+<script src="js/core.min.js"></script>
+<script src="js/script.js"></script>
+<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+    $('#timepicker').timepicker({
+        uiLibrary: 'bootstrap4',
+        value: '8:00',
+    });
+    $('form').submit(function () {
+        var flag = true;
+        var name = $.trim($('#delivery-name').val());
+        var phone = $.trim($('#delivery-phone').val());
+        var address = $.trim($('#delivery-address').val());
+        var time = $.trim($('#timepicker').val());
+        var note = $.trim($('#delivery-note').val());
+        // Check if empty of not
+        if (name === '') {
+            $('.alert-1').addClass("empty-name");
+            flag = false;
+        }
+        else {
+            $('.alert-1').removeClass("empty-name");
+        }
+
+        if (phone === '') {
+            $('.alert-2').addClass("empty-phone");
+            flag = false;
+        }
+        else {
+            $('.alert-2').removeClass("empty-phone");
+        }
+
+        if (address === '') {
+            $('.alert-3').addClass("empty-address");
+            flag = false;
+        }
+        else {
+            $('.alert-3').removeClass("empty-address");
+        }
+
+        if (flag == true) {
+            $('.alert').removeClass("py-2");
+        }
+        else {
+            
+            $('.alert').addClass("py-2");
+            window.location.hash = '#alert';
+        }
+    });
+</script>
