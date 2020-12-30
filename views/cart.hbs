@@ -17,7 +17,8 @@
                             <span class="input-group-btn" onclick="decreaseByOne('{{this.item._id}}','{{this.qty}}')">
                                 <div class="btn btn-stepper " data-dir="dwn"><span class="fa fa-minus"></span></div>
                             </span>
-                            <input type="text" class="form-control text-center" value="{{this.qty}}">
+                            <input type="number" class="form-control text-center" onkeypress="return isNumberKey(event)"
+                                value="{{this.qty}}">
                             <span class="input-group-btn" onclick="increaseByOne('{{this.item._id}}')">
                                 <div class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></div>
                             </span>
@@ -65,9 +66,16 @@
         </div>
         <div class="row justify-content-between mx-5" style="text-align: center;">
             <div class="button-wrap p-0 w-auto"><a class="button button-md button-primary button-winona"
-                    href="#">Continue Shopping</a></div>
+                    href="/products">Continue Shopping</a></div>
+            {{#if user}}
             <div class="button-wrap m-0 p-0  w-auto"><a class="button button-md button-primary button-winona"
-                    href="#">Check out</a></div>
+                    href="./check-out">Check out</a></div>
+            {{/if}}
+            {{#unless user}}
+            <div class="button-wrap m-0 p-0  w-auto"><a class="button button-md button-primary button-winona"
+                    href="/login">Check out</a></div>
+            {{/unless}}
+
         </div>
     </div>
 
@@ -78,6 +86,12 @@
 <!-- coded by Himic-->
 
 <script>
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
     function decreaseByOne(id, qty) {
         if (qty <= 1) {
             $(`#removeModal_${id}`).modal();
