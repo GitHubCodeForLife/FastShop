@@ -5717,9 +5717,6 @@ html [class*='section-'].section-top-0 {
 	background-color: #3f4959;
 }
 
-.bg-login{
-	background
-}
 
 /**
 * Dark Backgrounds
@@ -15342,8 +15339,6 @@ disabled look for disabled choices in the results dropdown
 }
 .rd-nav-link-cart {
 	padding : 15px 0px !important;
-<<<<<<< Updated upstream
-=======
 }
 .number-spinner-cart{
 	max-width: 150px;
@@ -15357,21 +15352,27 @@ disabled look for disabled choices in the results dropdown
 	color:white;
 	background-color: #6046b6;
 }
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
->>>>>>> Stashed changes
 }
-.number-spinner-cart{
-	max-width: 150px;
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
-.delete-item-cart{
-	min-width: 80px;
-	height: auto;
-	margin-left:auto;
+
+div.timepicker .gj-timepicker span button i{
+	color:black;
+	position: absolute !important; 
+	font-size: 20px !important; 
+	top: 50% !important; 
+    left: 50% !important; 
+    height: 50%;
+	transform: translate(-50%, -50%);
+	display: block;
 }
 .button-wrap-cart{
 	color:white;
@@ -15419,3 +15420,49 @@ input::-webkit-inner-spin-button {
 	from {bottom: 30px; opacity: 1;}
 	to {bottom: 0; opacity: 0;}
   }
+div.timepicker .gj-timepicker span button {
+	padding: 20px;
+	background: #ffe745;
+	border-color:#ffe745;
+}
+.empty-name::before{
+	content:"Receiver's name is required!\A";
+	white-space: pre; 
+}
+.empty-phone::after{
+	content:"Phone number is required!\A";
+	white-space: pre; 
+}
+.empty-address::before{
+	content:"Address is required\A";
+	white-space: pre; 
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100px;
+  width: 100px;
+
+  background-size: 100%, 100%;
+  border-radius: 50%;
+  background-image: none;
+}
+
+.carousel-control-next-icon:after
+{
+  content: '>';
+  font-size: 55px;
+  font-weight: 500;
+  color:  #6046b6;
+}
+
+.carousel-control-prev-icon:after {
+  content: '<';
+  font-size: 55px;
+  font-weight: 500;
+  color:  #6046b6;
+}
+
+.carousel-indicators li{
+background-color:  #6046b6;
+}

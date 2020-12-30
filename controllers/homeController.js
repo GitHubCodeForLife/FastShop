@@ -55,6 +55,13 @@ exports.removeItem = (req, res, next) => {
   req.session.cart = cart;
   res.json(cart);
 }
+
+exports.checkout = (req, res, next) => {
+  isCart=true;
+  var cart = new Cart(req.session.cart);
+  res.render('checkout', { title: 'Checkout', user: req.user, isCart: isCart, products: cart.generateArray(), sum: cart.totalPrice,name:req.user.name});
+}
+
 exports.postSignup = async (req, res, next) => {
   console.log(req.body);
   let errors = [];
