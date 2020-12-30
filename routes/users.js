@@ -13,6 +13,6 @@ router.get('/dashboard',checkAuthenticated,userController.dashboard);
 router.get('/editProfile',checkAuthenticated,userController.getEditProfile);
 router.post('/editProfile', checkAuthenticated, userController.postEditProfile);
 router.get('/changePassword', checkAuthenticated, userController.getChangePassword);
-
+router.post('/changePassword', checkAuthenticated, userController.postChangePassword);
 
 module.exports = router;

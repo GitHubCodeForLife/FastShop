@@ -67,8 +67,8 @@ exports.postSignup = async (req, res, next) => {
     console.log('Password is invalid');
   }
   if (password != retype_password) {
-    errors.push('Password is not correct');
-    console.log('Password is not correct');
+    errors.push('Password is not match together');
+    console.log('Password is not match together');
   }
   if (password.length < 6) {
     errors.push('Password is at least 6 characters');
@@ -223,7 +223,7 @@ exports.postResetPassword = async (req, res, next) => {
     return;
   }
   if(password!=retype_password){
-    errors.push('Password is not macth together');
+    errors.push('Password is not match together');
     res.render('user/resetPassword',{title: 'Reset Password', errors});
     return;
   }
