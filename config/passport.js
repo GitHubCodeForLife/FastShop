@@ -15,7 +15,7 @@ module.exports = (passport)=>{
                 console.log('Email chưa được đăng ký vui lòng đăng ký trước khi đăng nhập.');
                 return done(null, false, {message: 'Email has not been registered'});   
             }
-            if(user.isVerified==false){
+            if(user.IS_VERIFIED==false){
                 console.log('Vui lòng xác thực email trước khi đăng nhập.');
                 return done(null, false, {message: 'Email is not virified'});   
             }

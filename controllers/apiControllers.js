@@ -1,4 +1,3 @@
-
 const productsServices = require('../model/productsServices');
 const userServices = require('../model/userServices');
 const commentServices = require('../model/commentServices');
@@ -44,8 +43,8 @@ exports.verifyEmail = async (req, res, next) => {
     }
     //update User
     await userServices.updateOne({ _id: new ObjectId(userId) }, { $set: { IS_VERIFIED: true } })
-
-    res.send('Verify Success');
+    req.flash('verifyEmailSuccess','true');
+    res.redirect('/login');
 }
 
 exports.searchProducts = async (req, res, next) => {

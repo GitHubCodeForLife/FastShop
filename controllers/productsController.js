@@ -13,7 +13,7 @@ exports.index = async (req, res, next) => {
      } else {
           let product = await productsServices.findOne({ _id: new ObjectId(req.query.id) });
           console.log(product);
-          res.render('./product/detail', { title: `${product.title} Detail Page`, user: req.user, product: product, isProducts: isProducts });
+          res.render('./product/detail', { title: `${product.DISH_NAME} Detail Page`, user: req.user, product: product, isProducts: isProducts });
      }
 }
 exports.addToCart = async (req, res, next) => {

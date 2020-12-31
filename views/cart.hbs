@@ -2,7 +2,7 @@
 <section class="section section-lg bg-default text-md-left">
     <div class="container wow fadeInLeft" data-wow-delay=".15s">
         <div id="cart">
-            {{# each products}}
+            {{#each products}}
             <div class="row p-3 mx-5 my-0 justify-content-between">
                 <article class="product-cart ">
                     <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
@@ -67,15 +67,8 @@
         <div class="row justify-content-between mx-5" style="text-align: center;">
             <div class="button-wrap p-0 w-auto"><a class="button button-md button-primary button-winona"
                     href="/products">Continue Shopping</a></div>
-            {{#if user}}
             <div class="button-wrap m-0 p-0  w-auto"><a class="button button-md button-primary button-winona"
                     href="./check-out">Check out</a></div>
-            {{/if}}
-            {{#unless user}}
-            <div class="button-wrap m-0 p-0  w-auto"><a class="button button-md button-primary button-winona"
-                    href="/login">Check out</a></div>
-            {{/unless}}
-
         </div>
     </div>
 

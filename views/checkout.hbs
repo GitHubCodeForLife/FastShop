@@ -1,7 +1,8 @@
 <section class="section section-lg bg-default text-md-left pb-4">
     <div class="container wow fadeInLeft" data-wow-delay=".15s">
         <div id="cart">
-            {{# each products}}
+            {{#if products}}
+            {{#each products}}
             <div class="row p-3 mx-5 my-0 justify-content-between">
                 <article class="product-cart ">
                     <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="100"
@@ -24,6 +25,7 @@
             </div>
             <hr class="my-1 mx-5">
             {{/each}}
+            {{/if}}
         </div>
         <div class="row-reverse mx-5" style="text-align: right;" id="sum">
             <h5 class="total-price-cart">Tổng tiền:</h5>

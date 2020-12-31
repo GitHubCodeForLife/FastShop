@@ -5,7 +5,7 @@ const saltRounds = 10;
 
 
 exports.dashboard = async (req, res, next) => {
-    res.render('user/dashboard', { title: 'Dashboard', user: req.user});
+    res.render('user/dashboard', { title: 'Dashboard', user: req.user,updatePasswordsuccess: req.flash('updatePasswordsuccess'), editProfileSuccess: req.flash('editProfileSuccess')});
 }
 
 exports.getEditProfile = async (req, res, next) => {
@@ -17,6 +17,7 @@ exports.postEditProfile = async(req, res, next)=>{
     console.log(req.user);
     //update
     await userServices.updateOne({_id: ObjectId(req.user._id)}, {$set:{CUS_NAME: name,CUS_PHONE: phone, CUS_ADDRESS: address}});
+    req.flash('editProfileSuccess', 'true');
     res.redirect('/users/dashboard');
 }
 exports.getChangePassword = async(req, res, next)=>{
@@ -34,7 +35,7 @@ exports.postChangePassword = async(req, res, next)=>{
         errors.push('Password is not match together')
     }
     if (errors.length > 0) {
-        res.render('user/changePassword', { title: 'Change Password',errors: errors});
+        res.render('user/changePassword', { title: 'Change Password',user: req.user,errors: errors});
         return;
       }
     //Check Current password
@@ -46,7 +47,10 @@ exports.postChangePassword = async(req, res, next)=>{
                 if (err) throw err;
                 await userServices.updateOne(req.user, {$set:{PASSWORD: hash}});
              });
-             res.render('user/changePassword',{title: 'Change Password',user: req.user, updateSuccess: true});
+             //save into flash 
+             req.flash('updatePasswordsuccess', 'true');
+            //  res.render('user/changePassword',{title: 'Change Password',user: req.user, updateSuccess: true});
+            res.redirect('/users/dashboard');
         }else{
            errors.push('Current password is incorrect.');
            res.render('user/changePassword', { title: 'Change Password',user: req.user ,errors: errors});

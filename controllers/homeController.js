@@ -21,7 +21,7 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-  res.render('user/login', { title: 'Login Page', message: req.message });
+  res.render('user/login', { title: 'Login Page', message: req.message, verifyEmailSuccess: req.flash('verifyEmailSuccess'), notLogin: req.flash('notLogin') });
 }
 
 exports.cart = (req, res, next) => {
@@ -118,7 +118,7 @@ exports.postSignup = async (req, res, next) => {
             console.log(error);
           } else {
             console.log('Email sent: ' + info.response);
-            res.send('Please check mail to verifi');
+            res.send('Please check mail to verify your account');
           }
         });
       });

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const homeController = require('../controllers/homeController');
-const { checkNotAuthenticated} = require('../config/auth');
+const { checkNotAuthenticated, checkAuthenticated} = require('../config/auth');
 const passport = require('passport');
 /* GET home page. */
 router.use(express.static('public'));
@@ -36,5 +36,5 @@ router.get('/forgetPassword',checkNotAuthenticated,homeController.getForgetPassw
 router.post('/forgetPassword',checkNotAuthenticated,homeController.postForgetPassword);
 router.get('/password_reset/:total', checkNotAuthenticated, homeController.resetPassword);
 router.post('/password_reset/:total', checkNotAuthenticated, homeController.postResetPassword);
-router.get('/check-out', homeController.checkout);
+router.get('/check-out', checkAuthenticated,homeController.checkout);
 module.exports = router;

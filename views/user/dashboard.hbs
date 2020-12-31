@@ -6,7 +6,8 @@
             <div class="pb-3">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Your information</span>
-                    <span class="badge bg-secondary rounded-pill"><i class="fa fa-info-circle" style="font-style: normal;" aria-hidden="true"></i></span>
+                    <span class="badge bg-secondary rounded-pill"><i class="fa fa-info-circle"
+                            style="font-style: normal;" aria-hidden="true"></i></span>
                 </h4>
                 <ul class="list-group mb-3">
                     <li class="list-group-item d-flex justify-content-between">
@@ -19,21 +20,24 @@
                             <h6 class="my-0">Name </h6>
                             <small class="text-muted">{{user.CUS_NAME}}</small>
                         </div>
-                        <span class="text-muted"><i class="fa fa-user-secret"  style="font-style: normal;" aria-hidden="true"></i></span>
+                        <span class="text-muted"><i class="fa fa-user-secret" style="font-style: normal;"
+                                aria-hidden="true"></i></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">Phone Number</h6>
                             <small class="text-muted">{{user.CUS_PHONE}}</small>
                         </div>
-                        <span class="text-muted"><i class="fa fa-volume-control-phone" style="font-style: normal;" aria-hidden="true"></i></span>
+                        <span class="text-muted"><i class="fa fa-volume-control-phone" style="font-style: normal;"
+                                aria-hidden="true"></i></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">Address</h6>
                             <small class="text-muted">{{user.CUS_ADDRESS}}</small>
                         </div>
-                        <span class="text-muted"><i class="fa fa-location-arrow" style="font-style: normal;" aria-hidden="true"></i></span>
+                        <span class="text-muted"><i class="fa fa-location-arrow" style="font-style: normal;"
+                                aria-hidden="true"></i></span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between bg-light">
                         <div class="text-success">
@@ -54,7 +58,7 @@
                 <div class="col-md-3 themed-grid-col"></div>
                 <div class="col-md-6">
                     <a href="/users//editProfile">
-                       <button class="btn btn-primary">Edit information</button>
+                        <button class="btn btn-primary">Edit information</button>
                     </a>
                 </div>
                 <div class="col-md-3 themed-grid-col"></div>
@@ -63,8 +67,30 @@
 
     </div>
 </div>
-
+{{#if editProfileSuccess}}
+<div class="d-flex justify-content-center">
+    <div id="snackbar">Your profile updated...<i class="fa fa-check" style="font-style: normal; color: green"
+            aria-hidden="true"></i></div>
+</div>
+{{/if}}
+{{#if updatePasswordsuccess}}
+<div class="d-flex justify-content-center">
+    <div id="snackbar">Password Updated...<i class="fa fa-check" style="font-style: normal; color: green"
+            aria-hidden="true"></i></div>
+</div>
+{{/if}}
 <!-- Javascript-->
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>
 <!-- coded by Himic-->
+<script>
+    //Show snackbar
+    $('document').ready(() => {
+        var x = document.getElementById("snackbar");
+        console.log(x);
+        if (x != undefined) {
+            x.className = "show";
+            setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        }
+    });
+</script>

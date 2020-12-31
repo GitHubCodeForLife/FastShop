@@ -17,17 +17,14 @@
       <div class="col-sm-6 col-lg-4 col-xl-4">
         <!-- Product-->
         <article class="product-detail ">
-<<<<<<< Updated upstream
-        <div class="product-figure item"><img src="{{product.IMG}}" alt="" width="350" height="350" />
-=======
           {{!-- <div class="product-figure item"><img src="images/product-1-161x162.png" alt="" width="350" height="350" />
           </div> --}}
 
           <div id="carouselExampleIndicators" class="product-figure item carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
               <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="1" ></li>
-              <li data-target="#carouselExampleIndicators" data-slide-to="2" ></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
@@ -48,7 +45,6 @@
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="sr-only">Next</span>
             </a>
->>>>>>> Stashed changes
           </div>
 
 
@@ -61,6 +57,7 @@
         <!-- <div class=""> -->
         <article class="quote-modern">
           <h3 class="heading-3">{{product.DISH_NAME}}</h3>
+          <div id="DISH_ID">{{product.DISH_ID}}</div>
           <hr>
           </hr>
           <h5 class="quote-modern-text my-3"><span class="q">{{product.DESCRIPTION}}</span></h5>
@@ -99,7 +96,7 @@
     <h4 class="text-spacing-25 text-transform-none">What people think</h4>
   </div>
   <button class="btn btn-primary mb-5" onclick="loadMoreComment()" id="more-btn">More <i class="fa fa-arrow-right"
-      aria-hidden="true"></i></button>
+      style="font-style: normal;" aria-hidden="true"></i></button>
   <div class="container wow fadeInLeft" data-wow-delay=".15s">
     <div class="row row-60 justify-content-center">
       <div class="col-lg-8">
@@ -117,7 +114,7 @@
             {{#if user}}
             <div class="col-md-6" style="display: none;">
               <div class="form-wrap">
-                <input class="form-input" id="comment-your-name-5" type="text" name="name" value="{{user.name}}"
+                <input class="form-input" id="comment-your-name-5" type="text" name="name" value="{{user.CUS_NAME}}"
                   data-constraints="@Required">
                 <label class="form-label" for="comment-your-name-5">Your Name*</label>
               </div>
@@ -221,10 +218,7 @@
     }
     a.closest('.number-spinner').find('input').val(newVal);
   });
-
-  const url_string = window.location.href; //window.location.href
-  const url = new URL(url_string);
-  const id = url.searchParams.get("id");
+  const id = $('#DISH_ID').text();
   console.log(id);
   let page = 1;
 
@@ -246,13 +240,13 @@
                                 <img src="images/comment-100x100.png" alt="" width="80" height="80" />
                               </div>
                               <div class="comment-name">
-                                <p>${data[i].name}</p>
+                                <p>${data[i].REVIEWER}</p>
                               </div>
                             </article>
                           </div>
                           <div class="col-10">
                             <div class="speech-bubble">
-                              ${data[i].message}
+                              ${data[i].CONTENT}
                             </div>
                           </div>
                         </div> `)
@@ -276,6 +270,8 @@
       function (data, status) {
         console.log(data);
         $('#no-comment').remove();
+        //Clear text area
+        $('#comment-message-5').val('');
         //View 
         $('#list-comment').append(` <div class="row">
                   <div class="col-2">
@@ -316,13 +312,13 @@
                 <img src="images/comment-100x100.png" alt="" width="80" height="80" />
               </div>
               <div class="comment-name">
-                <p>${data[i].name}</p>
+                <p>${data[i].REVIEWER}</p>
               </div>
             </article>
           </div>
           <div class="col-10">
             <div class="speech-bubble">
-              ${data[i].message}
+              ${data[i].CONTENT}
             </div>
           </div>
         </div> `)
