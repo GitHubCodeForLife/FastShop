@@ -32,11 +32,12 @@ exports.addToCart = async (req, res, next) => {
      res.send();
 }
 
+
 exports.search = async (req, res, next) => {
      const { q } = req.query;
      const products = await productsServices.searchProducts({ $text: { $search: q } }, 1);
      let isPaging = true;
      isPaging = products[8] == undefined ? false : true;
      console.log(products);
-     res.render('./product/search', { title: 'Search product Page', products: products, isPaging });
+     res.render('./product/search', { title: 'Search product Page', user: req.user, products: products, isPaging });
 }
