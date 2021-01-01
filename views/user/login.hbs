@@ -33,7 +33,7 @@
         </div>
 
         <div class="d-flex justify-content-center mt-5">
-          <a href="/forget-password"><button class="btn btn-sm btn-primary">Forget Password?</button></a>
+          <a href="/forget-password"><button class="btn btn-sm btn-light">Forget Password?</button></a>
         </div>
 
       </form>
@@ -42,30 +42,23 @@
   </div>
 
 </section>
-{{#if verifyEmaillSuccess}}
-<div class="d-flex justify-content-center">
-  <div id="snackbar">Verify Email Success, now you can login in your account.<i class="fa fa-check"
-      style="font-style: normal; color: green" aria-hidden="true"></i></div>
+{{#if verifyEmailSuccess}}
+<div class="d-flex justify-content-center alert">
+  <div id="snackbar">Verify Email Success, now you can login in your account ...
+    <i class="fa fa-check" style="font-style: normal; color: green" aria-hidden="true"></i>
+    <a href="#" style="color: #8ab4f8;" data-dismiss="alert"> Close</a>
+  </div>
 </div>
 {{/if}}
 {{#if resetPasswordSuccess}}
-<div class="d-flex justify-content-center">
-  <div id="snackbar">Password is reseted, now you can login into your account.<i class="fa fa-check"
-      style="font-style: normal; color: green" aria-hidden="true"></i></div>
+<div class="d-flex justify-content-center alert">
+  <div id="snackbar">Password was reset, now you can login into your account ... <i class="fa fa-check"
+      style="font-style: normal; color: green" aria-hidden="true"></i>
+    <a href="#" style="color: #8ab4f8;" data-dismiss="alert"> Close</a>
+  </div>
 </div>
 {{/if}}
 <!-- Javascript-->
 <script src="js/core.min.js"></script>
 <script src="js/script.js"></script>
 <!-- coded by Himic-->
-<script>
-  //Show snackbar
-  $('document').ready(() => {
-    var x = document.getElementById("snackbar");
-    console.log(x);
-    if (x != undefined) {
-      x.className = "show";
-      setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-    }
-  });
-</script>
