@@ -9,6 +9,6 @@ router.get('/add-to-cart',productsController.addToCart);
 router.get('/search', productsController.search);
 //category
 
-
+ 
 
 module.exports = router;
