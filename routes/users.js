@@ -16,8 +16,8 @@ router.post('/edit-profile', checkAuthenticated, userController.postEditProfile)
 router.get('/change-password', checkAuthenticated, userController.getChangePassword);
 router.post('/change-password', checkAuthenticated, userController.postChangePassword);
 
-router.get('/orderHistory',checkAuthenticated,orderController.orderHistory);
-router.get('/orderHistory/details',checkAuthenticated,orderController.orderDetails);
-router.get('/orderHistory/details/cancel',checkAuthenticated,orderController.orderCancel);
+router.get('/order-history',checkAuthenticated,orderController.orderHistory);
+router.get('/order-history/details',checkAuthenticated,orderController.orderDetails);
+router.get('/order-history/details/cancel',checkAuthenticated,orderController.orderCancel);
 
 module.exports = router;

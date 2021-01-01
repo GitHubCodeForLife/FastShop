@@ -15465,13 +15465,7 @@ div.timepicker .gj-timepicker span button {
 background-color:  #6046b6;
 }
 
-div, ::after, ::before {
-    box-sizing: border-box;
-    z-index: 100;
-}
-.before-dropdown{
-	z-index: 1;
-}
+
 .peach-gradient{
 	background:linear-gradient(40deg, #ffd86f, #fc6262) !important;
 	color: white !important;

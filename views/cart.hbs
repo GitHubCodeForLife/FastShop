@@ -1,12 +1,12 @@
 <!--Cart-->
 <section class="section section-lg bg-default text-md-left">
     <div class="container wow fadeInLeft" data-wow-delay=".15s">
+        {{#if products}}
         <div id="cart">
             {{#each products}}
             <div class="row p-3 mx-5 my-0 justify-content-between">
                 <article class="product-cart ">
-                    <div class="product-figure-cart "><img src="{{this.item.IMG}}" alt="" width="150"
-                            height="150" />
+                    <div class="product-figure-cart "><img src="{{this.item.IMG}}" alt="" width="150" height="150" />
                     </div>
                     <div class="product-detail-cart flex-column">
                         <h5 class="product-name-cart">{{this.item.DISH_NAME}}</h5>
@@ -64,11 +64,17 @@
             <h5 class="total-price-cart">Tổng tiền:</h5>
             <h5 class="total-price-cart">$<span class="sum">{{sum}}</span></h5>
         </div>
-        <div class="row justify-content-between mx-5" style="text-align: center;">
+        {{/if}}
+        {{#unless products}}
+        <h3 class="mb-5">NO ITEMS IN CART YET.</h3>
+        {{/unless}}
+        <div class="row {{#if products}}justify-content-between{{/if}} {{#unless products}}justify-content-center{{/unless}}  mx-5" style="text-align: center;">
             <div class="button-wrap p-0 w-auto"><a class="button button-md button-primary button-winona"
                     href="/products">Continue Shopping</a></div>
+            {{#if products}}
             <div class="button-wrap m-0 p-0  w-auto"><a class="button button-md button-primary button-winona"
                     href="./check-out">Check out</a></div>
+            {{/if}}
         </div>
     </div>
 

@@ -22,7 +22,7 @@ exports.placeOrder = async(req, res, next) => {
     const items = cart.generateArray();
     await orderServices.placeOrder(order,items ,function(orderId){
         req.session.cart = new Cart({});
-        res.redirect('/users//orderHistory/details?id=' + orderId);
+        res.redirect('/users/order-history/details?id=' + orderId);
     });
 }
 
@@ -57,5 +57,5 @@ exports.orderDetails = async(req, res, next)=>{
 exports.orderCancel = async(req, res, next)=>{
     const id = req.query.id;
     await orderServices.cancel(id);
-    res.redirect('/users//orderHistory/details?id=' + id);
+    res.redirect('/users/order-history/details?id=' + id);
 }
