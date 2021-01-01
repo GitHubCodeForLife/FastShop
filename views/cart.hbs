@@ -19,15 +19,15 @@
                             </span>
                             <input type="number" class="form-control text-center" onkeypress="return isNumberKey(event)"
                                 value="{{this.qty}}">
-                            <span class="input-group-btn" onclick="increaseByOne('{{this.item._id}}')">
+                            <span class="input-group-btn " onclick="increaseByOne('{{this.item._id}}')">
                                 <div class="btn btn-stepper " data-dir="up"><span class="fa fa-plus"></span></div>
                             </span>
                         </div>
                     </div>
                 </article>
 
-                <div class="d-flex flex-column" style="width: auto;">
-                    <button class="btn btn-danger delete-item-cart" data-toggle="modal"
+                <div class="d-flex flex-column before-dropdown" style="width: auto;">
+                    <button class="btn btn-danger delete-item-cart " data-toggle="modal"
                         data-target="#removeModal_{{this.item._id}}"><span class="fa fa-close"
                             aria-hidden="true"></span></button>
                     <!-- Modal -->
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                    <button type="button" class="btn btn-primary"
+                                    <button type="button" class="btn btn-primary "
                                         onclick="removeItem('{{this.item._id}}')" data-dismiss="modal">Yes</button>
                                 </div>
                             </div>

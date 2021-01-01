@@ -19,6 +19,9 @@ module.exports = (passport)=>{
                 console.log('Vui lòng xác thực email trước khi đăng nhập.');
                 return done(null, false, {message: 'Email is not virified'});   
             }
+            if(user.IS_LOCK==true){
+                return done(null, false, {message: 'Your account was locked'});   
+            }
             //Macth password
             bcrypt.compare(password, user.PASSWORD,(err, result)=>{
                 if(err) throw err;

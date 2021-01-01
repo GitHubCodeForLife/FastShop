@@ -10,9 +10,9 @@ router.get('/',checkAuthenticated, function(req, res, next) {
 });
 router.get('/dashboard',checkAuthenticated,userController.dashboard);
 
-router.get('/editProfile',checkAuthenticated,userController.getEditProfile);
-router.post('/editProfile', checkAuthenticated, userController.postEditProfile);
-router.get('/changePassword', checkAuthenticated, userController.getChangePassword);
-router.post('/changePassword', checkAuthenticated, userController.postChangePassword);
+router.get('/edit-profile',checkAuthenticated,userController.getEditProfile);
+router.post('/edit-profile', checkAuthenticated, userController.postEditProfile);
+router.get('/change-password', checkAuthenticated, userController.getChangePassword);
+router.post('/change-password', checkAuthenticated, userController.postChangePassword);
 
 module.exports = router;

@@ -72,8 +72,3 @@ exports.postComment = async (req, res, next) => {
     await commentServices.insert({ REVIEWER: name, CONTENT: message, DISH_ID: product_id });
     res.json(['a', 'b']);
 }
-
-exports.findUser = async(req, res, next)=>{
-    const {email}= req.query.email;
-    return await userServices.findOne({email: email});
-}

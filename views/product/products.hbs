@@ -105,7 +105,7 @@
     console.log("ready!");
     let page = 1;
     let nextPage, prePage;
-    //When click button
+    //Paging
     $('.page-link').click((e) => {
       console.log('Page link');
       if (e.currentTarget.innerHTML == 'Next')
@@ -129,7 +129,7 @@
                   </div>
                   <h6 class="product-title">${products[i].DISH_NAME}</h6>
                   <div class="product-price-wrap">
-                    <div class="product-price">$${products[i].PRICE}$</div>
+                    <div class="product-price">${products[i].PRICE}$</div>
                   </div>
                   <div class="product-button">
                     <div class="button-wrap add-to-cart" product-id="${products[i]._id}"><span class="button button-xs button-primary button-winona">Add to
@@ -259,6 +259,7 @@
       xhttp.send();
     });
   });
+  //Search 
   function funcSearch(s) {
     $('#search').show();
     $.get("../api/products/search",

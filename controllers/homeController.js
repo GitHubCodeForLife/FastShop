@@ -21,7 +21,7 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-  res.render('user/login', { title: 'Login Page', message: req.message, verifyEmailSuccess: req.flash('verifyEmailSuccess'), notLogin: req.flash('notLogin') });
+  res.render('user/login', { title: 'Login Page', message: req.message, verifyEmailSuccess: req.flash('verifyEmailSuccess'),   resetPasswordSuccess: req.flash('resetPasswordSuccess') });
 }
 
 exports.cart = (req, res, next) => {
@@ -59,7 +59,7 @@ exports.removeItem = (req, res, next) => {
 exports.checkout = (req, res, next) => {
   isCart=true;
   var cart = new Cart(req.session.cart);
-  res.render('checkout', { title: 'Checkout', user: req.user, isCart: isCart, products: cart.generateArray(), sum: cart.totalPrice,name:req.user.name});
+  res.render('checkout', { title: 'Checkout', user: req.user, products: cart.generateArray(), sum: cart.totalPrice,name:req.user.name});
 }
 
 exports.postSignup = async (req, res, next) => {
@@ -89,7 +89,7 @@ exports.postSignup = async (req, res, next) => {
   //check email exist & verified
   let user = await userServices.findOne({ CUS_EMAIL: email });
   if (user != null) {
-    if (user.isVerified == true) {
+    if (user.IS_VERIFIED == true) {
       errors.push('Email has registered. Please use another email.')
       res.render('user/signup', { title: 'signup Page', errors, infor: infor });
     } else {
@@ -103,6 +103,7 @@ exports.postSignup = async (req, res, next) => {
           CUS_PHONE: phone,
           CUS_ADDRESS: address,
           IS_VERIFIED: false,
+          IS_LOCK: false,
           PASSWORD_RESET_EXPIRESES: Date.now()
         };
         let mailOptions = {
@@ -136,6 +137,7 @@ exports.postSignup = async (req, res, next) => {
         CUS_PHONE: phone,
         CUS_ADDRESS: address,
         IS_VERIFIED: false,
+        IS_LOCK: false,
         PASSWORD_RESET_EXPIRESES: Date.now()
       };
       await userServices.insertOne(tempUser);
@@ -174,7 +176,12 @@ exports.postForgetPassword = async (req, res, next) => {
     res.render('user/forgetPassword', { title: 'Forget password', error: "Email has not been registered." });
     return;
   }
-  //Send Email to your accout to 
+  //Check account IS_LOCK
+  if(user.IS_LOCK==true){
+    res.render('user/forgetPassword', { title: 'Forget password', error: "Your account was locked" });
+    return;
+  }
+  //Send Email to your accout
   const code = makeCode(26);
   const id = user._id;
   //Save Code on database
@@ -184,7 +191,7 @@ exports.postForgetPassword = async (req, res, next) => {
     from: `"Fast Shop" <${process.env.EMAIL_USER}>`,
     to: email,
     subject: 'Set new password',
-    html: `<a href = '${process.env.URL_WEB}/password_reset/${code}${id}'><h1>Click here to reset your password</h1></a>`
+    html: `<a href = '${process.env.URL_WEB}/password-reset/${code}${id}'><h1>Click here to reset your password</h1></a>`
 
   };
   //Send email
@@ -199,19 +206,27 @@ exports.postForgetPassword = async (req, res, next) => {
 }
 exports.resetPassword = async (req, res, next) => {
   const { total } = req.params;
+  if(total.length<26){
+    res.send('This link is invalid');
+    return;
+  }
   const code = total.substring(0, 26);
   const id = total.substring(26, total.length );
   console.log(id, code);
   //find user
   const user = await userServices.findOne({_id: ObjectID(id), CODE: code});
   if(!user){
-    res.redirect('/forgetPassword');
+    res.send('This link is invalid');
     return;
   }
     res.render('user/resetPassword', { title: 'Reset Password'});
 }
 exports.postResetPassword = async (req, res, next) => {
   const { total } = req.params;
+  if(total.length<26){
+    res.send('This link is invalid');
+    return;
+  }
   let code = total.substring(0, 26);
   const id = total.substring(26, total.length );
   console.log(id, code);
@@ -240,6 +255,7 @@ exports.postResetPassword = async (req, res, next) => {
     code = makeCode(26);
     console.log(code);
     await userServices.updateOne(user, {$set: {CODE: code,PASSWORD: hash}});  
+    req.flash('resetPasswordSuccess','true');
     res.redirect('/login');
   });
 }

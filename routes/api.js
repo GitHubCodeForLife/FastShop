@@ -13,5 +13,4 @@ router.get('/products/comments/:product_id', apiController.getComment);
 router.post('/products/comments/:product_id', apiController.postComment);
 
 
-router.get('/users/findOne', apiController.findUser);
 module.exports = router;

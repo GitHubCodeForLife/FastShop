@@ -15465,3 +15465,11 @@ div.timepicker .gj-timepicker span button {
 .carousel-indicators li{
 background-color:  #6046b6;
 }
+
+div, ::after, ::before {
+    box-sizing: border-box;
+    z-index: 100;
+}
+.before-dropdown{
+	z-index: 1;
+}
