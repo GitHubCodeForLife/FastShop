@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-md-4 themed-grid-col">
+            <img src="https://picsum.photos/200" class="img-thumbnail" alt="">
+            <a href="/users//orderHistory" class="btn btn-primary m-4 aqua-gradient">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                Order History
+            </a>
+        </div>
+        <div class="col-md-8 themed-grid-col text-left jumbotron pt-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Order History</span>
+            </h4>
+            {{#each history}}
+            <div class="row mt-3 p-3 bg-white rounded">
+                <div class="d-flex justify-content-between">
+                    <h6 class="my-auto" style="color: #6046b6;">
+                        Id: <span>{{this.historyItem._id}}</span>
+                    </h6>
+                    <h6 class="my-auto" style="color: #6046b6;">
+                        Status:
+                        {{#cond this.historyItem.STATUS 0}}
+                            <span class="text-secondary">Pending</span>
+                        {{/cond}}
+                        {{#cond this.historyItem.STATUS 1}}
+                            <span class="text-success">Confirmed</span>
+                        {{/cond}}
+                        {{#cond this.historyItem.STATUS -1}}
+                            <span class="text-danger">Canceled</span>
+                        {{/cond}}
+
+                    </h6>
+                </div>
+                <hr class="flex-shrink-1 my-2">
+                <div class="d-flex my-2 scrollmenu">
+                    {{#each this.imgQty}}
+                    <img src="{{this.img}}" class="my-auto" width="50px" height="50px">
+                    <p class="mt-auto mb-0 ml-1 mr-2">
+                        x{{this.qty}}
+                    </p>
+                    {{/each}}
+                </div>
+                <hr class="flex-shrink-1 my-2">
+                <div class="d-flex justify-content-between">
+                    <p class="my-auto" style="color:#6046b6; font-size:10px; letter-spacing:0em;">
+                        Date created: {{this.historyItem.DATECREATED}}
+                    </p>
+                    <h6 class="my-auto" style="color: #ffe745; font-weight:bold;">
+                        Tổng tiền: {{this.historyItem.TOTAL}}
+                    </h6>
+                </div>
+                <div class="d-flex justify-content-end mt-2">
+                    <a type="button" class="btn peach-gradient btn-rounded" href="/users//orderHistory/details?id={{this.historyItem._id}}">
+                        Details
+                    </a>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+
+    </div>
+</div>
+
+<!-- Javascript-->
+<script src="js/core.min.js"></script>
+<script src="js/script.js"></script>
+<!-- coded by Himic-->

@@ -5,20 +5,18 @@
             {{#each products}}
             <div class="row p-3 mx-5 my-0 justify-content-between">
                 <article class="product-cart ">
-                    <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="100"
+                    <div class="product-figure-cart "><img src="{{this.item.IMAGE}}" alt="" width="100"
                             height="100" />
                     </div>
                     <div class="product-detail-cart flex-column">
-                        <h5 class="product-name-cart" style="font-size: 24px">{{this.item.title}}</h5>
+                        <h5 class="product-name-cart" style="font-size: 24px">{{this.item.DISH_NAME}}</h5>
                         <h6 class="product-price-cart" style="font-size: 16px">Đơn giá: $<span
-                                class="base-price">{{this.item.basePrice}}</span>
+                                class="base-price">{{this.item.PRICE}}</span>
                         </h6>
                         <p class="mt-0" style="font-size: 14px">Số lượng: {{this.qty}}</p>
                     </div>
                 </article>
-
                 <div class="d-flex flex-column" style="width: auto;">
-
                     <h6 class="product-price-cart mt-auto mb-0" style="text-align: right;">Thành tiền: $<span
                             class="total-price">{{this.price}}</span></h6>
                 </div>
@@ -45,49 +43,47 @@
                     <li class="alert-3"></li>
                 </ul>
 
-                <form class="rd-form rd-mailform" data-form-output="form-output-global" data-form-type="comment"
-                    method="post">
+                <form class="rd-form"  action="/check-out/place-order" method="post">
                     <div class="row row-20 gutters-20">
                         <div class="col-md-12">
                             <p class="text-light">Receiver's Name*</p>
                             <div class="form-wrap mt-0">
                                 <input class="form-input" id="delivery-name" type="text" name="name"
-                                    data-constraints="@Required" value={{name}}>
+                                    data-constraints="@Required" value="{{name}}">
                                 <label class="form-label" for="delivery-name"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <p class="text-light">Phone Number*</p>
                             <div class="form-wrap mt-0">
-                                <input class="form-input" id="delivery-phone" type="text" name="name"
-                                    data-constraints="@Required" onkeypress="return isNumberKey(event)">
+                                <input class="form-input" id="delivery-phone" type="text" name="phone"
+                                    data-constraints="@Required" onkeypress="return isNumberKey(event)" value="{{phone}}">
                                 <label class="form-label" for="delivery-phone"></label>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <p class="text-light">Address*</p>
                             <div class="form-wrap mt-0">
-                                <input class="form-input" id="delivery-address" type="text" name="name"
-                                    data-constraints="@Required">
+                                <input class="form-input" id="delivery-address" type="text" name="address"
+                                    data-constraints="@Required" value="{{address}}">
                                 <label class="form-label" for="delivery-address"></label>
                             </div>
                         </div>
 
                         <div class="col-md-12 timepicker">
                             <p class="text-light">Prefered delivery time*</p>
-                            <input id="timepicker" width="200" onkeypress="return isNumberKey(event)" readonly />
+                            <input id="timepicker" width="200" onkeypress="return isNumberKey(event)" name="time" readonly/>
                         </div>
 
 
                         <div class="col-12">
                             <div class="form-wrap">
                                 <label class="form-label" for="delivery-note">Note (Optional)</label>
-                                <textarea class="form-input textarea-lg" id="delivery-note" name="message"
-                                    data-constraints=""></textarea>
+                                <textarea class="form-input textarea-lg" id="delivery-note" name="note"></textarea>
                             </div>
                         </div>
                     </div>
-                    <button class="button button-secondary button-winona" type="submit">Confirm</button>
+                    <button class="button button-secondary button-winona">Confirm</button>
                 </form>
             </div>
         </div>
@@ -144,11 +140,12 @@
 
         if (flag == true) {
             $('.alert').removeClass("py-2");
-            
+
         }
         else {
             $('.alert').addClass("py-2");
             window.location.hash = '#alert';
+            return;
         }
 
 

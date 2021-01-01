@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const homeController = require('../controllers/homeController');
 const { checkNotAuthenticated, checkAuthenticated} = require('../config/auth');
+const orderController = require('../controllers/orderController');
 const passport = require('passport');
 /* GET home page. */
 router.use(express.static('public'));
@@ -36,5 +37,6 @@ router.get('/forget-password',checkNotAuthenticated,homeController.getForgetPass
 router.post('/forget-password',checkNotAuthenticated,homeController.postForgetPassword);
 router.get('/password-reset/:total', checkNotAuthenticated, homeController.resetPassword);
 router.post('/password-reset/:total', checkNotAuthenticated, homeController.postResetPassword);
-router.get('/check-out', checkAuthenticated,homeController.checkout);
+router.get('/check-out',checkAuthenticated, homeController.checkout);
+router.post('/check-out/place-order', orderController.placeOrder);
 module.exports = router;

@@ -1,0 +1,118 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<div class="container mt-5">
+    <div class="row mb-3">
+        <div class="col-md-4 themed-grid-col">
+            <img src="https://picsum.photos/200" class="img-thumbnail" alt="">
+            <a href="/users//orderHistory" class="btn btn-primary m-4 aqua-gradient">
+                <i class="fa fa-shopping-cart" style="font-style: normal;" aria-hidden="true"></i>
+                Order History
+            </a>
+        </div>
+        <div class="col-md-8 themed-grid-col text-left jumbotron pt-4">
+            <div class="d-flex justify-content-between">
+                <a type="button" class="btn peach-gradient btn-rounded" href="/users//orderHistory">
+                    <i class="fa fa-chevron-left" style="font-style: normal;" aria-hidden="true"></i>
+                    Back
+                </a>
+                <h5 class="font-weight-bold">
+                    Status:
+                    {{#cond order.STATUS 0}}
+                    <span class="text-secondary">Pending</span>
+                    {{/cond}}
+                    {{#cond order.STATUS 1}}
+                    <span class="text-success">Confirmed</span>
+                    {{/cond}}
+                    {{#cond order.STATUS -1}}
+                    <span class="text-danger">Canceled</span>
+                    {{/cond}}
+                </h5>
+                {{#cond order.STATUS 0}}
+                <a type="button" class="btn red-gradient btn-rounded" href="#" onclick="javascript:void(0)" data-toggle="modal" data-target="#cancelModal">
+                    <i class="fa fa-close" style="font-style: normal;" aria-hidden="true"></i>
+                    Cancel
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Cancel order</h5>
+                                <button type="button" class="btn-danger" data-dismiss="modal" aria-label="Close">
+                                    <span class="fa fa-close" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Do you really want to cancel this order?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                <a type="button" class="btn btn-primary" href="/users//orderHistory/details/cancel?id={{order._id}}"
+                                    data-dismiss="modal">Yes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/cond}}
+            </div>
+
+
+            <div class="row p-2 mx-5 py-3 justify-content-between bg-light">
+                {{#each orderItems}}
+                <article class="product-cart w-100">
+                    <div class="product-figure-cart "><img src="" alt="" width="80" height="80" />
+                    </div>
+                    <div class="product-detail-cart flex-column w-100">
+                        <h5 class="product-name-cart h-auto" style="font-size: 1.2vw;">{{this.item.DISH_NAME}}</h5>
+                        <h6 class="product-price-cart mt-auto mb-0" style="font-size: 13px">Đơn giá: $<span
+                                class="base-price">{{this.item.PRICE}}</span>
+                        </h6>
+                        <div class="d-flex justify-content-between">
+                            <p class="my-0" style="font-size: 11px">Số lượng: {{this.details.QUANTITY2}}</p>
+                            <h6 class="product-price-cart mt-auto mb-0" style="text-align: right; font-size: 15px">Thành
+                                tiền:
+                                $<span class="total-price">{{this.details.SUBTOTAL}}</span></h6>
+                        </div>
+                    </div>
+                </article>
+                <hr class="my-3 mx-2 flex-shrink-1">
+                {{/each}}
+                <h6 class="my-auto text-right" style="color: #ffe745; font-weight:bold; font-size:22px;">
+                    Tổng tiền: {{order.TOTAL}}
+                </h6>
+                <p class="my-auto" style="color:#6046b6; font-size:12px; letter-spacing:0em;">
+                    Date created: {{order.DATECREATED}}
+                </p>
+            </div>
+            <div class="row p-2 mx-5 my-2 py-3 justify-content-between bg-light">
+                <div class="col-12 mb-2">
+                    <p class="mb-1">Receiver's Name:</p>
+                    <input class="form-control" value="{{order.NAME}}" readonly />
+                </div>
+                <div class="col-12 mb-2">
+                    <p class="mb-1">Phone Number:</p>
+                    <input class="form-control" value="{{order.PHONE}}" readonly />
+                </div>
+                <div class="col-12 mb-2">
+                    <p class="mb-1">Address:</p>
+                    <input class="form-control" value="{{order.ADDRESS}}" readonly />
+                </div>
+                <div class="col-12 mb-2">
+                    <p class="mb-1">Prefered Delivery Time:</p>
+                    <input class="form-control" value="{{order.TIME}}" readonly />
+                </div>
+                <div class="col-12 mb-2">
+                    <p class="mb-1">Note:</p>
+                    <textarea class="form-control" readonly>{{order.NOTE}}</textarea>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Javascript-->
+<script src="/js/core.min.js"></script>
+<script src="/js/script.js"></script>
+<!-- coded by Himic-->

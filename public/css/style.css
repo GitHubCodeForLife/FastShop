@@ -3960,7 +3960,7 @@ hr + .footer-social-list {
 	position: relative;
 	text-align: left;
 	display: flex;
-	max-width: 500px;
+	max-width: 625px;
 }
 .product-figure-cart{
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
@@ -3975,7 +3975,7 @@ hr + .footer-social-list {
 	line-height: 1;
 	letter-spacing: .01em;
 	color: #000000;
-	font-size: 30px;
+	font-size: 26px;
 	font-weight: 750;
 }
 .product-price-cart {
@@ -15472,4 +15472,39 @@ div, ::after, ::before {
 }
 .before-dropdown{
 	z-index: 1;
+}
+.peach-gradient{
+	background:linear-gradient(40deg, #ffd86f, #fc6262) !important;
+	color: white !important;
+	border-radius: 10em !important;
+	border:0 !important;
+	text-transform: uppercase;
+	padding: .64rem 1.90rem !important;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	font-size: .80rem !important;
+}
+.aqua-gradient{
+	background:linear-gradient(40deg, #2096ff, #05ffa3) !important;
+	color: white !important;
+	border-radius: 10em !important;
+	border:0 !important;
+	text-transform: uppercase;
+	padding: .94rem 2.2rem !important;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	font-size: .90rem !important;
+}
+.red-gradient{
+	background-image:linear-gradient(120deg, #f093fb 0%, #f5576c 100%)!important;
+	color: white !important;
+	border-radius: 10em !important;
+	border:0 !important;
+	text-transform: uppercase;
+	padding: .64rem 1.90rem !important;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	font-size: .80rem !important;
+}
+
+.scrollmenu {
+	overflow: auto;
+	white-space: nowrap;
 }

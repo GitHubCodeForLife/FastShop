@@ -12,6 +12,7 @@ const flash = require('connect-flash');
 const session = require('express-session');
 require('./config/passport')(passport);
 //
+const Handlebars = require("hbs");
 var MongoStore = require('connect-mongo')(session);
 //Router 
 const indexRouter = require('./routes/index');
@@ -21,6 +22,7 @@ const productRouter = require('./routes/products');
 const app = express();
 //require mongodb
 const mongo = require('./database/db');
+const { compareSync } = require('bcrypt');
 
 // Express session
 app.use(
@@ -53,11 +55,16 @@ app.use(function (req, res, next) {
 
   next();
 });
+//Hbs Helper
+Handlebars.registerHelper('cond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -68,7 +75,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 app.use('/products', productRouter);
-
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

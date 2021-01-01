@@ -5,12 +5,12 @@
             {{#each products}}
             <div class="row p-3 mx-5 my-0 justify-content-between">
                 <article class="product-cart ">
-                    <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
+                    <div class="product-figure-cart "><img src="{{this.item.IMG}}" alt="" width="150"
                             height="150" />
                     </div>
                     <div class="product-detail-cart flex-column">
-                        <h5 class="product-name-cart">{{this.item.title}}</h5>
-                        <h6 class="product-price-cart">Đơn giá: $<span class="base-price">{{this.item.basePrice}}</span>
+                        <h5 class="product-name-cart">{{this.item.DISH_NAME}}</h5>
+                        <h6 class="product-price-cart">Đơn giá: $<span class="base-price">{{this.item.PRICE}}</span>
                         </h6>
                         <p style="font-size: 18px">Số lượng:</p>
                         <div class="input-group number-spinner number-spinner-cart">
@@ -99,12 +99,12 @@
                     document.getElementById("cart").innerHTML +=
                         `<div class="row p-3 mx-5 my-0 justify-content-between">
                          <article class="product-cart ">
-                          <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
+                          <div class="product-figure-cart "><img src="${cart.items[i].item.IMAGE}" alt="" width="150"
                              height="150" />
                         </div>
                     <div class="product-detail-cart flex-column">
-                    <h5 class="product-name-cart">${cart.items[i].item.title}</h5>
-                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">${cart.items[i].item.basePrice}</span>
+                    <h5 class="product-name-cart">${cart.items[i].item.DISH_NAME}</h5>
+                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">${cart.items[i].item.PRICE}</span>
                     </h6>
                     <p style="font-size: 18px">Số lượng:</p>
                     <div class="input-group number-spinner number-spinner-cart">
@@ -167,12 +167,12 @@
                     document.getElementById("cart").innerHTML +=
                         `<div class="row p-3 mx-5 my-0 justify-content-between">
                          <article class="product-cart ">
-                          <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
+                          <div class="product-figure-cart "><img src="${cart.items[i].item.IMAGE}" alt="" width="150"
                              height="150" />
                         </div>
                     <div class="product-detail-cart flex-column">
-                    <h5 class="product-name-cart">${cart.items[i].item.title}</h5>
-                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">${cart.items[i].item.basePrice}</span>
+                    <h5 class="product-name-cart">${cart.items[i].item.DISH_NAME}</h5>
+                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">${cart.items[i].item.PRICE}</span>
                     </h6>
                     <p style="font-size: 18px">Số lượng:</p>
                     <div class="input-group number-spinner number-spinner-cart">
@@ -235,12 +235,12 @@
                     document.getElementById("cart").innerHTML +=
                         `<div class="row p-3 mx-5 my-0 justify-content-between">
                          <article class="product-cart ">
-                          <div class="product-figure-cart "><img src="images/product-1-161x162.png" alt="" width="150"
+                          <div class="product-figure-cart "><img src="${cart.items[i].item.IMAGE}" alt="" width="150"
                              height="150" />
                         </div>
                     <div class="product-detail-cart flex-column">
-                    <h5 class="product-name-cart">${cart.items[i].item.title}</h5>
-                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">${cart.items[i].item.basePrice}</span>
+                    <h5 class="product-name-cart">${cart.items[i].item.DISH_NAME}</h5>
+                    <h6 class="product-price-cart">Đơn giá: $<span class="base-price">${cart.items[i].item.PRICE}</span>
                     </h6>
                     <p style="font-size: 18px">Số lượng:</p>
                     <div class="input-group number-spinner number-spinner-cart">

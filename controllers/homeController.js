@@ -1,4 +1,5 @@
 const userServices = require('../model/userServices');
+const orderServices = require('../model/orderServices');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const { ObjectID } = require('mongodb');
@@ -59,7 +60,7 @@ exports.removeItem = (req, res, next) => {
 exports.checkout = (req, res, next) => {
   isCart=true;
   var cart = new Cart(req.session.cart);
-  res.render('checkout', { title: 'Checkout', user: req.user, products: cart.generateArray(), sum: cart.totalPrice,name:req.user.name});
+  res.render('checkout', { title: 'Checkout', user: req.user, isCart: isCart, products: cart.generateArray(), sum: cart.totalPrice,name:req.user.CUS_NAME,phone:req.user.CUS_PHONE,address:req.user.CUS_ADDRESS});
 }
 
 exports.postSignup = async (req, res, next) => {
