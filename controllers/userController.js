@@ -17,7 +17,7 @@ exports.postEditProfile = async(req, res, next)=>{
     console.log(req.user);
     //update
     await userServices.updateOne({_id: ObjectId(req.user._id)}, {$set:{CUS_NAME: name,CUS_PHONE: phone, CUS_ADDRESS: address}});
-    req.flash('editProfileSuccess', 'true');
+    await req.flash('editProfileSuccess', 'true');
     res.redirect('/users/dashboard');
 }
 exports.getChangePassword = async(req, res, next)=>{
@@ -39,7 +39,7 @@ exports.postChangePassword = async(req, res, next)=>{
         return;
       }
     //Check Current password
-    bcrypt.compare(current_password, req.user.PASSWORD,(err, result)=>{
+    bcrypt.compare(current_password, req.user.PASSWORD, async(err, result)=>{
         if(err) throw err;
         if(result){
              //Update password
@@ -48,7 +48,7 @@ exports.postChangePassword = async(req, res, next)=>{
                 await userServices.updateOne(req.user, {$set:{PASSWORD: hash}});
              });
              //save into flash 
-             req.flash('updatePasswordsuccess', 'true');
+             await req.flash('updatePasswordsuccess', 'true');
             //  res.render('user/changePassword',{title: 'Change Password',user: req.user, updateSuccess: true});
             res.redirect('/users/dashboard');
         }else{

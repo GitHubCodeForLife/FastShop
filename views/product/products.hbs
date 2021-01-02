@@ -51,38 +51,79 @@
               data-toggle="tab">Desserts</a></li>
       </div>
       <div class="col-lg-8 col-xl-9">
-        <form style="background-color: cyan;" class="position-relative" id="form-search" action="./search">
+        <form style="background-color: cyan;" class="position-relative " id="form-search" action="./search">
           <div class="input-group">
-            <input type="text" class="form-control" onfocus="funcSearch(this)" oninput="funcSearch(this)"
+            <input type="text" class="form-control" onfocus="funcSearch(this)" onkeyup="funcSearch(this)"
               placeholder="Search ..." name="q" autocomplete="off" />
             <div class="input-group-append">
               <button type="submit" class="btn-primary btn"><i class="fa fa-search"></i></button>
             </div>
           </div>
-          <div class="input-group mb-3 position-absolute" style="background-color: #e5f5f9; z-index: 1000">
+          <div class="input-group mb-3 position-absolute shadow-sm  mb-5 bg-white rounded text-start"
+            style="background-color: #e5f5f9; z-index: 1000 ">
             <ul id="search">
 
             </ul>
           </div>
         </form>
-        <div class="row" id="list-products">
+        <div class="mt-2 d-flex justify-content-start">
+          <div>
+            <a href="#demo" class="btn btn-light" data-toggle="collapse"> <i class="fa fa-filter"
+                style="font-style: normal" aria-hidden="true"></i> Filter</a>
+            <div id="demo" class="collapse  mt-2">
+              <div class="form-group d-inline">
+                <select class="custom-select" id="filter-price" name="filter-price">
+                  <option selected="" value="0">Price</option>
+                  <option value="1">5$ - 25$</option>
+                  <option value="2">25$ - 45$</option>
+                  <option value="3">>= 45$</option>
+                </select>
+              </div>
+              <div class="form-group d-inline">
+                <select class="custom-select" id="filter-view">
+                  <option selected="" value="0">View</option>
+                  <option value="1">Low</option>
+                  <option value="2">Medium</option>
+                  <option value="3">High</option>
+                </select>
+              </div>
+              <div class="form-group d-inline">
+                <select class="custom-select" id="filter-name">
+                  <option selected="" value="0">Name</option>
+                  <option value="1">From A to Z</option>
+                  <option value="2">From Z to A</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row " id="list-products">
+
           {{#each products}}
-          <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
+          <div class="col-sm-6 col-lg-4 col-xl-4 my-3 ">
             <!-- Product-->
             <article class="product wow fadeInLeft" data-wow-delay=".15s">
-              <div class="product-figure item"><img src="{{this.IMG}}" alt="" width="161" height="162" />
+              <div class="product-figure item"><img src="{{this.IMAGE}}" alt="" width="161" height="162" />
               </div>
               <h6 class="product-title">{{this.DISH_NAME}}</h6>
-              <div class="product-price-wrap">
+              <div class="prosduct-price-wrap">
                 <div class="product-price">{{this.PRICE}}$</div>
+                <div class="product-view">{{this.VIEW}}</div>
               </div>
+              {{#if this.STATUS}}
               <div class="product-button">
-                <div class="button-wrap add-to-cart" product-id={{this._id}}><span
-                    class="button button-xs button-primary button-winona">Add to cart</span></div>
+                <div class="button-wrap add-to-cart " product-id={{this._id}}><span
+                    class="button button-xs button-primary button-winona ">Add to cart</span></div>
                 <div class="button-wrap"><a class="button button-xs button-secondary button-winona"
                     href="../products?id={{this._id}}">View
                     Product</a></div>
               </div>
+              <span class="product-badge product-badge-sale">Sale</span>
+              {{/if}}
+              {{#unless this.STATUS}}
+              <span class="product-badge product-badge-new">Hết Hàng</span>
+              {{/unless}}
             </article>
           </div>
           {{/each}}
@@ -122,7 +163,6 @@
       else if (e.currentTarget.innerHTML == 'Previous')
         page = page - 1;
       else page = parseInt(e.currentTarget.innerHTML);
-
       $.get("../api/products",
         {
           page: page
@@ -139,6 +179,7 @@
                   <h6 class="product-title">${products[i].DISH_NAME}</h6>
                   <div class="product-price-wrap">
                     <div class="product-price">${products[i].PRICE}$</div>
+                    <div class="product-view">${products[i].VIEW}</div>
                   </div>
                   <div class="product-button">
                     <div class="button-wrap add-to-cart" product-id="${products[i]._id}"><span class="button button-xs button-primary button-winona">Add to
@@ -149,6 +190,8 @@
                 </article>
               </div>`);
           }
+          if ($('#filter-price').val() != 0 || $('#filter-view').val() != 0 || $('#filter-name').val() != 0)
+            filter();
           $('.add-to-cart').on('click', function () {
             productId = $(this).attr("product-id");
             imgtodrag = $(this).closest('.product').find('.item').find("img").eq(0);
@@ -284,7 +327,100 @@
       }
     );
   }
+  //Filter
+  $('select').click(() => {
+    filter();
+  });
+  function filter() {
+    //Reset Display products
+    let listProducts = $('#list-products').children();
+    listProducts.map(i => listProducts[i].style.display = "");
+    const priceValue = parseInt($('#filter-price').val());
+    const viewValue = parseInt($('#filter-view').val());
+    const nameValue = parseInt($('#filter-name').val());
+    console.log(priceValue + " " + viewValue + " " + nameValue);
+    //Filter by Price
+    if (priceValue != 0) {
+      filterByPrice(listProducts, priceValue);
+    }
+    //Filter by Name
+    if (nameValue != 0) {
+      filterByName(listProducts, nameValue);
+    }
+    //Filter by View
+    if (viewValue != 0) {
+      filterByView(listProducts, viewValue);
+    }
+    if (priceValue == 0 && viewValue == 0 && nameValue == 0) {
+      $('.active .page-link').click();
+    }
+  }
+  function filterByPrice(listProducts, value) {
+    //value: 1 -> 5 -> 25 
+    //value: 2 -> 25 -> 45
+    //value: 3 -> 45
+    let filter;
+    if (value == 1) {
+      filter = 5;
+    } else if (value == 2) {
+      filter = 25;
+    } else {
+      filter = 45;
+    }
+    listProducts.map(i => {
+      let htmlPrice = listProducts[i].getElementsByClassName('product-price')[0].innerHTML;
+      const price = parseInt(htmlPrice.replace('$', ''));
+      if (price < filter || price > filter + 20) {
+        listProducts[i].style.display = "none";
+      }
+    });
 
+  }
+  function filterByName(listProducts, value) {
+    if (value == 1) {
+      //A -> Z
+      listProducts.sort((a, b) => {
+        const nameA = a.getElementsByClassName('product-title')[0].innerHTML[0];
+        const nameB = b.getElementsByClassName('product-title')[0].innerHTML[0];
+        console.log(nameA, nameB);
+        if (nameA < nameB) { return -1; }
+        if (nameA > nameB) { return 1; }
+        return 0;
+      });
+    } else {
+      //Z - > A
+      listProducts.sort((a, b) => {
+        const nameA = a.getElementsByClassName('product-title')[0].innerHTML[0];
+        const nameB = b.getElementsByClassName('product-title')[0].innerHTML[0];
+        console.log(nameA, nameB);
+        if (nameA < nameB) { return 1; }
+        if (nameA > nameB) { return -1; }
+        return 0;
+      });
+    }
+    $('#list-products').html('');
+    $('#list-products').append(listProducts);
+  }
+  function filterByView(listProducts, value) {
+    //value: 1 -> 0 - >400
+    //value: 2 -> 400 --> 800
+    //value: 3 -> 800
+    let filter;
+    if (value == 1) {
+      filter = 0;
+    } else if (value == 2) {
+      filter = 400;
+    } else {
+      filter = 800;
+    }
+    listProducts.map(i => {
+      const price = parseInt(listProducts[i].getElementsByClassName('product-view')[0].innerHTML);
+      if (price < filter || price > filter + 400) {
+        listProducts[i].style.display = "none";
+      }
+    });
+  }
+ 
   $('body').click(function (event) {
     if (event.target != $('#form-search')) {
       $('#search').html('');

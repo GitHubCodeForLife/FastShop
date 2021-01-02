@@ -1,10 +1,10 @@
 <style>
-  div,
-  ::after,
-  ::before {
-    box-sizing: border-box;
-    z-index: 100;
-  }
+    div,
+    ::after,
+    ::before {
+        box-sizing: border-box;
+        z-index: 100;
+    }
 </style>
 
 <!-- Breadcrumbs -->
@@ -56,7 +56,8 @@
                             <button type="submit" class="btn-primary btn"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
-                    <div class="input-group mb-3 position-absolute" style="background-color: #e5f5f9; z-index: 1000">
+                    <div class="input-group mb-3 position-absolute shadow-sm  mb-5 bg-white rounded text-start"
+                        style="background-color: #e5f5f9; z-index: 1000 ">
                         <ul id="search">
 
                         </ul>
@@ -67,11 +68,12 @@
                     <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
                         <!-- Product-->
                         <article class="product wow fadeInLeft" data-wow-delay=".15s">
-                            <div class="product-figure item"><img src="{{this.IMG}}" alt="" width="161" height="162" />
+                            <div class="product-figure item"><img src="{{this.IMAGE}}" alt="" width="161"
+                                    height="162" />
                             </div>
                             <h6 class="product-title">{{this.DISH_NAME}}</h6>
                             <div class="product-price-wrap">
-                                <div class="product-price">{{this.PRICE}}</div>
+                                <div class="product-price">{{this.PRICE}}$</div>
                             </div>
                             <div class="product-button">
                                 <div class="button-wrap add-to-cart" product-id={{this._id}}><span
@@ -83,6 +85,7 @@
                         </article>
                     </div>
                     {{/each}}
+
 
                     {{#unless products}}
                     <h1>Do not find any products</h1>

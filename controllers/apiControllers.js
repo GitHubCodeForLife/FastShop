@@ -43,7 +43,7 @@ exports.verifyEmail = async (req, res, next) => {
     }
     //update User
     await userServices.updateOne({ _id: new ObjectId(userId) }, { $set: { IS_VERIFIED: true } })
-    req.flash('verifyEmailSuccess','true');
+    await req.flash('verifyEmailSuccess','true');
     res.redirect('/login');
 }
 

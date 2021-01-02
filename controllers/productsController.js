@@ -32,7 +32,6 @@ exports.addToCart = async (req, res, next) => {
      res.send();
 }
 
-
 exports.search = async (req, res, next) => {
      const { q } = req.query;
      const products = await productsServices.searchProducts({ $text: { $search: q } }, 1);

@@ -14,6 +14,14 @@ exports.findOne = async (product) => {
 }
 
 exports.searchProducts = async (query, page) => {
-    const sort = { DISH_NAME: 1 };
-    return await db().collection('DISH').find(query).sort(sort).limit(9).skip((page - 1) * 9).toArray();
+//    const sort = { DISH_NAME: 1 };
+    const sort = { score: { $meta: "textScore" } };
+    const projection = {
+        _id: 1,
+        DISH_NAME: 1,
+        PRICE: 1,
+        IMAGE: 1,
+        score: { $meta: "textScore" }
+      };
+    return await db().collection('DISH').find(query).sort(sort).project(projection).limit(9).skip((page - 1) * 9).toArray();
 }   

@@ -105,7 +105,7 @@ exports.postSignup = async (req, res, next) => {
           CUS_ADDRESS: address,
           IS_VERIFIED: false,
           IS_LOCK: false,
-          PASSWORD_RESET_EXPIRESES: Date.now()
+          PASSWORD_RESET_EXPIRES: Date.now()
         };
         let mailOptions = {
           from: `"Fast Shop" <${process.env.EMAIL_USER}>`,
@@ -139,7 +139,7 @@ exports.postSignup = async (req, res, next) => {
         CUS_ADDRESS: address,
         IS_VERIFIED: false,
         IS_LOCK: false,
-        PASSWORD_RESET_EXPIRESES: Date.now()
+        PASSWORD_RESET_EXPIRES: Date.now()
       };
       await userServices.insertOne(tempUser);
       user = await userServices.findOne(tempUser);
@@ -256,7 +256,7 @@ exports.postResetPassword = async (req, res, next) => {
     code = makeCode(26);
     console.log(code);
     await userServices.updateOne(user, {$set: {CODE: code,PASSWORD: hash}});  
-    req.flash('resetPasswordSuccess','true');
+    await req.flash('resetPasswordSuccess','true');
     res.redirect('/login');
   });
 }

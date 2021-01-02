@@ -63,18 +63,17 @@
                 </ul>
             </div>
             <div class="row justify-content-center">
-                <a href="/users//editProfile" class="btn btn-primary p-2" style="width : auto">
+                <a href="/users/edit-profile" class="btn btn-primary p-2" style="width : auto">
                     Edit information
                 </a>
 
             </div>
         </div>
-
     </div>
 </div>
 {{#if editProfileSuccess}}
 <div class="d-flex justify-content-center alert">
-    <div id="snackbar" style="min-width: 300px;">Your profile updated... <i class="fa fa-check" style="font-style: normal; color: green"
+    <div id="snackbar" style="min-width: 300px;">Your profile updated <i class="fa fa-check" style="font-style: normal; color: green"
             aria-hidden="true"></i>
            <button type="button" class="close " style="color: white;" data-dismiss="alert">&times;</button> 
     </div>
@@ -82,7 +81,7 @@
 {{/if}}
 {{#if updatePasswordsuccess}}
 <div class="d-flex justify-content-center alert">
-    <div id="snackbar" style="min-width: 300px;" >Your password was changed... <i class="fa fa-check" style="font-style: normal; color: green"
+    <div id="snackbar" style="min-width: 300px;" >Your password was changed <i class="fa fa-check" style="font-style: normal; color: green"
             aria-hidden="true"></i>
            <button type="button" class="close " style="color: white;" data-dismiss="alert">&times;</button> 
     </div>

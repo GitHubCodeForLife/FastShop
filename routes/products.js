@@ -8,7 +8,7 @@ router.get('/',productsController.index);
 router.get('/add-to-cart',productsController.addToCart);
 router.get('/search', productsController.search);
 //category
-
+//routet.get('/:category', productsController.category);
  
 
 module.exports = router;
