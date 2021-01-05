@@ -8,7 +8,7 @@ exports.placeOrder = async(req, res, next) => {
     var cart = new Cart(req.session.cart);
     const info =   req.body;
     var order = {
-      CUS_ID : req.user._id.toString(),
+      CUS_ID : ObjectId(req.user._id),
       STAFF_ID : '',
       DATECREATED: Date(Date.now()),
       STATUS : 0,
