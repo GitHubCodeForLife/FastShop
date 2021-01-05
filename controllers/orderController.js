@@ -7,10 +7,11 @@ const { ObjectId } = require('mongodb');
 exports.placeOrder = async(req, res, next) => {
     var cart = new Cart(req.session.cart);
     const info =   req.body;
+    const date = new Date(Date.now());
     var order = {
       CUS_ID : ObjectId(req.user._id),
       STAFF_ID : '',
-      DATECREATED: Date(Date.now()),
+      DATECREATED: new Date(date),
       STATUS : 0,
       TOTAL : cart.totalPrice,
       NAME : info.name,
