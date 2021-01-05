@@ -11,7 +11,7 @@ exports.placeOrder = async (order, items , fn) => {
             var temp = {
                 ORDER_ID: ObjectId(orderId),
                 DISH_ID: ObjectId(items[i].item._id),
-                QUANTITY2: items[i].qty,
+                QUANTITY: items[i].qty,
                 SUBTOTAL: items[i].price
             }
             orderDetails.push(temp);
