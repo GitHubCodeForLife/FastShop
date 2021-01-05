@@ -1,4 +1,5 @@
 const userServices = require('../model/userServices');
+const productServices = require('../model/productsServices');
 const orderServices = require('../model/orderServices');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -11,10 +12,12 @@ const { use } = require('passport');
 let smptTransport = createTransport(nodemailer);
 
 
-exports.index = (req, res, next) => {
+exports.index = async (req, res, next) => {
   console.log('User: ', req.user);
   let isHome = true;
-  res.render('index', { title: 'FastShop', user: req.user, isHome: isHome });
+  const newestProducts = await productServices.newestProducts();
+  console.log(newestProducts);
+  res.render('index', { title: 'FastShop', user: req.user, isHome: isHome, newestProducts });
 }
 
 exports.signup = (req, res, next) => {
@@ -22,7 +25,7 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => {
-  res.render('user/login', { title: 'Login Page', message: req.message, verifyEmailSuccess: req.flash('verifyEmailSuccess'),   resetPasswordSuccess: req.flash('resetPasswordSuccess') });
+  res.render('user/login', { title: 'Login Page', message: req.message, verifyEmailSuccess: req.flash('verifyEmailSuccess'), resetPasswordSuccess: req.flash('resetPasswordSuccess') });
 }
 
 exports.cart = (req, res, next) => {
@@ -58,9 +61,9 @@ exports.removeItem = (req, res, next) => {
 }
 
 exports.checkout = (req, res, next) => {
-  isCart=true;
+  isCart = true;
   var cart = new Cart(req.session.cart);
-  res.render('checkout', { title: 'Checkout', user: req.user, isCart: isCart, products: cart.generateArray(), sum: cart.totalPrice,name:req.user.CUS_NAME,phone:req.user.CUS_PHONE,address:req.user.CUS_ADDRESS});
+  res.render('checkout', { title: 'Checkout', user: req.user, isCart: isCart, products: cart.generateArray(), sum: cart.totalPrice, name: req.user.CUS_NAME, phone: req.user.CUS_PHONE, address: req.user.CUS_ADDRESS });
 }
 
 exports.postSignup = async (req, res, next) => {
@@ -178,7 +181,7 @@ exports.postForgetPassword = async (req, res, next) => {
     return;
   }
   //Check account IS_LOCK
-  if(user.IS_LOCK==true){
+  if (user.IS_LOCK == true) {
     res.render('user/forgetPassword', { title: 'Forget password', error: "Your account was locked" });
     return;
   }
@@ -207,47 +210,47 @@ exports.postForgetPassword = async (req, res, next) => {
 }
 exports.resetPassword = async (req, res, next) => {
   const { total } = req.params;
-  if(total.length<26){
+  if (total.length < 26) {
     res.send('This link is invalid');
     return;
   }
   const code = total.substring(0, 26);
-  const id = total.substring(26, total.length );
+  const id = total.substring(26, total.length);
   console.log(id, code);
   //find user
-  const user = await userServices.findOne({_id: ObjectID(id), CODE: code});
-  if(!user){
+  const user = await userServices.findOne({ _id: ObjectID(id), CODE: code });
+  if (!user) {
     res.send('This link is invalid');
     return;
   }
-    res.render('user/resetPassword', { title: 'Reset Password'});
+  res.render('user/resetPassword', { title: 'Reset Password' });
 }
 exports.postResetPassword = async (req, res, next) => {
   const { total } = req.params;
-  if(total.length<26){
+  if (total.length < 26) {
     res.send('This link is invalid');
     return;
   }
   let code = total.substring(0, 26);
-  const id = total.substring(26, total.length );
+  const id = total.substring(26, total.length);
   console.log(id, code);
   //find user
-  const user = await userServices.findOne({_id: ObjectID(id), CODE: code});
-  if(!user){
+  const user = await userServices.findOne({ _id: ObjectID(id), CODE: code });
+  if (!user) {
     res.redirect('/forgetPassword');
     return;
   }
   let errors = [];
-  const {password, retype_password} = req.body;
-  
-  if(password.length<6){
+  const { password, retype_password } = req.body;
+
+  if (password.length < 6) {
     errors.push('Password is at least 6 characters');
-    res.render('user/resetPassword',{title: 'Reset Password', errors});
+    res.render('user/resetPassword', { title: 'Reset Password', errors });
     return;
   }
-  if(password!=retype_password){
+  if (password != retype_password) {
     errors.push('Password is not match together');
-    res.render('user/resetPassword',{title: 'Reset Password', errors});
+    res.render('user/resetPassword', { title: 'Reset Password', errors });
     return;
   }
   //update user
@@ -255,8 +258,8 @@ exports.postResetPassword = async (req, res, next) => {
     if (err) throw err;
     code = makeCode(26);
     console.log(code);
-    await userServices.updateOne(user, {$set: {CODE: code,PASSWORD: hash}});  
-    await req.flash('resetPasswordSuccess','true');
+    await userServices.updateOne(user, { $set: { CODE: code, PASSWORD: hash } });
+    await req.flash('resetPasswordSuccess', 'true');
     res.redirect('/login');
   });
 }

@@ -7,8 +7,10 @@ router.get('/',productsController.index);
 //Type router
 router.get('/add-to-cart',productsController.addToCart);
 router.get('/search', productsController.search);
+//Detail Page 
+router.get('/detail', productsController.detailPage);
 //category
-//routet.get('/:category', productsController.category);
- 
+router.get('/:type', productsController.type);
+
 
 module.exports = router;

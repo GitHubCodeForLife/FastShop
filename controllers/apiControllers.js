@@ -43,7 +43,7 @@ exports.verifyEmail = async (req, res, next) => {
     }
     //update User
     await userServices.updateOne({ _id: new ObjectId(userId) }, { $set: { IS_VERIFIED: true } })
-    await req.flash('verifyEmailSuccess','true');
+    await req.flash('verifyEmailSuccess', 'true');
     res.redirect('/login');
 }
 
@@ -60,7 +60,7 @@ exports.getComment = async (req, res, next) => {
     const { product_id } = req.params;
     const { page } = req.query;
     console.log(product_id);
-    const comments = await commentServices.find({ DISH_ID: product_id }, page, 2);  
+    const comments = await commentServices.find({ DISH_ID: new ObjectId(product_id) }, page, 2);
     res.json(comments);
 }
 
@@ -69,6 +69,14 @@ exports.postComment = async (req, res, next) => {
     console.log(product_id);
     const { name, message } = req.body;
     console.log(name, message);
-    await commentServices.insert({ REVIEWER: name, CONTENT: message, DISH_ID: product_id });
+    await commentServices.insert({ REVIEWER: name, CONTENT: message, DISH_ID: new ObjectId(product_id) });
     res.json(['a', 'b']);
+}
+
+exports.getType = async (req, res, next) => {
+    const { type } = req.params;
+    const { page } = req.query;
+    console.log("API get type per page: ", type, page);
+    const products = await productsServices.findProducts({ TYPE: type }, page, 9);
+    res.json(products);
 }
