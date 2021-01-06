@@ -33,6 +33,14 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
+                            <h6 class="my-0">BirthDate </h6>
+                            <small class="text-muted">{{user.BIRTHDAY}}    <span> (yyyy/mm/dd)</span></small>
+                        
+                        </div>
+                        <span class="text-muted"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                        <div>
                             <h6 class="my-0">Phone Number</h6>
                             <small class="text-muted">{{user.CUS_PHONE}}</small>
                         </div>
@@ -73,16 +81,14 @@
 </div>
 {{#if editProfileSuccess}}
 <div class="d-flex justify-content-center alert">
-    <div id="snackbar" style="min-width: 300px;">Your profile updated <i class="fa fa-check" style="font-style: normal; color: green"
-            aria-hidden="true"></i>
+    <div id="snackbar" style="min-width: 300px;">Your profile updated 
            <button type="button" class="close " style="color: white;" data-dismiss="alert">&times;</button> 
     </div>
 </div>
 {{/if}}
 {{#if updatePasswordsuccess}}
 <div class="d-flex justify-content-center alert">
-    <div id="snackbar" style="min-width: 300px;" >Your password was changed <i class="fa fa-check" style="font-style: normal; color: green"
-            aria-hidden="true"></i>
+    <div id="snackbar" style="min-width: 300px;" >Your password was changed 
            <button type="button" class="close " style="color: white;" data-dismiss="alert">&times;</button> 
     </div>
 </div>

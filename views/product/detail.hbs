@@ -10,8 +10,122 @@
 <!-- Our Shop-->
 <section class="section section-lg bg-default" id='category'>
   <div class="tabs-custom row row-50 justify-content-center flex-lg-row-reverse text-center text-md-left">
-    <div class="col-lg-4 col-xl-3" style="border-left : 0.5px solid #e1e4e8 ;">
+    <div class="col-lg-4 col-xl-3 mb-5" style="border-left : 0.5px solid #e1e4e8 ;">
+      <div class="card">
+        <div class="card-header"><h4>New Our Products</h4></div>
+        <div class="card-body">
+          <div id="demo" class="carousel slide" data-ride="carousel">
 
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <!-- Product-->
+                <article class="product wow fadeInLeft" data-wow-delay=".15s">
+                  <div class="product-figure item"><img src="https://picsum.photos/200" alt="" width="161"
+                      height="162" />
+                  </div>
+                  <h6 class="product-title">{{firstNewProduct.DISH_NAME}}</h6>
+                  <div class="prosduct-price-wrap">
+                    <div class="product-price">{{firstNewProduct.PRICE}}$</div>
+                    <div>
+                      <span class="fa fa-eye text-view" aria-hidden="true"></span>
+                      <span class="product-view">{{firstNewProduct.VIEW}}</span>
+                      <span class="text-view"> views</span>
+                    </div>
+                  </div>
+                  {{#if firstNewProduct.STATUS}}
+                  <div class="product-button">
+                    <div class="button-wrap add-to-cart " product-id={{firstNewProduct._id}}><span
+                        class="button button-xs button-primary button-winona ">Add to cart</span></div>
+                    <div class="button-wrap"><a class="button button-xs button-secondary button-winona"
+                        href="../products/detail?id={{firstNewProduct._id}}">View
+                        Product</a></div>
+                  </div>
+                  <span class="product-badge product-badge-sale">Sale</span>
+                  {{/if}}
+                  {{#unless firstNewProduct.STATUS}}
+                  <span class="product-badge product-badge-new">Hết Hàng</span>
+                  {{/unless}}
+                </article>
+              </div>
+              <div class="carousel-item">
+             <!-- Product-->
+                <article class="product wow fadeInLeft" data-wow-delay=".15s">
+                  <div class="product-figure item"><img src="https://picsum.photos/200" alt="" width="161"
+                      height="162" />
+                  </div>
+                  <h6 class="product-title">{{secondNewProduct.DISH_NAME}}</h6>
+                  <div class="prosduct-price-wrap">
+                    <div class="product-price">{{secondNewProduct.PRICE}}$</div>
+                    <div>
+                      <span class="fa fa-eye text-view" aria-hidden="true"></span>
+                      <span class="product-view">{{secondNewProduct.VIEW}}</span>
+                      <span class="text-view"> views</span>
+                    </div>
+                  </div>
+                  {{#if secondNewProduct.STATUS}}
+                  <div class="product-button">
+                    <div class="button-wrap add-to-cart " product-id={{secondNewProduct._id}}><span
+                        class="button button-xs button-primary button-winona ">Add to cart</span></div>
+                    <div class="button-wrap"><a class="button button-xs button-secondary button-winona"
+                        href="../products/detail?id={{secondNewProduct._id}}">View
+                        Product</a></div>
+                  </div>
+                  <span class="product-badge product-badge-sale">Sale</span>
+                  {{/if}}
+                  {{#unless secondNewProduct.STATUS}}
+                  <span class="product-badge product-badge-new">Hết Hàng</span>
+                  {{/unless}}
+                </article>
+              </div>
+              <div class="carousel-item">
+                     <!-- Product-->
+                <article class="product wow fadeInLeft" data-wow-delay=".15s">
+                  <div class="product-figure item"><img src="https://picsum.photos/200" alt="" width="161"
+                      height="162" />
+                  </div>
+                  <h6 class="product-title">{{thirdNewProduct.DISH_NAME}}</h6>
+                  <div class="prosduct-price-wrap">
+                    <div class="product-price">{{thirdNewProduct.PRICE}}$</div>
+                    <div>
+                      <span class="fa fa-eye text-view" aria-hidden="true"></span>
+                      <span class="product-view">{{thirdNewProduct.VIEW}}</span>
+                      <span class="text-view"> views</span>
+                    </div>
+                  </div>
+                  {{#if thirdNewProduct.STATUS}}
+                  <div class="product-button">
+                    <div class="button-wrap add-to-cart " product-id={{thirdNewProduct._id}}><span
+                        class="button button-xs button-primary button-winona ">Add to cart</span></div>
+                    <div class="button-wrap"><a class="button button-xs button-secondary button-winona"
+                        href="../products/detail?id={{thirdNewProduct._id}}">View
+                        Product</a></div>
+                  </div>
+                  <span class="product-badge product-badge-sale">Sale</span>
+                  {{/if}}
+                  {{#unless thirdNewProduct.STATUS}}
+                  <span class="product-badge product-badge-new">Hết Hàng</span>
+                  {{/unless}}
+                </article>
+              </div>
+            </div>
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-lg-8 col-xl-9">
       <section class=" text-md-left">
@@ -56,12 +170,6 @@
                 </div>
                 <div class="product-price-wrap">
                   <div class="product-price-detail">{{product.PRICE}}$</div>
-
-                  <div class="display-6 d-flex justify-content-around">
-                    <span class="fa fa-heart-o fa-5" style="color: pink;" aria-hidden="true"></span>
-                    <span class="fa fa-thumbs-o-up " aria-hidden="true"></span>
-                  </div>
-
                 </div>
               </article>
             </div>
@@ -258,7 +366,7 @@
         </div>
         <div class="carousel-item">
           <div class="row">
-             {{#if third}}
+            {{#if third}}
             {{#each third}}
             {{#if this}}
             <div class="col-sm-6 col-lg-4 col-xl-4 my-3 ">
@@ -360,7 +468,7 @@
       xhttp.open("GET", `../products/add-to-cart?id=${productId}&qty=${qty}`, true);
       xhttp.send();
     });
-   ///Add to cart
+    ///Add to cart
     $('.add-to-cart').on('click', config);
     function config() {
       productId = $(this).attr("product-id");
@@ -483,7 +591,7 @@
         message: message
       },
       function (data, status) {
-        console.log(data);
+        console.log('Data res: ', data);
         $('#no-comment').remove();
         //Clear text area
         $('#comment-message-5').val('');
@@ -492,7 +600,7 @@
                   <div class="col-2">
                     <article class="comment-profile">
                       <div class="comment-picture">
-                        <img src="images/comment-100x100.png" alt="" width="80" height="80" />
+                      <img src="images/face-0.png" alt="" width="80" height="80" />
                       </div>
                       <div class="comment-name">
                         <p>${name}</p>
@@ -504,20 +612,19 @@
                       ${message}
                     </div>
                   </div>
-                </div> `)
+                </div> `);
       });
 
   }
   //Load more comment
   function loadMoreComment() {
-    $.get(`../../api/products/comments/${id}`,
+    $.get(`/api/products/comments/${id}`,
       {
         page: ++page
       },
       function (data, status) {
         if (data[0] == undefined) {
           $('#more-btn').remove();
-
         }
         for (i in data) {
           $('#list-comment').append(` <div class="row">

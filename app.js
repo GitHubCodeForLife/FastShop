@@ -19,6 +19,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api');
 const productRouter = require('./routes/products');
+const promotionRouter = require('./routes/promotion');
 const app = express();
 //require mongodb
 const mongo = require('./database/db');
@@ -40,24 +41,21 @@ app.use(
 // Passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Connect flash
 app.use(flash());
 
 // Global variables
-app.use(function (req, res, next) {
+app.use(async function (req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
-
   res.locals.login = req.isAuthenticated();
   res.locals.session = req.session;
-
   next();
 });
 //Hbs Helper
-Handlebars.registerHelper('cond', function(v1, v2, options) {
-  if(v1 === v2) {
+Handlebars.registerHelper('cond', function (v1, v2, options) {
+  if (v1 === v2) {
     return options.fn(this);
   }
 });
@@ -75,6 +73,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 app.use('/products', productRouter);
+app.use('/promotion', promotionRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

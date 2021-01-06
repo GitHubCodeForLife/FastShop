@@ -35,7 +35,7 @@ exports.search = async (req, res, next) => {
      res.render('./product/search', { title: 'Search product Page', user: req.user, products: products, isPaging, pageThree });
 }
 exports.type = async (req, res, next) => {
-     const type_products = ['pizza', 'drink', 'burger', 'spaghetti', 'dessert'];
+     const type_products = ['pizza', 'drink', 'burger', 'spaghetti', 'dessert', 'rice'];
      //console.log(req.params);
      const Type = req.params.type;
      if (!type_products.includes(Type)) {
@@ -63,6 +63,13 @@ exports.detailPage = async (req, res, next) => {
      first.push(relatedProducts[0]); first.push(relatedProducts[1]); first.push(relatedProducts[2]);
      second.push(relatedProducts[3]); second.push(relatedProducts[4]); second.push(relatedProducts[5]);
      third.push(relatedProducts[6]); third.push(relatedProducts[7]); third.push(relatedProducts[8]);
-     res.render('./product/detail', { title: `${product.DISH_NAME} Detail Page`, user: req.user, product: product, first, second, third });
+
+     const newProducts = await productsServices.newestProducts();
+
+     res.render('./product/detail', {
+          title: `${product.DISH_NAME} Detail Page`, user: req.user, product: product,
+          first, second, third, firstNewProduct: newProducts[0], secondNewProduct: newProducts[1],
+          thirdNewProduct: newProducts[2]
+     });
 }
 

@@ -1,25 +1,32 @@
 var express = require('express');
 var router = express.Router();
 const homeController = require('../controllers/homeController');
-const { checkNotAuthenticated, checkAuthenticated} = require('../config/auth');
+const { checkNotAuthenticated, checkAuthenticated } = require('../config/auth');
 const orderController = require('../controllers/orderController');
 const passport = require('passport');
 /* GET home page. */
 router.use(express.static('public'));
-router.get('/',homeController.index);
-router.get('/login',checkNotAuthenticated, homeController.login);
-router.get('/signup',checkNotAuthenticated, homeController.signup);
-router.post('/signup',checkNotAuthenticated,homeController.postSignup);
-router.post('/login',checkNotAuthenticated,function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
+router.get('/', homeController.index);
+router.get('/login', checkNotAuthenticated, homeController.login);
+router.get('/signup', checkNotAuthenticated, homeController.signup);
+router.post('/signup', checkNotAuthenticated, homeController.postSignup);
+router.post('/login', checkNotAuthenticated, function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
     if (err) { return next(err); }
-    if (!user) { 
-      console.log(info['message']);  
-      return res.render('user/login',{title: 'Login Page', message: info['message']});
-     }
-    req.logIn(user, function(err) {
+    if (!user) {
+      console.log(info['message']);
+      return res.render('user/login', { title: 'Login Page', message: info['message'] });
+    }
+    req.logIn(user, function (err) {
       if (err) { return next(err); }
-      return res.redirect('/users/dashboard');
+      const { redirect } = req.query;
+      if (redirect) {
+        console.log('Redirect login: ', redirect);
+        res.redirect('/' + redirect+'?oke=10');
+        return;
+      } else {
+        return res.redirect('/users/dashboard');
+      }
     });
   })(req, res, next);
 });
@@ -33,10 +40,11 @@ router.get('/cart', homeController.cart);
 router.get('/increase-by-one', homeController.increaseByOne);
 router.get('/decrease-by-one', homeController.decreaseByOne);
 router.get('/remove-item', homeController.removeItem);
-router.get('/forget-password',checkNotAuthenticated,homeController.getForgetPassword);
-router.post('/forget-password',checkNotAuthenticated,homeController.postForgetPassword);
+router.get('/forget-password', checkNotAuthenticated, homeController.getForgetPassword);
+router.post('/forget-password', checkNotAuthenticated, homeController.postForgetPassword);
 router.get('/password-reset/:total', checkNotAuthenticated, homeController.resetPassword);
 router.post('/password-reset/:total', checkNotAuthenticated, homeController.postResetPassword);
-router.get('/check-out',checkAuthenticated, homeController.checkout);
-router.post('/check-out/place-order', orderController.placeOrder);
+router.get('/check-out', checkAuthenticated, homeController.checkout);
+router.post('/check-out/place-order', checkAuthenticated, orderController.placeOrder);
+router.get('/about-us', homeController.aboutUs);
 module.exports = router;
