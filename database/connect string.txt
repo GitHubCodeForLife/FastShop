@@ -1,0 +1,14 @@
+mongodb+srv://nxt:nxt@cluster0.kliwb.mongodb.net/Shopping_cart?retryWrites=true&w=majority
+mongodb+srv://nxt:nxt@cluster0.kliwb.mongodb.net/test?retryWrites=true&w=majority
+
+SỬA QUANTITY2 
+
+THÊM NAME PHONE ADDRESS Ở HÓA ĐƠN ĐẶT HÀNG
+
+SỬA ID THANH OBJECTID
+
+CHUYỂN STUDIO3T --> EXCEL --> STUDIO 3T --> SQL --> EXCEL --> STUDIO3T
+
+LƯU Ý BACKUP PASSWORD ĐÃ MÃ HÓA SAN 1 FILE EXCEL
+
+ 

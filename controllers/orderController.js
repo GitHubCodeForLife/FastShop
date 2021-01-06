@@ -7,10 +7,11 @@ const { ObjectId } = require('mongodb');
 exports.placeOrder = async(req, res, next) => {
     var cart = new Cart(req.session.cart);
     const info =   req.body;
+    const date = new Date(Date.now());
     var order = {
-      CUS_ID : req.user._id.toString(),
+      CUS_ID : ObjectId(req.user._id),
       STAFF_ID : '',
-      DATECREATED: Date(Date.now()),
+      DATECREATED: new Date(date),
       STATUS : 0,
       TOTAL : cart.totalPrice,
       NAME : info.name,
@@ -34,7 +35,7 @@ exports.orderHistory = async(req, res, next)=>{
         let details = await orderServices.findOrderDetail(historyItems[i]._id.toString());
         for (j in details){
             product = await productsServices.findOne({_id : new ObjectId(details[j].DISH_ID)});
-            temp.push({image:product.IMAGE,qty:details[j].QUANTITY2})
+            temp.push({image:product.IMAGE,qty:details[j].QUANTITY})
         }
         history.push({historyItem : historyItems[i], imgQty : temp});
     }

@@ -9,9 +9,9 @@ exports.placeOrder = async (order, items , fn) => {
         var orderDetails =[];
         for (i in items) {
             var temp = {
-                ORDER_ID: orderId.toString(),
-                DISH_ID: items[i].item._id,
-                QUANTITY2: items[i].qty,
+                ORDER_ID: ObjectId(orderId),
+                DISH_ID: ObjectId(items[i].item._id),
+                QUANTITY: items[i].qty,
                 SUBTOTAL: items[i].price
             }
             orderDetails.push(temp);
@@ -26,7 +26,7 @@ async function insertOrderDetails(orderId,items){
 }
 
 exports.findOrders = async (userId) => {
-    return await db().collection('ORDER').find({CUS_ID : userId}).toArray();
+    return await db().collection('ORDER').find({CUS_ID : new ObjectId(userId)}).toArray();
 }
 
 exports.findOneOrder = async (orderId) => {
@@ -35,7 +35,7 @@ exports.findOneOrder = async (orderId) => {
 }
 
 exports.findOrderDetail = async (orderId) => {
-    return await db().collection('ORDER_DETAIL').find({ORDER_ID : orderId}).toArray();
+    return await db().collection('ORDER_DETAIL').find({ORDER_ID : new ObjectId(orderId)}).toArray();
 }
 
 exports.cancel = async (orderId) => {
