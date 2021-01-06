@@ -1,0 +1,69 @@
+_id,DISH_NAME,PRICE,STATUS,TYPE,DESCRIPTION,VIEW,DATECREATED
+5feaef7993f2e60091f5ed81,AVOCADO,49,0,pizza,"Slices of avocado, Kalamata olives, sweet cherry peppers, mushrooms, red onion & vibrant capsicum, topped with spring onions",154,2019-04-21T14:36:27.320Z
+5feaef7993f2e60091f5ed82,SPICY PEPPY PANEER,20,1,pizza,"Diced paneer cheese, red cherry peppers, sliced red onion, capsicum & spicy jalapenos on a tikka sauce base, drizzled with peri peri sauce",344,2019-09-21T23:38:39.930Z
+5feaef7993f2e60091f5ed83,INDI CHICKEN TIKKA,13,1,pizza,"Seasoned chicken, diced paneer cheese, capsicum, diced tomato & red onion, all on a tikka sauce base, sprinkled with chilli flakes and spring onions",332,2019-09-20T06:12:26.670Z
+5feaef7993f2e60091f5ed84,LOADED BURGER,34,1,pizza,"Seasoned ground beef, diced tomato & red onion, all finished with special burger sauce & spring onions",627,2019-02-14T15:01:17.100Z
+5feaef7993f2e60091f5ed85,TACO FIESTA,22,0,pizza,"Seasoned ground beef, vibrant capsicum, diced tomato & red onion, all tied together with creamy taco sauce",986,2019-10-19T01:50:14.730Z
+5feaef7993f2e60091f5ed86,MALTED VANILLA THICKSHAKE,40,1,drink,Handcrafted Malted Vanilla Thickshake. Made at -14 degrees for the thickest thickshake ever!,849,2019-06-17T06:20:02.100Z
+5feaef7993f2e60091f5ed87,SOLO,35,1,drink,375ml per can,478,2019-12-21T14:01:19.680Z
+5feaef7993f2e60091f5ed88,COOL RIDGE WATER 600ML,6,1,drink,375ml per can,937,2019-12-10T12:11:07.630Z
+5feaef7993f2e60091f5ed89,MOUNTAIN DEW,31,0,drink,375ml per can,714,2016-09-29T01:41:34.720Z
+5feaef7993f2e60091f5ed8a,SUNKIST,41,1,drink,375ml per can,878,2016-09-07T03:21:27.470Z
+5feaef7993f2e60091f5ed8b,SEVEN UP,14,1,drink,375ml per can,992,2018-09-01T14:30:01.120Z
+5feaef7993f2e60091f5ed8c,PEPSI,3,1,drink,375ml per can,692,2018-02-17T04:41:19.880Z
+5feaef7993f2e60091f5ed8d,CHOCOLATE MALT THICKSHAKE,37,1,drink,Handcrafted Chocolate Malt Thickshake. Made at -14 degrees for the thickest thickshake ever!,346,2016-11-24T02:29:47.650Z
+5feaef7993f2e60091f5ed8e,SALTED CARAMEL THICKSHAKE,38,1,drink,"Handcrafted Salted Caramel Thickshake, topped with whipped cream and a salted caramel swirl. Made at -14 degrees for the thickest thickshake ever!",147,2018-03-26T12:27:45.900Z
+5feaef7993f2e60091f5ed8f,PEPSI MAX,14,1,drink,1.5L per can,593,2018-02-26T10:14:44.900Z
+5feaef7993f2e60091f5ed90,CHOCOLATE MALT THICKSHAKE WITH CREAM & CHOC SAUCE,28,0,drink,"Handcrafted Chocolate Malt Thickshake, topped with whipped cream and a choc sauce swirl. Made at -14 degrees for the thickest thickshake ever!",331,2017-02-13T21:21:46.340Z
+5feaef7993f2e60091f5ed91,MALTED VANILLA THICKSHAKE WITH CREAM & SAUCE,9,1,drink,"Handcrafted Malted Vanilla Thickshake, topped with whipped cream and a malt swirl. Made at -14 degrees for the thickest thickshake ever!
+
+",196,2017-02-04T11:23:06.010Z
+5feaef7993f2e60091f5ed92,SALTED CARAMEL THICKSHAKE WITH CREAM & CARAMEL SYRUP,8,1,drink,"Handcrafted Salted Caramel Thickshake, topped with whipped cream and a salted caramel swirl. Made at -14 degrees for the thickest thickshake ever!",298,2018-08-10T21:27:20.120Z
+5feaef7993f2e60091f5ed93,CHOCOLATE DIPPING SAUCE,26,1,dessert,"Rich creamy Chocolate mousse with gooey, salted caramel sauce",164,2018-06-24T13:41:12.120Z
+5feaef7993f2e60091f5ed94,SALTED CARAMEL CHOCOLATE MOUSSE,35,1,dessert,"Rich creamy Chocolate mousse with gooey, salted caramel sauce",828,2019-03-08T09:14:13.690Z
+5feaef7993f2e60091f5ed95,MINI DUTCH PANCAKES,8,0,dessert,"12 pack of Mini Dutch Pancakes, dusted with icing sugar",807,2017-01-16T05:16:32.780Z
+5feaef7993f2e60091f5ed96,CHURROS,39,1,dessert,oven baked Churros dusted with cinnamon sugar and served with a chocolate dipping sauce,344,2019-06-22T01:29:44.830Z
+5feaef7993f2e60091f5ed97,CHOC LAVA CAKE,4,1,dessert,Oven-baked chocolate cake with a gooey middle oozing with rich chocolate,125,2019-09-15T00:08:16.020Z
+5feaef7993f2e60091f5ed98,HOT CHOC FUDGE BROWNIES,37,1,dessert,6 pieces of delicious Hot Choc Fudge Brownies with a decadent chocolate dipping sauce,643,2018-06-02T17:12:09.750Z
+5feaef7993f2e60091f5ed99,CHOC SUNDAES 4 PACK,37,1,dessert,4 classic vanilla sundaes drizzled with decadent chocolate sauce,377,2018-08-17T21:04:35.830Z
+5feaef7993f2e60091f5ed9a,2 CHOC SUNDAES,29,1,dessert,A classic vanilla sundae drizzled with decadent chocolate sauce,104,2018-07-06T00:45:42.940Z
+5feaef7993f2e60091f5ed9b,CHOC SUNDAE,18,1,dessert,A classic vanilla sundae drizzled with decadent chocolate sauce,189,2019-10-12T13:39:07.460Z
+5feaef7993f2e60091f5ed9c,SALTED CARAMEL SUNDAE,20,1,dessert,A classic vanilla sundae drizzled with salted caramel sauce,531,2017-06-16T18:09:05.560Z
+5feaef7993f2e60091f5ed9d,SALTED CARAMEL SUNDAE 4 PACK,5,0,dessert,4 classic vanilla sundaes drizzled with salted caramel sauce,129,2017-12-02T22:10:38.380Z
+5feaef7993f2e60091f5ed9e,SPAGHETTI BOLOGNESE,39,1,spaghetti,"Spaghetti with slow-cooked beef ragù, San Marzano tomatoes, hint of porcini mushrooms, red wine & herbs",884,2017-06-22T12:00:29.960Z
+5feaef7993f2e60091f5ed9f,SPAGHETTI POMODORO,41,1,spaghetti,Spaghetti with San Marzano tomato sauce & fresh basil,219,2019-04-19T06:29:43.190Z
+5feaef7993f2e60091f5eda0,SPAGHETTI AL PESTO,41,1,spaghetti,"Spaghetti with traditional ligurian basil pesto, pine nuts & extra virgin olive oil
+
+",798,2018-06-05T16:16:07.100Z
+5feaef7993f2e60091f5eda1,SPAGHETTI CARBONARA,41,1,spaghetti,"Smoked pancetta, cream, egg,
+black pepper & Parmesan",811,2018-11-09T11:52:48.000Z
+5feaef7993f2e60091f5eda2,POLPETTINE E SPAGHETTI,19,1,spaghetti,"Spaghetti with our signature beef &
+pork meatballs in a porcini mushroom
+& San Marzano tomato sauce",700,2019-06-22T15:23:56.800Z
+5feaef7993f2e60091f5eda3,TAGLIATELLE POLLO E FUNGHI,28,1,spaghetti,"Tagliatelle with chicken & mushroom
+in a creamy sauce",301,2019-12-25T20:06:54.770Z
+5feaef7993f2e60091f5eda4,LINGUINE GAMBERI E ZUCCHINI,42,0,spaghetti,"Linguine with king prawns, zucchini, cherry tomatoes, white wine, garlic,
+lemon zest & fresh chilli",563,2019-02-14T01:39:39.790Z
+5feaef7993f2e60091f5eda5,RAVIOLI DI RICOTTA E SPINACI,25,1,spaghetti,"Ricotta & spinach ravioli in a butter & sage sauce, pine nuts and freshly grated Parmesan cheese",450,2018-01-13T10:13:10.190Z
+5feaef7993f2e60091f5eda6,DIAVOLA,20,1,pizza,"Tomato, mozzarella, pepperoni,
+roasted red peppers, red chilli
+& basil",691,2019-02-26T00:40:04.170Z
+5feaef7993f2e60091f5eda7,CAPRICCIOSA,14,1,pizza,"Mozzarella, tomato, mushrooms,
+ham, black olives & artichokes",625,2019-06-20T06:57:47.510Z
+5feaef7993f2e60091f5eda8,FUNGHI E GORGONZOLA,48,1,pizza,"Mozzarella, gorgonzola, mixed wild mushrooms, Parmesan & truffle oil",741,2019-09-02T19:11:04.950Z
+5feaef7993f2e60091f5eda9,CALZONE CLASSICO,17,1,pizza,"Folded pizza, tomato, mozzarella, ham, mushrooms & oregano",671,2019-10-13T21:20:49.080Z
+5feaef7993f2e60091f5edaa,BIG WAVE,41,1,burger,"Lettuce, tomato, onion, pickles & mustard.",279,2019-08-12T17:01:00.450Z
+5feaef7993f2e60091f5edab,IMPOSSIBLE,36,1,burger,"Plant-based patty w/ avocado, white cheddar, lettuce, tomato & roasted garlic aioli.",677,2016-09-06T04:55:42.160Z
+5feaef7993f2e60091f5edac,KILAUEA,40,0,burger,"Jalapeño & black pepper-crusted burger w/pepper jack cheese, chipotle aioli, lettuce, tomato & Island Reds",830,2018-01-30T07:12:12.790Z
+5feaef7993f2e60091f5edad,HAWAIIAN,10,1,burger,"Fresh pineapple, teriyaki sauce, lettuce, tomato, onion, swiss & mayo.",737,2019-03-07T02:50:09.480Z
+5feaef7993f2e60091f5edae,LONGBOARDER,45,1,burger,"Thousand Island dressing, lettuce, pickles, onion & tomato.",247,2017-08-18T13:53:01.970Z
+5feaef7993f2e60091f5edaf,BLEUNAMI,32,1,burger,"Bleu cheese dressing, lettuce, tomato, red onion",602,2018-06-29T00:17:10.510Z
+5feaef7993f2e60091f5edb0,MALIBU,10,1,burger,"Lettuce, tomato, onion, pickles, american cheese, applewood smoked bacon & mustard.",362,2017-02-01T01:33:22.660Z
+5feaef7993f2e60091f5edb1,TURKEY OR VEGGIE,30,0,burger,Substitute our tasty turkey or veggie patty for your favorite burger at no extra charge.,798,2018-04-04T13:36:12.370Z
+5feaef7993f2e60091f5edb2,MAUI,10,1,Burger,"Guacamole, lettuce, tomato, onion, swiss & mayo.",831,2018-10-06T10:51:27.530Z
+5feaef7993f2e60091f5edb3,FRIED RICE,15,1,Rice,CHICKEN | PORK | BEEF | TOFU - with egg,831,2018-02-17T04:41:19.880Z
+5feaef7993f2e60091f5edb4,CRUNCHY RICE SHRIMP WRAPPED�,15,1,Rice,served with ginger soy sauce,831,2016-11-24T02:29:47.650Z
+5feaef7993f2e60091f5edb5,SPRING ROLL RICE-STYLE,15,1,Rice,"with taro, carrots, celery, cabbage",831,2018-03-26T12:27:45.900Z
+5feaef7993f2e60091f5edb6,CRAB FRIED RICE,15,1,Rice,"Bleu cheese dressing, lettuce, tomato, red onion",831,2018-02-26T10:14:44.900Z
+5feaef7993f2e60091f5edb7,LOYAL LOTUS FRIED RICE,15,1,Rice,"Lettuce, tomato, onion, pickles, american cheese, applewood smoked bacon & mustard.",831,2017-02-13T21:21:46.340Z
+5feaef7993f2e60091f5edb8,WHITE RICE,15,1,Rice,Substitute our tasty turkey or veggie patty for your favorite burger at no extra charge.,831,2018-01-30T07:12:12.790Z
