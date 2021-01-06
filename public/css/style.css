@@ -15539,8 +15539,9 @@ background-color:  #6046b6;
   /* The Close Button */
 .close {
 	position: absolute;
+	margin-left: 20px;
 	top: 15px;
-	right: 35px;
+	right: 15px;
 	color: #000000;
 	font-size: 40px;
 	font-weight: bold;
@@ -15582,3 +15583,4 @@ background-color:  #6046b6;
 	 i{
 		 font-style: normal;
 	 }
+	 

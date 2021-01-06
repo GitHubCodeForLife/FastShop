@@ -46,11 +46,11 @@ exports.postChangePassword = async (req, res, next) => {
             bcrypt.hash(new_password, saltRounds, async (err, hash) => {
                 if (err) throw err;
                 await userServices.updateOne(req.user, { $set: { PASSWORD: hash } });
+                //save into flash 
+                await req.flash('updatePasswordsuccess', 'true');
+                //  res.render('user/changePassword',{title: 'Change Password',user: req.user, updateSuccess: true});
+                res.redirect('/users/dashboard');
             });
-            //save into flash 
-            await req.flash('updatePasswordsuccess', 'true');
-            //  res.render('user/changePassword',{title: 'Change Password',user: req.user, updateSuccess: true});
-            res.redirect('/users/dashboard');
         } else {
             errors.push('Current password is incorrect.');
             res.render('user/changePassword', { title: 'Change Password', user: req.user, errors: errors });

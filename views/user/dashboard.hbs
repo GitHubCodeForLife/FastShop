@@ -6,7 +6,7 @@
         <div class="col-md-4 themed-grid-col">
             <img src="https://picsum.photos/200" class="img-thumbnail" alt="">
             <a href="/users/order-history" class="btn btn-primary m-4 aqua-gradient">
-                <i class="fa fa-shopping-cart" style="font-style: normal;"  aria-hidden="true"></i>
+                <i class="fa fa-shopping-cart" style="font-style: normal;" aria-hidden="true"></i>
                 Order History
             </a>
         </div>
@@ -34,8 +34,8 @@
                     <li class="list-group-item d-flex justify-content-between lh-sm">
                         <div>
                             <h6 class="my-0">BirthDate </h6>
-                            <small class="text-muted">{{user.BIRTHDAY}}    <span> (yyyy/mm/dd)</span></small>
-                        
+                            <small class="text-muted">{{user.BIRTHDAY}} <span> (yyyy/mm/dd)</span></small>
+
                         </div>
                         <span class="text-muted"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
                     </li>
@@ -81,16 +81,17 @@
 </div>
 {{#if editProfileSuccess}}
 <div class="d-flex justify-content-center alert">
-    <div id="snackbar" style="min-width: 300px;">Your profile updated 
-           <button type="button" class="close " style="color: white;" data-dismiss="alert">&times;</button> 
+    <div id="snackbar" style="min-width: 300px;">Your profile updated
+        <button type="button" class="close " style="color: white;" data-dismiss="alert">&times;</button>
     </div>
 </div>
 {{/if}}
 {{#if updatePasswordsuccess}}
-<div class="d-flex justify-content-center alert">
-    <div id="snackbar" style="min-width: 300px;" >Your password was changed 
-           <button type="button" class="close " style="color: white;" data-dismiss="alert">&times;</button> 
+<div class="d-flex justify-content-center alert ">
+    <div id="snackbar" style="min-width: 350px;">Your password was changed
+        <span><button type="button" class="close " style="color: white;" data-dismiss="alert">&times;</button> </span>
     </div>
+
 </div>
 {{/if}}
 <!-- Javascript-->

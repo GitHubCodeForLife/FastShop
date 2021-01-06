@@ -142,7 +142,7 @@
                     </li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="/about-us">About us</a>
                     </li>
-                    <li class="rd-nav-item"><a class="rd-nav-link" href="/promotion">Promotions</a>
+                    <li class="rd-nav-item"><a class="rd-nav-link" href="/promotions">Promotions</a>
                     </li>
                     <li class="rd-nav-item"><a class="rd-nav-link" href="contacts.html">Contacts</a>
                     </li>
@@ -270,9 +270,11 @@
   <!-- Global Mailform Output-->
   <div class="snackbars" id="form-output-global"></div>
   <script>
+    window.addEventListener('online', () => console.log('came online'));
+    window.addEventListener('offline', () => alert('came offline'));
     function hideLabel() {
-   
-        document.getElementById('label-form-2-email').style.display = 'none';
+
+      document.getElementById('label-form-2-email').style.display = 'none';
     }
   </script>
 </body>

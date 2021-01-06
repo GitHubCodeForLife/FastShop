@@ -18,8 +18,8 @@ var MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api');
-const productRouter = require('./routes/products');
-const promotionRouter = require('./routes/promotion');
+const productsRouter = require('./routes/products');
+const promotionsRouter = require('./routes/promotions');
 const app = express();
 //require mongodb
 const mongo = require('./database/db');
@@ -72,8 +72,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
-app.use('/products', productRouter);
-app.use('/promotion', promotionRouter);
+app.use('/products', productsRouter);
+app.use('/promotions', promotionsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
