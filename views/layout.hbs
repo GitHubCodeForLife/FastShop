@@ -102,6 +102,59 @@
                     <li>
                       {{#if user}}
                       <div class="unit unit-spacing-xs">
+                        <div class="unit-body mr-2">
+                          <div class="dropdown">
+                            <i class="fa fa-bell-o notification" style="position: relative; color:black"
+                              data-toggle="dropdown" aria-hidden="true">
+                              {{#if user.notification.length}}
+                              <span class="badge-notification badge "
+                                style="border-radius: 50%;">{{user.notification.length}}</span>
+                              {{/if}}
+                            </i>
+                            <div class="dropdown-menu pull-right">
+                                {{#if user.notification.length}}
+                              <div class="dropdown-header">Your Orders Today</div>
+                              {{/if}}
+                               {{#unless user.notification.length}}
+                                <p>You don't have any notifications.</p>
+                              {{/unless}}
+                              <ul class="list-group mb-3">
+                                {{#each user.notification}}
+                                <a class="dropdown-item" href="/users/order-history/details?id={{this._id}}">
+                                  <li class="list-group-item d-flex justify-content-between lh-sm"
+                                    style="min-width: 20%;">
+                                    <div class="mr-1">
+                                      <h5>Order</h5>
+                                      <p class="my-0"><i class="fa fa-map-marker" aria-hidden="true"></i> Address:
+                                        {{this.ADDRESS}} </p>
+                                      <p class="my-0"><i class="fa fa-clock-o" aria-hidden="true"></i> Time:
+                                        {{this.TIME}} </p>
+                                      <p>Status:
+                                        {{#cond this.STATUS 0}}
+                                        <span class="text-warning">Pending <span
+                                            class="spinner-grow text-primary"></span></span>
+                                        {{/cond}}
+                                        {{#cond this.STATUS 1}}
+                                        <span class="text-success">Confirmed <i class="fa fa-check"
+                                            style="color: green;" aria-hidden="true"></i> </span>
+                                        {{/cond}}
+                                        {{#cond this.STATUS -1}}
+                                        <span class="text-danger">Canceled <i class="fa fa-times" style="
+                                        color: red" aria-hidden="true"></i> </span>
+
+                                        {{/cond}}
+                                      </p>
+                                    </div>
+                                    <span class="text-primary">
+                                      ${{this.TOTAL}}</span>
+
+                                  </li>
+                                </a>
+                                {{/each}}
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
                         <div class="unit-body">
                           <div class="dropdown">
                             <img src="/images/face-0.png" class="rounded-circle" alt="Cinque Terre"

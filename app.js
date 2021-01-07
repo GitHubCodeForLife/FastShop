@@ -24,7 +24,7 @@ const app = express();
 //require mongodb
 const mongo = require('./database/db');
 const { compareSync } = require('bcrypt');
-
+const {setUpNotification} = require('./config/notification');
 // Express session
 app.use(
   session({
@@ -68,6 +68,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//set up notification when user login
+app.use(setUpNotification);
+
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

@@ -15583,4 +15583,18 @@ background-color:  #6046b6;
 	 i{
 		 font-style: normal;
 	 }
-	 
+	 .notification{
+		 font-size: x-large;
+	 }
+	 .badge-notification{
+		position: absolute;
+		top: -5px;
+		right: -15px;
+		color: white;
+		border-radius: 50%;
+		/* color: red; */
+		background-color: red;
+	 }
+	 .mr-2, .mx-2 {
+    margin-right: .5rem!important;
+}
