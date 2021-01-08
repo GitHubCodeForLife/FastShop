@@ -113,8 +113,13 @@ exports.postSignup = async (req, res, next) => {
         let mailOptions = {
           from: `"Fast Shop" <${process.env.EMAIL_USER}>`,
           to: email,
-          subject: 'Verifiy Email',
-          html: `<a href = '${process.env.URL_WEB}/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}'><h1>Click here to verify your email</h1></a>`
+          subject:' [Fast Shop] Please verify your account',
+          html: `
+          <h1>Please verify your email to finish signing up for FastShop</h1>
+          <p>Thanks you for choosing FastShop</p>
+          <br>
+          <p>Please comfirm that by clicking on the botton below or use this link ${process.env.URL_WEB}/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}</p>
+          <a href = '${process.env.URL_WEB}/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}'><button><h1>Verify</h1></button></a>`
         };
         await userServices.updateOne({ _id: user._id }, { $set: tempUser });
         //Send email
@@ -149,8 +154,13 @@ exports.postSignup = async (req, res, next) => {
       let mailOptions = {
         from: `"Fast Shop" <${process.env.EMAIL_USER}>`,
         to: email,
-        subject: 'Verify email',
-        html: `<a href = '${process.env.URL_WEB}/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}'><h1>Click here to verify your email</h1></a>`
+        subject:' [Fast Shop] Please verify your account',
+        html: `
+        <h1>Please verify your email to finish signing up for FastShop</h1>
+        <p>Thanks you for choosing FastShop</p>
+        <br>
+        <p>Please comfirm that by clicking on the botton below or use this link ${process.env.URL_WEB}/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}</p>
+        <a href = '${process.env.URL_WEB}/api/auth/verification/verify-account/${user._id}/${process.env.SCRETCODE}'><button><h1>Verify</h1></button></a>`
       };
       //Send email
       smptTransport.sendMail(mailOptions, function (error, info) {
@@ -194,9 +204,18 @@ exports.postForgetPassword = async (req, res, next) => {
   let mailOptions = {
     from: `"Fast Shop" <${process.env.EMAIL_USER}>`,
     to: email,
-    subject: 'Set new password',
-    html: `<a href = '${process.env.URL_WEB}/password-reset/${code}${id}'><h1>Click here to reset your password</h1></a>`
+    subject: '[Fast Shop] Please reset your password',
+    text: `We heard that you lost your FastShop password. Sorry about that!
 
+    But don’t worry! You can use the following link to reset your password:
+
+    ${process.env.URL_WEB}/password-reset/${code}${id}
+    
+    If you don’t use this link within 3 hours, it will expire.
+    
+    Thanks,
+    The FastShop Team
+    `
   };
   //Send email
   smptTransport.sendMail(mailOptions, function (error, info) {
