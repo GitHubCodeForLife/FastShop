@@ -5,7 +5,7 @@
             {{#each products}}
             <div class="row p-3 mx-5 my-0 justify-content-between">
                 <article class="product-cart ">
-                    <div class="product-figure-cart "><img src="{{this.item.IMAGE}}" alt="" width="100"
+                    <div class="product-figure-cart "><img src="{{this.item.IMAGES.[0]}}" alt="" width="100"
                             height="100" />
                     </div>
                     <div class="product-detail-cart flex-column">
@@ -25,7 +25,7 @@
             {{/each}}
             {{/if}}
         </div>
-        <div class="row-reverse mx-5" style="text-align: right;" id="sum">
+        <div class="row-reverse mx-5 mt-3" style="text-align: right;" id="sum">
             <h5 class="total-price-cart">Tổng tiền:</h5>
             <h5 class="total-price-cart">$<span class="sum">{{sum}}</span></h5>
         </div>
@@ -103,7 +103,7 @@
         uiLibrary: 'bootstrap4',
         value: '8:00',
     });
-    $('form').submit(function () {
+    $('form').submit(function (e) {
         var flag = true;
         var name = $.trim($('#delivery-name').val());
         var phone = $.trim($('#delivery-phone').val());
@@ -111,7 +111,7 @@
         var time = $.trim($('#timepicker').val());
         var note = $.trim($('#delivery-note').val());
         // Check if empty of not
-        if (name === '') {
+        if (name == '') {
             $('.alert-1').addClass("empty-name");
             flag = false;
         }
@@ -119,7 +119,7 @@
             $('.alert-1').removeClass("empty-name");
         }
 
-        if (phone === '') {
+        if (phone == '') {
             $('.alert-2').addClass("empty-phone");
             flag = false;
         }
@@ -127,7 +127,7 @@
             $('.alert-2').removeClass("empty-phone");
         }
 
-        if (address === '') {
+        if (address == '') {
             $('.alert-3').addClass("empty-address");
             flag = false;
         }
@@ -140,12 +140,11 @@
 
         }
         else {
+            e.preventDefault();
             $('.alert').addClass("py-2");
             window.location.hash = '#alert';
-            return;
+            
         }
-
-
     });
     
 

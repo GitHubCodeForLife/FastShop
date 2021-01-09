@@ -60,7 +60,7 @@
             <div class="row p-2 mx-5 py-3 justify-content-between bg-light">
                 {{#each orderItems}}
                 <article class="product-cart w-100">
-                    <div class="product-figure-cart "><img src="" alt="" width="80" height="80" />
+                    <div class="product-figure-cart "><img src="{{this.item.IMAGES.[0]}}" alt="" width="80" height="80" />
                     </div>
                     <div class="product-detail-cart flex-column w-100">
                         <h5 class="product-name-cart h-auto" style="font-size: 1.2vw;">{{this.item.DISH_NAME}}</h5>

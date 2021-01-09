@@ -35,7 +35,7 @@ exports.orderHistory = async(req, res, next)=>{
         let details = await orderServices.findOrderDetail(historyItems[i]._id.toString());
         for (j in details){
             product = await productsServices.findOne({_id : new ObjectId(details[j].DISH_ID)});
-            temp.push({image:product.IMAGE,qty:details[j].QUANTITY})
+            temp.push({image:product.IMAGES[0],qty:details[j].QUANTITY});
         }
         history.push({historyItem : historyItems[i], imgQty : temp});
     }

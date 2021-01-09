@@ -6,7 +6,7 @@
             {{#each products}}
             <div class="row p-3 mx-5 my-0 justify-content-between">
                 <article class="product-cart ">
-                    <div class="product-figure-cart "><img src="{{this.item.IMG}}" alt="" width="150" height="150" />
+                    <div class="product-figure-cart "><img src="{{this.item.IMAGES.[0]}}" alt="" width="150" height="150" />
                     </div>
                     <div class="product-detail-cart flex-column">
                         <h5 class="product-name-cart">{{this.item.DISH_NAME}}</h5>
@@ -106,7 +106,7 @@
                     document.getElementById("cart").innerHTML +=
                         `<div class="row p-3 mx-5 my-0 justify-content-between">
                          <article class="product-cart ">
-                          <div class="product-figure-cart "><img src="${cart.items[i].item.IMAGE}" alt="" width="150"
+                          <div class="product-figure-cart "><img src="${cart.items[i].item.IMAGES[0]}" alt="" width="150"
                              height="150" />
                         </div>
                     <div class="product-detail-cart flex-column">
@@ -174,7 +174,7 @@
                     document.getElementById("cart").innerHTML +=
                         `<div class="row p-3 mx-5 my-0 justify-content-between">
                          <article class="product-cart ">
-                          <div class="product-figure-cart "><img src="${cart.items[i].item.IMAGE}" alt="" width="150"
+                          <div class="product-figure-cart "><img src="${cart.items[i].item.IMAGES[0]}" alt="" width="150"
                              height="150" />
                         </div>
                     <div class="product-detail-cart flex-column">
@@ -242,7 +242,7 @@
                     document.getElementById("cart").innerHTML +=
                         `<div class="row p-3 mx-5 my-0 justify-content-between">
                          <article class="product-cart ">
-                          <div class="product-figure-cart "><img src="${cart.items[i].item.IMAGE}" alt="" width="150"
+                          <div class="product-figure-cart "><img src="${cart.items[i].item.IMAGES[0]}" alt="" width="150"
                              height="150" />
                         </div>
                     <div class="product-detail-cart flex-column">
