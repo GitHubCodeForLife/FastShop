@@ -295,3 +295,6 @@ function makeCode(length) {
 exports.aboutUs = (req, res, next)=>{
   res.render('about-us',{title: "About us"});
 }
+exports.contacts = (req, res, next)=>{
+  res.render('contacts',{title: "Contact"});
+}

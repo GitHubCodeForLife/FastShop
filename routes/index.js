@@ -47,4 +47,5 @@ router.post('/password-reset/:total', checkNotAuthenticated, homeController.post
 router.get('/check-out', checkAuthenticated, homeController.checkout);
 router.post('/check-out/place-order', checkAuthenticated, orderController.placeOrder);
 router.get('/about-us', homeController.aboutUs);
+router.get('/contacts', homeController.contacts);
 module.exports = router;
