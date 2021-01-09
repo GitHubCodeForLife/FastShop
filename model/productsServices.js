@@ -22,7 +22,7 @@ exports.searchProducts = async (query, page) => {
         PRICE: 1,
         STATUS: 1,
         TYPE: 1,
-        IMAGE: 1,
+        IMAGES: 1,
         score: { $meta: "textScore" },
         VIEW: 1
     };

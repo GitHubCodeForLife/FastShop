@@ -25,41 +25,6 @@
 </section>
 
 
-<!-- Button to Open the Modal -->
-
-<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
-  Search Advance
-</button>
-
-<!-- The Modal -->
-<div class="modal animate__zoomInDown" id="myModal" style="z-index: 2000;">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <!-- Modal Header --> 
-      <div class="modal-header">
-        <h4 class="modal-title">Search Advance</h4>
-        <button type="button" class="close btn" data-dismiss="modal">&times;</button>
-      </div>
-      <!-- Modal body -->
-      <div class="modal-body">
-        <fieldset class="form-group">
-          <legend>Sliders</legend>
-          <label for="customRange1">Example range</label>
-          <input type="range" class="custom-range" id="customRange1">
-        </fieldset>
-        <div>Type - Select menu</div>
-        <div>Love - </div>
-        <div>Rating</div>
-      </div>
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
 <!-- Our Shop-->
 
 <section class="section section-lg bg-default" id='category'>
@@ -135,7 +100,7 @@
           <div class="col-sm-6 col-lg-4 col-xl-4 my-3 ">
             <!-- Product-->
             <article class="product wow fadeInLeft" data-wow-delay=".15s">
-              <div class="product-figure item"><img src="https://picsum.photos/200" alt="" width="161" height="162" />
+              <div class="product-figure item"><img src="{{this.IMAGES.[0]}}" alt="" width="161" height="162" />
               </div>
               <h6 class="product-title">{{this.DISH_NAME}}</h6>
               <div class="prosduct-price-wrap">
@@ -154,7 +119,6 @@
                     href="../products/detail?id={{this._id}}">View
                     Product</a></div>
               </div>
-              <span class="product-badge product-badge-sale">Sale</span>
               {{/if}}
               {{#unless this.STATUS}}
               <span class="product-badge product-badge-new">Hết Hàng</span>
@@ -212,7 +176,7 @@
 	  <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
 		<!-- Product-->
 		<article class="product wow fadeInLeft" data-wow-delay=".15s">
-		  <div class="product-figure item"><img src="https://picsum.photos/200" alt="" width="161" height="162" />
+		  <div class="product-figure item"><img src="${products[i].IMAGES[0]}" alt="" width="161" height="162" />
 		  </div>
 		  <h6 class="product-title">${products[i].DISH_NAME}</h6>
 		  <div class="product-price-wrap">
@@ -228,7 +192,7 @@
 				cart</span></div>
 			<div class="button-wrap"><a class="button button-xs button-secondary button-winona" href="/products/detail?id=${products[i]._id}">View
 				Product</a></div>
-		  </div><span class="product-badge product-badge-sale">Sale</span>
+		  </div>
 		</article>
 	  </div>`);
             } else {
@@ -236,7 +200,7 @@
 	  <div class="col-sm-6 col-lg-4 col-xl-4 my-3">
 		<!-- Product-->
 		<article class="product wow fadeInLeft" data-wow-delay=".15s">
-		  <div class="product-figure item"><img src="${products[i].IMG}" alt="" width="161" height="162" />
+		  <div class="product-figure item"><img src="${products[i].IMAGES[0]}  " alt="" width="161" height="162" />
 		  </div>
 		  <h6 class="product-title">${products[i].DISH_NAME}</h6>
 		  <div class="product-price-wrap">

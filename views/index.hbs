@@ -70,9 +70,11 @@
           <!-- Services Terri-->
           <article class="services-terri wow slideInUp">
 
-            <div class="services-terri-figure">
-              <img src="images/menu-1-370x278.jpg" alt="" width="370" height="278" />
-            </div>
+            <a href="/products/rice">
+              <div class="services-terri-figure"><img src="images/menu-5-370x278.jpg" alt="" width="370" height="278" />
+              </div>
+            </a>
+
             <div class="services-terri-caption">
               <span class="services-terri-icon linearicons-star"></span>
               <h5 class="services-terri-title"><a href="/products/rice">Rice</a></h5>
@@ -84,8 +86,10 @@
         <div class="oh-desktop">
           <!-- Services Terri-->
           <article class="services-terri wow slideInDown">
-            <div class="services-terri-figure"><img src="images/menu-2-370x278.jpg" alt="" width="370" height="278" />
-            </div>
+            <a href="/products/pizza">
+              <div class="services-terri-figure"><img src="images/menu-1-370x278.jpg" alt="" width="370" height="278" />
+              </div>
+            </a>
             <div class="services-terri-caption"><span class="services-terri-icon linearicons-pizza"></span>
               <h5 class="services-terri-title"><a href="/products/pizza">Pizzas</a></h5>
             </div>
@@ -96,8 +100,10 @@
         <div class="oh-desktop">
           <!-- Services Terri-->
           <article class="services-terri wow slideInUp">
-            <div class="services-terri-figure"><img src="images/menu-3-370x278.jpg" alt="" width="370" height="278" />
-            </div>
+            <a href="/products/burger">
+              <div class="services-terri-figure"><img src="images/menu-5-370x278.jpg" alt="" width="370" height="278" />
+              </div>
+            </a>
             <div class="services-terri-caption"><span class="services-terri-icon linearicons-hamburger"></span>
               <h5 class="services-terri-title"><a href="/products/burger">Burgers</a></h5>
             </div>
@@ -108,9 +114,13 @@
         <div class="oh-desktop">
           <!-- Services Terri-->
           <article class="services-terri wow slideInDown">
-            <div class="services-terri-figure"><img src="images/menu-4-370x278.jpg" alt="" width="370" height="278" />
-            </div>
-            <div class="services-terri-caption"><span class="services-terri-icon linearicons-ice-cream"></span>
+            <a href="/products/dessert">
+              <div class="services-terri-figure">
+                <img src="images/menu-4-370x278.jpg" alt="" width="370" height="278" />
+              </div>
+            </a>
+            <div class="services-terri-caption">
+              <span class="services-terri-icon linearicons-ice-cream"></span>
               <h5 class="services-terri-title"><a href="/products/dessert">Desserts</a></h5>
             </div>
           </article>
@@ -120,8 +130,10 @@
         <div class="oh-desktop">
           <!-- Services Terri-->
           <article class="services-terri wow slideInUp">
-            <div class="services-terri-figure"><img src="images/menu-5-370x278.jpg" alt="" width="370" height="278" />
-            </div>
+            <a href="/products/drink">
+              <div class="services-terri-figure"><img src="images/menu-5-370x278.jpg" alt="" width="370" height="278" />
+              </div>
+            </a>
             <div class="services-terri-caption"><span class="services-terri-icon linearicons-coffee-cup"></span>
               <h5 class="services-terri-title"><a href="/products/drink">Drinks</a></h5>
             </div>
@@ -132,8 +144,11 @@
         <div class="oh-desktop">
           <!-- Services Terri-->
           <article class="services-terri wow slideInDown">
-            <div class="services-terri-figure"><img src="images/menu-6-370x278.jpg" alt="" width="370" height="278" />
-            </div>
+
+            <a href="/products/spaghetti">
+              <div class="services-terri-figure"><img src="images/menu-5-370x278.jpg" alt="" width="370" height="278" />
+              </div>
+            </a>
             <div class="services-terri-caption"><span class="services-terri-icon linearicons-platter "></span>
               <h5 class="services-terri-title"><a href="/products/spaghetti">Spaghetti</a></h5>
             </div>
@@ -155,7 +170,7 @@
       <div class="col-sm-6 col-lg-4 col-xl-3">
         <!-- Product-->
         <article class="product wow fadeInLeft" data-wow-delay=".15s">
-          <div class="product-figure"><img src="images/product-1-161x162.png" alt="" width="161" height="162" />
+          <div class="product-figure"><img src="{{this.IMAGES.[0]}}" alt="" width="161" height="162" />
           </div>
           <div class="product-rating"><span class="mdi mdi-star"></span><span class="mdi mdi-star"></span><span
               class="mdi mdi-star"></span><span class="mdi mdi-star"></span><span
@@ -181,7 +196,6 @@
                 href="/products/detail?id={{this._id}}">View
                 Product</a></div>
           </div>
-          <span class="product-badge product-badge-sale">Sale</span>
           {{/if}}
           {{#unless this.STATUS}}
           <span class="product-badge product-badge-new">Hết Hàng</span>

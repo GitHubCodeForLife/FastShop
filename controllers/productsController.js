@@ -25,6 +25,7 @@ exports.addToCart = async (req, res, next) => {
 exports.search = async (req, res, next) => {
      const { q } = req.query;
      const products = await productsServices.searchProducts({ $text: { $search: q } }, 1);
+     console.log('Seach Products: ', products);
      let isPaging = true;
      isPaging = products[8] == undefined ? false : true;
      const pageTwoProducts = await productsServices.searchProducts({ $text: { $search: q } }, 2);
